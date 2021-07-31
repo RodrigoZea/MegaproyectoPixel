@@ -20,13 +20,18 @@ public class CharacterControl : MonoBehaviour
     private float rotationSpeed = 2f;
     [SerializeField]
     private Weapon weapon;
-    float speedLimit = 0.5f;
+    [SerializeField]
+    [Range(1.0f,3.0f)]
+    private float speedFactor = 2.0f;
+    float speedLimit = 1.0f; 
 
     private InputAction moveAction;
     private InputAction lookAction;
     private InputAction jumpAction;
     private InputAction aimAction;
     private InputAction shootAction;
+    private InputAction sprintAction;
+    private bool runPressed = false;
 
     private void Start()
     {
@@ -37,10 +42,16 @@ public class CharacterControl : MonoBehaviour
         jumpAction = playerInput.actions["Jump"];
         aimAction = playerInput.actions["Aim"];
         shootAction = playerInput.actions["Shoot"];
+        sprintAction = playerInput.actions["Sprint"];
+        sprintAction.performed += _ => {runPressed = true;};
+        sprintAction.canceled += _ => {runPressed = false;};
         shootAction.performed += _ => weapon.StartFiring();
         shootAction.canceled += _ => weapon.StopFiring();
+        shootAction.Disable();
         aimAction.performed += _ => characterAnim.enableAimLayer();
+        aimAction.performed += _ => {shootAction.Enable(); speedLimit = 4.0f;};
         aimAction.canceled += _ => characterAnim.disableAimLayer();
+        aimAction.canceled += _ => {shootAction.Disable(); speedLimit = 1.0f;};
         cameraTransform = Camera.main.transform;
         
     }
@@ -58,18 +69,17 @@ public class CharacterControl : MonoBehaviour
         Vector2 input = moveAction.ReadValue<Vector2>();
 
         bool forwardPressed = input.y > 0.0f ? true : false;
-        bool runPressed = false;
         bool rightPressed = input.x > 0.0f ? true : false;
         bool leftPressed = input.x < 0.0f ? true : false;
         bool backPressed = input.y < 0.0f ? true : false;
-        speedLimit = runPressed ? 2.0f : 0.5f;
-        characterAnim.changeVelocity(forwardPressed, backPressed, leftPressed, rightPressed, runPressed, speedLimit);
-        characterAnim.lockOrResetVelocity(forwardPressed, backPressed, leftPressed, rightPressed, runPressed, speedLimit);
+        playerSpeed = runPressed ? 2.0f / speedLimit : 0.5f / speedLimit;
+        characterAnim.changeVelocity(forwardPressed, backPressed, leftPressed, rightPressed, runPressed, playerSpeed);
+        characterAnim.lockOrResetVelocity(forwardPressed, backPressed, leftPressed, rightPressed, runPressed, playerSpeed);
 
         Vector3 move = new Vector3(input.x, 0, input.y);
         move = move.x * cameraTransform.right.normalized + move.z * cameraTransform.forward.normalized;
         move.y = 0f;
-        controller.Move(move * Time.deltaTime * playerSpeed);
+        controller.Move(move * Time.deltaTime * playerSpeed*speedFactor);
 
         // Changes the height position of the player..
         if (jumpAction.triggered && groundedPlayer)
