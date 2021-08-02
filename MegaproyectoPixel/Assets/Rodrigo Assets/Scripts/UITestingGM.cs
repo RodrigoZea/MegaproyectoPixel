@@ -9,9 +9,12 @@ public class UITestingGM : MonoBehaviour
     public GameObject healthBar;
     public GameObject spookBar;
     public GameObject player;
+    [SerializeField]
+    private float idleTimer;
     public bool canvasFadeable;
     private float canvasFadeTimer;
     private bool canvasVisible = false;
+    private bool updatingValue = false;
     private ParticleSystem bloodDrops;
     private ParticleSystem  spiritDrops;
     private InputAction moveAction;
@@ -20,8 +23,8 @@ public class UITestingGM : MonoBehaviour
     void Start()
     {
         moveAction = player.GetComponent<PlayerInput>().actions["Move"];
-        bloodDrops = healthBar.transform.GetChild(1).gameObject.GetComponent<ParticleSystem>();
-        spiritDrops = spookBar.transform.GetChild(1).gameObject.GetComponent<ParticleSystem>();
+        bloodDrops = healthBar.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>();
+        spiritDrops = spookBar.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>();
         bloodDrops.Stop();
 
         fadeGroup.alpha = 0f;
@@ -36,34 +39,29 @@ public class UITestingGM : MonoBehaviour
         if (canvasFadeable) {
             // If player is idle and canvas not visible
             if (!canvasVisible && move.magnitude == 0f) {
-                Debug.Log("Canvas visibile: " + canvasVisible);
-
                 canvasFadeTimer += Time.deltaTime;
-
-                Debug.Log("Canvas fade timer: " + canvasFadeTimer);
-
                 // Fade in
-                if (canvasFadeTimer >= 3.0f) {
-                    Debug.Log("FADING IN !!!");
-                    StartCoroutine(fadeGroupFade(fadeGroup.alpha, 1));
+                if (canvasFadeTimer >= idleTimer) {
+                    StartCoroutine(fadeGroupFade(fadeGroup.alpha, 1, true));
                 }
             // Else if player is moving
             // Hide canvas and reset timer
             } else if (move.magnitude != 0f) {
                 // Fade out
-                Debug.Log("FADING OUT !!!");
-                StartCoroutine(fadeGroupFade(fadeGroup.alpha, 0));
+                StartCoroutine(fadeGroupFade(fadeGroup.alpha, 0, false));
             }
         }
     }
 
-    IEnumerator fadeGroupFade(float start, float end) {
+    // Visibility true means canvas will be shown eventually
+    IEnumerator fadeGroupFade(float start, float end, bool visibility) {
         float counter = 0f;
+
+        canvasVisible = visibility;
 
         while(counter < 2.0f) {
             counter += Time.deltaTime;
             fadeGroup.alpha = Mathf.Lerp(start, end, counter/2.0f);
-            canvasVisible = !canvasVisible;
             canvasFadeTimer = 0f;
             yield return null;
         }
@@ -71,23 +69,40 @@ public class UITestingGM : MonoBehaviour
 
     // -------------------------------------------------------------------------------------------------------------------------------
 
-    void changeHealth(int value) {
+    public void changeHealth(int value) {
         if (bloodDrops.isStopped) {
             bloodDrops.Play();
+        }
+
+        if (!canvasVisible) {
+            canvasVisible = true;
+            fadeGroup.alpha = 1;
         }
 
         // Normalize value to 1 max
         float adjustedValue = -0.10f;
 
-        Vector3 updatedHealthScale = new Vector3(0, healthBar.transform.localScale.y + adjustedValue, 0);
+        Vector3 updatedHealthScale = new Vector3(healthBar.transform.localScale.x, healthBar.transform.localScale.y + adjustedValue,  healthBar.transform.localScale.z);
 
-        if (updatedHealthScale.y <= 1.0f && updatedHealthScale.y >= 0.0f) {
+        if (updatedHealthScale.y <= 1.1f && updatedHealthScale.y >= -0.1f) {
             healthBar.transform.localScale = updatedHealthScale;
         }
     }
 
-    void changeSpook(int value) {
+    public void changeSpook(int value) {
+        if (!canvasVisible) {
+            canvasVisible = true;
+            fadeGroup.alpha = 1;
+        }
 
+        // Normalize value to 1 max
+        float adjustedValue = 0.10f;
+
+        Vector3 updatedSpookScale = new Vector3(spookBar.transform.localScale.x, spookBar.transform.localScale.y + adjustedValue,  spookBar.transform.localScale.z);
+
+        if (updatedSpookScale.y <= 1.1f && updatedSpookScale.y >= -0.1f) {
+            spookBar.transform.localScale = updatedSpookScale;
+        }
     }
     
 }
