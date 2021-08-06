@@ -21,6 +21,8 @@ public class CharacterControl : MonoBehaviour
     [SerializeField]
     private Weapon weapon;
     [SerializeField]
+    private InteractControl interact;
+    [SerializeField]
     [Range(1.0f,3.0f)]
     private float speedFactor = 2.0f;
     float speedLimit = 1.0f; 
@@ -31,6 +33,7 @@ public class CharacterControl : MonoBehaviour
     private InputAction aimAction;
     private InputAction shootAction;
     private InputAction sprintAction;
+    private InputAction interactAction;
     private bool runPressed = false;
 
     private void Start()
@@ -43,6 +46,7 @@ public class CharacterControl : MonoBehaviour
         aimAction = playerInput.actions["Aim"];
         shootAction = playerInput.actions["Shoot"];
         sprintAction = playerInput.actions["Sprint"];
+        interactAction = playerInput.actions["Interact"];
         sprintAction.performed += _ => {runPressed = true;};
         sprintAction.canceled += _ => {runPressed = false;};
         shootAction.performed += _ => weapon.StartFiring();
@@ -52,6 +56,7 @@ public class CharacterControl : MonoBehaviour
         aimAction.performed += _ => {shootAction.Enable(); speedLimit = 4.0f;};
         aimAction.canceled += _ => characterAnim.disableAimLayer();
         aimAction.canceled += _ => {shootAction.Disable(); speedLimit = 1.0f;};
+        interactAction.performed += _ => interact.Interact();
         cameraTransform = Camera.main.transform;
         
     }
@@ -79,7 +84,7 @@ public class CharacterControl : MonoBehaviour
         Vector3 move = new Vector3(input.x, 0, input.y);
         move = move.x * cameraTransform.right.normalized + move.z * cameraTransform.forward.normalized;
         move.y = 0f;
-        controller.Move(move * Time.deltaTime * playerSpeed*speedFactor);
+        controller.Move(move.normalized * Time.deltaTime * playerSpeed*speedFactor);
 
         // Changes the height position of the player..
         if (jumpAction.triggered && groundedPlayer)
