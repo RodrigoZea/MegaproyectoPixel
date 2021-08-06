@@ -2181,7 +2181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NoiseProfile: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: 1
+  m_AmplitudeGain: 3
   m_FrequencyGain: 1
   mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &1592736792
@@ -3016,6 +3016,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   raycastOrigin: {fileID: 2090653415}
   raycastDestiny: {fileID: 1020821547}
+  recoveryTime: 0.8
+  aimCamera: {fileID: 31202396}
+  verticaRecoil: 40
+  duration: 0.1
 --- !u!1 &2042287101
 GameObject:
   m_ObjectHideFlags: 0
