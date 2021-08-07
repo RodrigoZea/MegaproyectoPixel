@@ -9,7 +9,6 @@ public class UITestingGM : MonoBehaviour
     public GameObject healthBar;
     public GameObject spookBar;
     public GameObject player;
-    public GameObject inventory;
     [SerializeField]
     private float idleTimer;
     [SerializeField]
@@ -122,6 +121,8 @@ public class UITestingGM : MonoBehaviour
 
         Inventory3D.gameObject.SetActive(true);
         InventoryGroupCanvas.gameObject.SetActive(true);
+
+        
     }
 
     void hideInventory() {
