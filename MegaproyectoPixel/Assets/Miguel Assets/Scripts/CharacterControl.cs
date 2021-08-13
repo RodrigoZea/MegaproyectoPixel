@@ -1,5 +1,7 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine;
 
 [RequireComponent(typeof(CharacterController), typeof(PlayerInput))]
 public class CharacterControl : MonoBehaviour
@@ -9,7 +11,10 @@ public class CharacterControl : MonoBehaviour
     private CharacterAnimation characterAnim;
     private Vector3 playerVelocity;
     private Transform cameraTransform;
+    private Cinemachine.CinemachineImpulseSource cameraShake;
     private bool groundedPlayer;
+    [SerializeField]
+    private Cinemachine.CinemachineVirtualCamera playerCamera;
     [SerializeField]
     private float playerSpeed = 2.0f;
     [SerializeField]
@@ -23,8 +28,10 @@ public class CharacterControl : MonoBehaviour
     [SerializeField]
     private InteractControl interact;
     [SerializeField]
+    private AimTarget aimTarget;
+    [SerializeField]
     [Range(1.0f,3.0f)]
-    private float speedFactor = 2.0f;
+    private float speedFactor = 2.0f, recoveryTime = 1.0f;
     float speedLimit = 1.0f; 
 
     private InputAction moveAction;
@@ -35,9 +42,11 @@ public class CharacterControl : MonoBehaviour
     private InputAction sprintAction;
     private InputAction interactAction;
     private bool runPressed = false;
+    private bool recovering = false;
 
     private void Start()
     {
+        cameraShake = GetComponent<CinemachineImpulseSource>();
         controller = GetComponent<CharacterController>();
         playerInput = GetComponent<PlayerInput>();
         characterAnim = GetComponent<CharacterAnimation>();
@@ -53,11 +62,13 @@ public class CharacterControl : MonoBehaviour
         shootAction.canceled += _ => weapon.StopFiring();
         shootAction.Disable();
         aimAction.performed += _ => characterAnim.enableAimLayer();
-        aimAction.performed += _ => {shootAction.Enable(); speedLimit = 4.0f;};
+        aimAction.performed += _ => {shootAction.Enable(); speedLimit = 4.0f; aimTarget.Aiming();};
         aimAction.canceled += _ => characterAnim.disableAimLayer();
-        aimAction.canceled += _ => {shootAction.Disable(); speedLimit = 1.0f;};
+        aimAction.canceled += _ => {shootAction.Disable(); speedLimit = 1.0f; aimTarget.NotAiming();};
         interactAction.performed += _ => interact.Interact();
+        jumpAction.performed += _ => HitReaction();
         cameraTransform = Camera.main.transform;
+
         
     }
 
@@ -85,11 +96,12 @@ public class CharacterControl : MonoBehaviour
         move = move.x * cameraTransform.right.normalized + move.z * cameraTransform.forward.normalized;
         move.y = 0f;
         controller.Move(move.normalized * Time.deltaTime * playerSpeed*speedFactor);
-
+        
         // Changes the height position of the player..
         if (jumpAction.triggered && groundedPlayer)
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+            HitReaction();
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
@@ -98,5 +110,22 @@ public class CharacterControl : MonoBehaviour
         float targetAngle = cameraTransform.eulerAngles.y;
         Quaternion rotation = Quaternion.Euler(0, targetAngle, 0);
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
+    }
+
+
+    public void HitReaction(){
+        StartCoroutine(recovery(recoveryTime));
+        cameraShake.GenerateImpulse(playerCamera.transform.forward);
+        
+    }
+
+    IEnumerator recovery(float time){
+        Debug.Log("Hit");
+        speedLimit = 4.0f;
+        recovering = true;
+        yield return new WaitForSeconds(time);
+        recovering = false;
+        speedLimit = 1.0f;
+        Debug.Log("Not Hit");
     }
 }

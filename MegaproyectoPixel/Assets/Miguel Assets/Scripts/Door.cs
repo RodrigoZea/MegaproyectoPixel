@@ -9,6 +9,7 @@ public class Door : MonoBehaviour, IInteractable
     private float speed = 0.5f;
     [SerializeField]
     private Animator animator;
+    public string key {get;} 
     // Start is called before the first frame update
 
     public void OnInteract(string condition){

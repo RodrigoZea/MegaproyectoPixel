@@ -13,20 +13,29 @@ public class Weapon : MonoBehaviour
     private float recoveryTime = 0.8f;
     [SerializeField]
     private Cinemachine.CinemachineVirtualCamera aimCamera;
+    private Cinemachine.CinemachineImpulseSource cameraShake;
     [SerializeField]
-    private float verticaRecoil, duration;
+    private float duration;
+    [SerializeField]
+    private Vector2[] pattern;
     private float time = 0;
     private Ray ray;
     private RaycastHit hitInfo;
     private bool firing = false;
     private bool fireAvailable = true;
+    float verticaRecoil, horizontalRecoil;
+    int index;
 
+    void Awake() {
+        cameraShake = GetComponent<CinemachineImpulseSource>();  
+    }
     void Update() {
         if (fireAvailable && firing){
             Fire();
         }
         if (time > 0){
-            aimCamera.GetCinemachineComponent<CinemachinePOV>().m_VerticalAxis.Value -= verticaRecoil * Time.deltaTime;
+            aimCamera.GetCinemachineComponent<CinemachinePOV>().m_VerticalAxis.Value -= (verticaRecoil * Time.deltaTime) / duration;
+            aimCamera.GetCinemachineComponent<CinemachinePOV>().m_HorizontalAxis.Value -= (horizontalRecoil * Time.deltaTime) / duration;
             time -= Time.deltaTime;
         }
     }
@@ -40,9 +49,17 @@ public class Weapon : MonoBehaviour
             Debug.Log("Hit");
         }
         time = duration;
+        cameraShake.GenerateImpulse(aimCamera.transform.forward);
+        horizontalRecoil = pattern[index].x;
+        verticaRecoil = pattern[index].y;
+        Debug.Log(horizontalRecoil+", "+verticaRecoil);
+        index = NextIndex(index);
         StartCoroutine(recovery(recoveryTime));
     }
 
+    private int NextIndex(int index) {
+        return (index + 1) % pattern.Length;
+    }
     public void StartFiring() {
         firing = true;
     }

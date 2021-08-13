@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 6642069606354341754}
   - component: {fileID: 6642069606354341753}
   - component: {fileID: 6642069606354341756}
+  - component: {fileID: 7191485078854055327}
   m_Layer: 0
-  m_Name: AimCinemachine
+  m_Name: ThirdPersonAimCinemachine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131,6 +132,21 @@ MonoBehaviour:
   PlayerIndex: -1
   XYAxis: {fileID: -9104161949654046238, guid: 9279a8757ebd85243862b72034415269, type: 3}
   ZAxis: {fileID: 0}
+--- !u!114 &7191485078854055327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6642069606354341752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ChannelMask: 1
+  m_Gain: 1
+  m_Use2DDistance: 0
 --- !u!1 &6642069606411250931
 GameObject:
   m_ObjectHideFlags: 0

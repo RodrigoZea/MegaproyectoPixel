@@ -1145,8 +1145,9 @@ GameObject:
   - component: {fileID: 4368123201408844376}
   - component: {fileID: 4368123201408844383}
   - component: {fileID: 3485743477190883500}
+  - component: {fileID: 2522824835950504149}
   m_Layer: 2
-  m_Name: Idle
+  m_Name: ThirdPerson
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1282,7 +1283,9 @@ MonoBehaviour:
   rotationSpeed: 2
   weapon: {fileID: 4368123201481391260}
   interact: {fileID: 4368123202088386839}
+  aimTarget: {fileID: 0}
   speedFactor: 2
+  recoveryTime: 1
 --- !u!114 &3485743477190883500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1302,6 +1305,48 @@ MonoBehaviour:
   turnSmoothTime: 0.1
   acceleration: 2
   deceleration: 2.5
+--- !u!114 &2522824835950504149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3485743477190883501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_RawSignal: {fileID: 11400000, guid: c2b3ef22ddaedac479e16d33976e7a03, type: 2}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 1000
+    m_PropagationSpeed: 343
 --- !u!1 &3670677861547502729
 GameObject:
   m_ObjectHideFlags: 0
@@ -1881,6 +1926,7 @@ GameObject:
   - component: {fileID: 4368123201488801630}
   - component: {fileID: 4368123201481391261}
   - component: {fileID: 4368123201481391260}
+  - component: {fileID: 371063145631156828}
   m_Layer: 2
   m_Name: 45 ACP Smith and Wesson Gun
   m_TagString: Untagged
@@ -1950,8 +1996,52 @@ MonoBehaviour:
   raycastDestiny: {fileID: 0}
   recoveryTime: 0.8
   aimCamera: {fileID: 0}
-  verticaRecoil: 40
   duration: 0.1
+  pattern:
+  - {x: 2, y: 5}
+  - {x: -2, y: 4}
+--- !u!114 &371063145631156828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4368123201481391262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_RawSignal: {fileID: 11400000, guid: 698faf786c17af24fb880d2926a76a88, type: 2}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 1000
+    m_PropagationSpeed: 343
 --- !u!1 &4368123201790296351
 GameObject:
   m_ObjectHideFlags: 0
@@ -2919,6 +3009,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4368123201481810110}
+  - {fileID: 7964295479287371952}
   m_Father: {fileID: 4257038087397876247}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3943,6 +4034,36 @@ Transform:
   - {fileID: 3212804783129487536}
   m_Father: {fileID: 9042457041707810937}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8202385925506579144
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7964295479287371952}
+  m_Layer: 2
+  m_Name: RaycastOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7964295479287371952
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8202385925506579144}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.008, y: 0.021, z: 0.894}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4368123203099879554}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8204570832175577370
 GameObject:
