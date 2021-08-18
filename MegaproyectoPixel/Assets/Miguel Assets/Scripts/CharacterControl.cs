@@ -14,6 +14,8 @@ public class CharacterControl : MonoBehaviour
     private Cinemachine.CinemachineImpulseSource cameraShake;
     private bool groundedPlayer;
     [SerializeField]
+    private UI_Inventory uiInventory;    
+    [SerializeField]
     private Cinemachine.CinemachineVirtualCamera playerCamera;
     [SerializeField]
     private float playerSpeed = 2.0f;
@@ -43,6 +45,7 @@ public class CharacterControl : MonoBehaviour
     private InputAction interactAction;
     private bool runPressed = false;
     private bool recovering = false;
+    private InventoryV2 inventory;
 
     private void Start()
     {
@@ -68,8 +71,20 @@ public class CharacterControl : MonoBehaviour
         interactAction.performed += _ => interact.Interact();
         jumpAction.performed += _ => HitReaction();
         cameraTransform = Camera.main.transform;
+        inventory = new InventoryV2();
+        uiInventory.SetInventory(inventory);
 
-        
+    }
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        ItemWorld itemWorld = collider.GetComponent<ItemWorld>();
+
+        if (itemWorld != null)
+        {
+            inventory.AddItem(itemWorld.GetItem());
+            itemWorld.DestroySelf();
+        }
     }
 
     void Update()

@@ -1,27 +1,53 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+[Serializable]
+public class Item
 {
     public enum ItemType {
         HEALING,
         AMMO,
         KEY_ITEM,
-        OTHER
-    }
-    public ItemType type;
-    public GameObject model;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+        OTHER,
+        Sword,
+        Health,
+        Mana,
+        Coin,
+        Medkit,
     }
 
-    // Update is called once per frame
-    void Update()
+    public ItemType itemType;
+    public GameObject model;
+    public int amount;
+
+    public Sprite GetSprite()
     {
-        
+        switch (itemType)
+        {
+            default:
+            case ItemType.HEALING: return ItemAssets.Instance.health;
+            case ItemType.Mana: return ItemAssets.Instance.mana;
+            case ItemType.Sword: return ItemAssets.Instance.sword;
+            case ItemType.Coin: return ItemAssets.Instance.coin;
+            case ItemType.Medkit: return ItemAssets.Instance.medkit;
+        }
+    }
+
+    public bool isStackable()
+    {
+        switch (itemType)
+        {
+            default:
+            case Item.ItemType.Coin:
+            case Item.ItemType.AMMO:
+            case Item.ItemType.Health:
+                return true;
+            case Item.ItemType.Sword:
+            case Item.ItemType.Medkit:
+            case Item.ItemType.KEY_ITEM:
+                return false;
+        }
     }
 }
