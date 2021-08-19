@@ -73,16 +73,16 @@ public class CharacterControl : MonoBehaviour
         cameraTransform = Camera.main.transform;
         inventory = new InventoryV2();
         uiInventory.SetInventory(inventory);
-
+        uiInventory.SetPlayer(this);
     }
 
     private void OnTriggerEnter(Collider collider)
     {
         ItemWorld itemWorld = collider.GetComponent<ItemWorld>();
-
         if (itemWorld != null)
         {
             inventory.AddItem(itemWorld.GetItem());
+            Debug.Log("I AM HERE");
             itemWorld.DestroySelf();
         }
     }
@@ -133,6 +133,11 @@ public class CharacterControl : MonoBehaviour
         cameraShake.GenerateImpulse(playerCamera.transform.forward);
         
     }
+
+    /*public static Vector3 GetPosition()
+    {
+        return Vector3();
+    }*/
 
     IEnumerator recovery(float time){
         Debug.Log("Hit");

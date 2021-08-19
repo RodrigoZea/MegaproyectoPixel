@@ -11,9 +11,6 @@ public class InventoryV2
     public InventoryV2()
     {
         itemList = new List<Item>();
-        AddItem(new Item { itemType = Item.ItemType.Sword, amount = 1 });
-        AddItem(new Item { itemType = Item.ItemType.Coin, amount = 10 });
-        AddItem(new Item { itemType = Item.ItemType.Health, amount = 1 });
     }
 
     public void AddItem(Item item)
@@ -29,10 +26,40 @@ public class InventoryV2
                     itemAlreadyInInventory = true;
                 }
             }
+            if (!itemAlreadyInInventory)
+            {
+                itemList.Add(item);
+            }
         }
         else
         {
             itemList.Add(item);
+        }
+        itemList.Add(item);
+        OnItemListChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    public void RemoveItem(Item item)
+    {
+        if (item.isStackable())
+        {
+            Item itemInventory = null;
+            foreach (Item inventoryItem in itemList)
+            {
+                if (inventoryItem.itemType == item.itemType)
+                {
+                    inventoryItem.amount -= item.amount;
+                    itemInventory = inventoryItem;
+                }
+            }
+            if(itemInventory != null && itemInventory.amount <= 0)
+            {
+                itemList.Remove(itemInventory);
+            }
+        }
+        else
+        {
+            itemList.Remove(item);
         }
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
     }

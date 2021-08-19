@@ -12,6 +12,7 @@ public class InteractControl : MonoBehaviour
 
     private Ray ray;
     private RaycastHit hitInfo;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +30,7 @@ public class InteractControl : MonoBehaviour
         {
             interactables.Add(other.gameObject);
             Debug.Log("Entra "+other.gameObject.name);
-        }
+        }        
     }
 
     private void OnTriggerExit(Collider other) {
