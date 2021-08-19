@@ -449,7 +449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99fc4c1b458090e40a4ec42e0229a0b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 889332245}
 --- !u!1 &224640792
 GameObject:
   m_ObjectHideFlags: 0
@@ -958,6 +958,17 @@ PrefabInstance:
       objectReference: {fileID: 971405266}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62ff0d2f1a7420b438761de4b7dc5a4c, type: 3}
+--- !u!114 &721947426 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8568821962759760192, guid: 545bcb4e828e8dc44a2341c66d6812a9, type: 3}
+  m_PrefabInstance: {fileID: 1747011368}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dfe1d9f9d34abb4290b904b24b88be8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &783640872 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7160407863454701381, guid: 05891f02678f8bc488c452a3b3c63d85, type: 3}
@@ -1038,6 +1049,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 872904722}
   m_CullTransparentMesh: 1
+--- !u!4 &889332245 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3833253727861769670, guid: 05891f02678f8bc488c452a3b3c63d85, type: 3}
+  m_PrefabInstance: {fileID: 1120065365}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &971405266 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3654893791305069563, guid: 05891f02678f8bc488c452a3b3c63d85, type: 3}
@@ -1137,10 +1153,18 @@ PrefabInstance:
       propertyPath: raycastDestiny
       value: 
       objectReference: {fileID: 1373662618}
+    - target: {fileID: 3654893790701938058, guid: 05891f02678f8bc488c452a3b3c63d85, type: 3}
+      propertyPath: m_UIInputModule
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3654893790701938062, guid: 05891f02678f8bc488c452a3b3c63d85, type: 3}
       propertyPath: aimTarget
       value: 
       objectReference: {fileID: 1373662619}
+    - target: {fileID: 3654893790701938062, guid: 05891f02678f8bc488c452a3b3c63d85, type: 3}
+      propertyPath: uiInventory
+      value: 
+      objectReference: {fileID: 721947426}
     - target: {fileID: 3654893790701938062, guid: 05891f02678f8bc488c452a3b3c63d85, type: 3}
       propertyPath: playerCamera
       value: 
@@ -1836,6 +1860,14 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 783640872}
+    - target: {fileID: 856497904453031396, guid: 6e4dd30dcac58714caa0e1710a66342b, type: 3}
+      propertyPath: m_VerticalAxis.m_MaxSpeed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 856497904453031396, guid: 6e4dd30dcac58714caa0e1710a66342b, type: 3}
+      propertyPath: m_HorizontalAxis.m_MaxSpeed
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e4dd30dcac58714caa0e1710a66342b, type: 3}
 --- !u!114 &1501903643 stripped

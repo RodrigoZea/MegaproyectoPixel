@@ -74,6 +74,7 @@ public class CharacterControl : MonoBehaviour
         inventory = new InventoryV2(UseItem);
         uiInventory.SetInventory(inventory);
         uiInventory.SetPlayer(this);
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void OnTriggerEnter(Collider collider)
