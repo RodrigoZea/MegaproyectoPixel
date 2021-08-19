@@ -44,7 +44,9 @@ public class UITestingGM : MonoBehaviour
         spiritDrops = spookBar.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>();
         bloodDrops.Stop();
 
-        fadeGroup.alpha = 0f;
+        if (canvasFadeable) {
+            fadeGroup.alpha = 0f;
+        }
     }
 
     // Update is called once per frame

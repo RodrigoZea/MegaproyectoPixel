@@ -1377,6 +1377,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1759063375}
     - target: {fileID: 2393488612145536042, guid: 326b7552d4a775f48b72e000674969b5, type: 3}
+      propertyPath: canvasFadeable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2393488612145536042, guid: 326b7552d4a775f48b72e000674969b5, type: 3}
       propertyPath: fadeGroupObject
       value: 
       objectReference: {fileID: 6539558049495606338}
