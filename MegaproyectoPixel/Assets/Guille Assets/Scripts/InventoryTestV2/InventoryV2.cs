@@ -7,9 +7,11 @@ public class InventoryV2
 {
     public event EventHandler OnItemListChanged;
     private List<Item> itemList;
+    private Action<Item> useItemAction;
     
-    public InventoryV2()
+    public InventoryV2(Action<Item> useItemAction)
     {
+        this.useItemAction = useItemAction;
         itemList = new List<Item>();
     }
 
@@ -64,6 +66,10 @@ public class InventoryV2
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
     }
 
+    public void UseItem(Item item)
+    {
+        useItemAction(item);
+    }
     public List<Item> GetItemList()
     {
         return itemList;

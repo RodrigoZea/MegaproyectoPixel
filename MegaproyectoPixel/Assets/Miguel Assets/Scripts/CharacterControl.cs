@@ -71,7 +71,7 @@ public class CharacterControl : MonoBehaviour
         interactAction.performed += _ => interact.Interact();
         jumpAction.performed += _ => HitReaction();
         cameraTransform = Camera.main.transform;
-        inventory = new InventoryV2();
+        inventory = new InventoryV2(UseItem);
         uiInventory.SetInventory(inventory);
         uiInventory.SetPlayer(this);
     }
@@ -132,6 +132,16 @@ public class CharacterControl : MonoBehaviour
         StartCoroutine(recovery(recoveryTime));
         cameraShake.GenerateImpulse(playerCamera.transform.forward);
         
+    }
+
+    private void UseItem(Item item)
+    {
+        switch (item.itemType)
+        {
+            case Item.ItemType.Health:
+                inventory.RemoveItem(new Item { itemType = Item.ItemType.Health, amount = 1 });
+                break;
+        }
     }
 
     /*public static Vector3 GetPosition()

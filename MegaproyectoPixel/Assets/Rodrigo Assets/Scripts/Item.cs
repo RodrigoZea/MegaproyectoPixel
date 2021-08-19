@@ -11,9 +11,7 @@ public class Item
         AMMO,
         KEY_ITEM,
         OTHER,
-        Sword,
         Health,
-        Mana,
         Coin,
         Medkit,
     }
@@ -28,8 +26,6 @@ public class Item
         {
             default:
             case ItemType.HEALING: return ItemAssets.Instance.health;
-            case ItemType.Mana: return ItemAssets.Instance.mana;
-            case ItemType.Sword: return ItemAssets.Instance.sword;
             case ItemType.Coin: return ItemAssets.Instance.coin;
             case ItemType.Medkit: return ItemAssets.Instance.medkit;
         }
@@ -44,7 +40,6 @@ public class Item
             case Item.ItemType.AMMO:
             case Item.ItemType.Health:
                 return true;
-            case Item.ItemType.Sword:
             case Item.ItemType.Medkit:
             case Item.ItemType.KEY_ITEM:
                 return false;

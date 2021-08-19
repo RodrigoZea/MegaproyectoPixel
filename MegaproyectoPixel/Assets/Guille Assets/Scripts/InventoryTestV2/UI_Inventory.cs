@@ -52,8 +52,9 @@ public class UI_Inventory : MonoBehaviour
             
             itemSlotContainer.gameObject.SetActive(true);
 
-            itemSlotRectTransform.GetComponent<Button_UI>().ClickFunc = () => { 
-                
+            itemSlotRectTransform.GetComponent<Button_UI>().ClickFunc = () => {
+                //Use Item
+                inventory.UseItem(item);
             };
             itemSlotRectTransform.GetComponent<Button_UI>().MouseRightClickFunc = () => {
                 Item duplicateItem = new Item { itemType = item.itemType, amount = item.amount };
