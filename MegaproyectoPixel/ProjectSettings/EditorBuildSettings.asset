@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/FusionAssets/Scenes/FusionScene.unity
+    guid: b6378636d790eb74cbf5e9173689f5dd
   m_configObjects: {}

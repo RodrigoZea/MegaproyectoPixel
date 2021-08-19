@@ -5,7 +5,8 @@ using UnityEngine.InputSystem;
 
 public class UITestingGM : MonoBehaviour
 {
-    public CanvasGroup fadeGroup;
+    public GameObject fadeGroupObject;
+    private CanvasGroup fadeGroup;
     public GameObject healthBar;
     public GameObject spookBar;
     public GameObject player;
@@ -19,19 +20,26 @@ public class UITestingGM : MonoBehaviour
     private float canvasFadeTimer;
     private bool canvasVisible = false;
     private bool updatingValue = false;
+    private bool inventoryShowing = false;
     private ParticleSystem bloodDrops;
     private ParticleSystem  spiritDrops;
     private InputAction moveAction;
+    // TODO: Refactorize inventory input handling to a separate gamemanager in next iteration.
+    private InputAction inventoryAction;
+
+    // ------------------------------------------------------------------------------------------
     // Inventory
     private Item[] itemList = new Item[20];
-
     public GameObject Inventory3D;
     public GameObject InventoryGroupCanvas;
+    public GameObject[] inventoryTabs;
 
     // Start is called before the first frame update
     void Start()
     {
         moveAction = player.GetComponent<PlayerInput>().actions["Move"];
+        inventoryAction = player.GetComponent<PlayerInput>().actions["Inventory"];
+        fadeGroup = fadeGroupObject.GetComponent<CanvasGroup>();
         bloodDrops = healthBar.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>();
         spiritDrops = spookBar.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>();
         bloodDrops.Stop();
@@ -59,6 +67,21 @@ public class UITestingGM : MonoBehaviour
                 // Fade out
                 StartCoroutine(fadeGroupFade(fadeGroup.alpha, 0, false));
             }
+        }
+
+        // TODO: Pass this into a separate method in whatever gamemanager it's going to be handled in...
+        if (inventoryAction.triggered && !inventoryShowing) {
+            Debug.Log("Hello from inventory");
+            inventoryShowing = true;
+            InventoryGroupCanvas.SetActive(true);
+            fadeGroupObject.SetActive(false);
+            canvasVisible = false;
+        } else if(inventoryAction.triggered && inventoryShowing){
+            Debug.Log("Bye from inventory");
+            inventoryShowing = false;
+            InventoryGroupCanvas.SetActive(false);
+            fadeGroupObject.SetActive(true);
+            canvasVisible = false;
         }
     }
 
@@ -121,17 +144,19 @@ public class UITestingGM : MonoBehaviour
 
         Inventory3D.gameObject.SetActive(true);
         InventoryGroupCanvas.gameObject.SetActive(true);
-
-        
     }
 
-    void hideInventory() {
-        Inventory3D.gameObject.SetActive(false);
-        InventoryGroupCanvas.gameObject.SetActive(false);
+    // Change this to not be hardcoded. This is a "hotfix" implementation I guess.
+    // Ask for index in editor and show that tab index and hide every other tab. Thats the solution.
+    public void showItemTab() {
+        inventoryTabs[0].SetActive(true);
+        inventoryTabs[1].SetActive(false);
     }
 
-    void displayItems() {
-
+    public void showMapTab() {
+        Debug.Log("A???");
+        inventoryTabs[0].SetActive(false);
+        inventoryTabs[1].SetActive(true);
     }
     
 }
