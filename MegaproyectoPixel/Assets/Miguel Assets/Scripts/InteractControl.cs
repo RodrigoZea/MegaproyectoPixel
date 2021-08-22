@@ -13,6 +13,8 @@ public class InteractControl : MonoBehaviour
     private Ray ray;
     private RaycastHit hitInfo;
 
+    public CharacterControl player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,7 +50,9 @@ public class InteractControl : MonoBehaviour
         if(Physics.Raycast(ray, out hitInfo)){
             Debug.DrawLine(ray.origin, hitInfo.point, Color.red, 1.0f);
             Debug.Log("Hit"+hitInfo.collider.gameObject.name);
-            foreach(GameObject x in interactables){
+            float distance = Vector3.Distance(hitInfo.transform.position, raycastOrigin.transform.position);
+
+            foreach (GameObject x in interactables){
                 Debug.Log("-"+x.name);
             }
             if (interactables.Contains(hitInfo.collider.gameObject))
@@ -56,12 +60,20 @@ public class InteractControl : MonoBehaviour
                 IInteractable interS = hitInfo.collider.GetComponent<IInteractable>();
                 if (interS != null){
                     interS.OnInteract("hello");
-                    Debug.Log("Run interact");
-                    if(hitInfo.collider.GetComponent<ItemWorld>() != null)
-                    {
-
-                    }
+                    Debug.Log("Run interact");                    
                 }
+            }
+            if (hitInfo.collider.GetComponent<ItemWorld>() != null)
+            {
+                ItemWorld itemWorld = hitInfo.collider.GetComponent<ItemWorld>();
+                Item item = itemWorld.OnInteract();
+                player.inventory.AddItem(item);
+                //interactables.Remove(hitInfo.transform.gameObject);
+                //interactables.Remove(hitInfo.collider.gameObject);
+                //Destroy(hitInfo.collider.gameObject);
+                Debug.Log("I AM HERE");
+                hitInfo.collider.enabled = false;
+                hitInfo.transform.gameObject.SetActive(false);
             }
         }
     }

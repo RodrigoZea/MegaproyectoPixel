@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using CodeMonkey.Utils;
 
-public class ItemWorld : MonoBehaviour, IInteractable
+public class ItemWorld : MonoBehaviour
 {
     
     public static ItemWorld SpawnItemWorld(Vector3 position, Item item)
@@ -22,8 +22,7 @@ public class ItemWorld : MonoBehaviour, IInteractable
     private SpriteRenderer spriteRenderer;
     private TextMeshPro textMeshPro;
 
-    public CharacterControl player;
-
+    
     public string key { get; }
 
     private void Awake()
@@ -52,16 +51,9 @@ public class ItemWorld : MonoBehaviour, IInteractable
         return item;
     }
 
-    public void DestroySelf()
+    public Item OnInteract()
     {
-        Destroy(gameObject);
-    }
-
-    public void OnInteract(string condition)
-    {
-        player.inventory.AddItem(GetItem());
-        Debug.Log("I AM HERE" + player.inventory.GetItemList());
-        DestroySelf();
+        return GetItem();
     }
 }
 
