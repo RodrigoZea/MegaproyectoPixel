@@ -66,7 +66,7 @@ public class InteractControl : MonoBehaviour
             if (hitInfo.collider.GetComponent<ItemWorld>() != null)
             {
                 ItemWorld itemWorld = hitInfo.collider.GetComponent<ItemWorld>();
-                Item item = itemWorld.OnInteract();
+                Item item = itemWorld.GetItem();
                 player.inventory.AddItem(item);
                 //interactables.Remove(hitInfo.transform.gameObject);
                 //interactables.Remove(hitInfo.collider.gameObject);

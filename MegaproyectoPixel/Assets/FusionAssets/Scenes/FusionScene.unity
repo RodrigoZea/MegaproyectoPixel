@@ -1124,6 +1124,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 36675374}
     - target: {fileID: 4368123202088386839, guid: ff8bad0c53b7b674984b26d8f4a78735, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 827148354}
+    - target: {fileID: 4368123202088386839, guid: ff8bad0c53b7b674984b26d8f4a78735, type: 3}
       propertyPath: raycastOrigin
       value: 
       objectReference: {fileID: 1777406122}
