@@ -57,9 +57,8 @@ public class UI_Inventory : MonoBehaviour
                 inventory.UseItem(item);
             };
             itemSlotRectTransform.GetComponent<Button_UI>().MouseRightClickFunc = () => {
-                Item duplicateItem = new Item { itemType = item.itemType, amount = item.amount };
+                //Eliminate Item from inventory
                 inventory.RemoveItem(item);
-                //ItemWorld.DropItem(player.GetPosition(), duplicateItem);
             };
 
             itemSlotRectTransform.gameObject.SetActive(true);

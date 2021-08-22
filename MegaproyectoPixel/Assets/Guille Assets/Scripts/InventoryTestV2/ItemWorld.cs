@@ -4,8 +4,9 @@ using UnityEngine;
 using TMPro;
 using CodeMonkey.Utils;
 
-public class ItemWorld : MonoBehaviour
+public class ItemWorld : MonoBehaviour, IInteractable
 {
+    
     public static ItemWorld SpawnItemWorld(Vector3 position, Item item)
     {
         Transform transform = Instantiate(ItemAssets.Instance.pfItemWorld, position, Quaternion.identity);
@@ -16,18 +17,14 @@ public class ItemWorld : MonoBehaviour
         return itemWorld;
     }
 
-    public static ItemWorld DropItem(Vector3 dropPosition, Item item)
-    {
-        Vector3 randomDir = UtilsClass.GetRandomDir();
-        ItemWorld itemWorld = SpawnItemWorld(dropPosition + randomDir * 5f, item);
-        itemWorld.GetComponent<Rigidbody>().AddForce(randomDir * 5f, ForceMode.Impulse);
-        return itemWorld;
-    }
-
     public Item item;
 
     private SpriteRenderer spriteRenderer;
     private TextMeshPro textMeshPro;
+
+    public CharacterControl player;
+
+    public string key { get; }
 
     private void Awake()
     {
@@ -60,5 +57,11 @@ public class ItemWorld : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void OnInteract(string condition)
+    {
+        player.inventory.AddItem(GetItem());
+        Debug.Log("I AM HERE" + player.inventory.GetItemList());
+        DestroySelf();
+    }
 }
 

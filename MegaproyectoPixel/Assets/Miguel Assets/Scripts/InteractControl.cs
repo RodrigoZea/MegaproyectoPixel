@@ -30,7 +30,7 @@ public class InteractControl : MonoBehaviour
         {
             interactables.Add(other.gameObject);
             Debug.Log("Entra "+other.gameObject.name);
-        }        
+        }
     }
 
     private void OnTriggerExit(Collider other) {
@@ -57,6 +57,10 @@ public class InteractControl : MonoBehaviour
                 if (interS != null){
                     interS.OnInteract("hello");
                     Debug.Log("Run interact");
+                    if(hitInfo.collider.GetComponent<ItemWorld>() != null)
+                    {
+
+                    }
                 }
             }
         }

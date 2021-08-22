@@ -45,7 +45,7 @@ public class CharacterControl : MonoBehaviour
     private InputAction interactAction;
     private bool runPressed = false;
     private bool recovering = false;
-    private InventoryV2 inventory;
+    public InventoryV2 inventory;
 
     private void Start()
     {
@@ -75,18 +75,7 @@ public class CharacterControl : MonoBehaviour
         uiInventory.SetInventory(inventory);
         uiInventory.SetPlayer(this);
         Cursor.lockState = CursorLockMode.Locked;
-    }
-
-    private void OnTriggerEnter(Collider collider)
-    {
-        ItemWorld itemWorld = collider.GetComponent<ItemWorld>();
-        if (itemWorld != null)
-        {
-            inventory.AddItem(itemWorld.GetItem());
-            Debug.Log("I AM HERE");
-            itemWorld.DestroySelf();
-        }
-    }
+    }   
 
     void Update()
     {
@@ -144,11 +133,6 @@ public class CharacterControl : MonoBehaviour
                 break;
         }
     }
-
-    /*public static Vector3 GetPosition()
-    {
-        return Vector3();
-    }*/
 
     IEnumerator recovery(float time){
         Debug.Log("Hit");

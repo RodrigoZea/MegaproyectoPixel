@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class Item
+public class Item 
 {
     public enum ItemType {
         HEALING,
