@@ -19,7 +19,7 @@ public class ItemWorld : MonoBehaviour
 
     public Item item;
     private Sprite sprite;
-    
+    private GameObject model;    
     
     public string key { get; }
 
@@ -27,6 +27,7 @@ public class ItemWorld : MonoBehaviour
     {
         this.item = item;
         sprite = item.GetSprite();
+        model = item.GetObject();
     }
 
     public Item GetItem()

@@ -76,7 +76,6 @@ public class CharacterControl : MonoBehaviour
         inventory = new InventoryV2();
         uiInventory.SetInventory(inventory);
         uiInventory.SetPlayer(this);
-        Cursor.lockState = CursorLockMode.Locked;
     }   
 
     void Update()

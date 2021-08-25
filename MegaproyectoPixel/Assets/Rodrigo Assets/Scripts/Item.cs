@@ -33,6 +33,11 @@ public class Item
         }*/
     }
 
+    public GameObject GetObject()
+    {
+        return model;
+    }
+
     public bool isStackable()
     {
         switch (itemType)
