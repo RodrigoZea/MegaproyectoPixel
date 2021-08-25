@@ -131,6 +131,16 @@ public class CharacterControl : MonoBehaviour
             case Item.ItemType.Health:
                 inventory.RemoveItem(new Item { itemType = Item.ItemType.Health, amount = 1 });
                 break;
+            case Item.ItemType.KEY_ITEM:
+                inventory.RemoveItem(new Item { itemType = Item.ItemType.KEY_ITEM, amount = 1 });
+                break;
+            case Item.ItemType.Medkit:
+                inventory.RemoveItem(new Item { itemType = Item.ItemType.Medkit, amount = 1 });
+                break;
+            case Item.ItemType.AMMO:
+                inventory.RemoveItem(new Item { itemType = Item.ItemType.AMMO, amount = 1 });
+                break;
+
         }
     }
 

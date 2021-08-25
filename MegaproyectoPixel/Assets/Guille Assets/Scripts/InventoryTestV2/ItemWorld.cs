@@ -20,7 +20,6 @@ public class ItemWorld : MonoBehaviour
     public Item item;
 
     private SpriteRenderer spriteRenderer;
-    private TextMeshPro textMeshPro;
 
     
     public string key { get; }
@@ -28,21 +27,12 @@ public class ItemWorld : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        textMeshPro = transform.Find("Text").GetComponent<TextMeshPro>();
     }
 
     public void SetItem(Item item)
     {
         this.item = item;
         spriteRenderer.sprite = item.GetSprite();
-        if (item.amount > 1)
-        {
-            textMeshPro.SetText(item.amount.ToString());
-        }
-        else
-        {
-            textMeshPro.SetText("");
-        }
 
     }
 
