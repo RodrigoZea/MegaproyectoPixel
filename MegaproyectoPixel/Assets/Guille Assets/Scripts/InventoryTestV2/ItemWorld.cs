@@ -18,22 +18,15 @@ public class ItemWorld : MonoBehaviour
     }
 
     public Item item;
-
-    private SpriteRenderer spriteRenderer;
-
+    private Sprite sprite;
+    
     
     public string key { get; }
-
-    private void Awake()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-    }
 
     public void SetItem(Item item)
     {
         this.item = item;
-        spriteRenderer.sprite = item.GetSprite();
-
+        sprite = item.GetSprite();
     }
 
     public Item GetItem()

@@ -34,7 +34,9 @@ public class CharacterControl : MonoBehaviour
     [SerializeField]
     [Range(1.0f,3.0f)]
     private float speedFactor = 2.0f, recoveryTime = 1.0f;
-    float speedLimit = 1.0f; 
+    float speedLimit = 1.0f;
+    [SerializeField]
+    public InventoryV2 inventory;
 
     private InputAction moveAction;
     private InputAction lookAction;
@@ -45,7 +47,7 @@ public class CharacterControl : MonoBehaviour
     private InputAction interactAction;
     private bool runPressed = false;
     private bool recovering = false;
-    public InventoryV2 inventory;
+
 
     private void Start()
     {
@@ -71,7 +73,7 @@ public class CharacterControl : MonoBehaviour
         interactAction.performed += _ => interact.Interact();
         jumpAction.performed += _ => HitReaction();
         cameraTransform = Camera.main.transform;
-        inventory = new InventoryV2(UseItem);
+        inventory = new InventoryV2();
         uiInventory.SetInventory(inventory);
         uiInventory.SetPlayer(this);
         Cursor.lockState = CursorLockMode.Locked;
@@ -140,7 +142,6 @@ public class CharacterControl : MonoBehaviour
             case Item.ItemType.AMMO:
                 inventory.RemoveItem(new Item { itemType = Item.ItemType.AMMO, amount = 1 });
                 break;
-
         }
     }
 

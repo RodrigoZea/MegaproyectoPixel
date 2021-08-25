@@ -9,9 +9,8 @@ public class InventoryV2
     private List<Item> itemList;
     private Action<Item> useItemAction;
     
-    public InventoryV2(Action<Item> useItemAction)
+    public InventoryV2()
     {
-        this.useItemAction = useItemAction;
         itemList = new List<Item>();
     }
 
@@ -37,7 +36,6 @@ public class InventoryV2
         {
             itemList.Add(item);
         }
-        itemList.Add(item);
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
     }
 

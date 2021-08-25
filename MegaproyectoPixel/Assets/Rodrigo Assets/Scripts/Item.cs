@@ -18,17 +18,19 @@ public class Item
 
     public ItemType itemType;
     public GameObject model;
+    public Sprite sprite;
     public int amount;
 
     public Sprite GetSprite()
     {
-        switch (itemType)
+        return sprite;
+/*        switch (itemType)
         {
             default:
             case ItemType.HEALING: return ItemAssets.Instance.health;
             case ItemType.Coin: return ItemAssets.Instance.coin;
             case ItemType.Medkit: return ItemAssets.Instance.medkit;
-        }
+        }*/
     }
 
     public bool isStackable()
