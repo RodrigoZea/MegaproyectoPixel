@@ -45,7 +45,7 @@ public class UI_Inventory : MonoBehaviour
 
         int x = 0;
         int y = 0;
-        float itemSlotCellSize = 175f;
+        float itemSlotCellSize = 175.5f;
         foreach(Item item in inventory.GetItemList())
         {
             RectTransform itemSlotRectTransform = Instantiate(itemSlotTemplate, itemSlotContainer).GetComponent<RectTransform>();
@@ -75,12 +75,12 @@ public class UI_Inventory : MonoBehaviour
                 //uiText.SetText("");
             }
 
-
             x++;
-            if (x > 8)
+            Debug.Log(x);
+            if (x > 7)
             {
                 x = 0;
-                y++;
+                y--;
             }
             itemSlotContainer.gameObject.SetActive(false);
         }
