@@ -14,6 +14,8 @@ public class CharacterControl : MonoBehaviour
     private Cinemachine.CinemachineImpulseSource cameraShake;
     private bool groundedPlayer;
     [SerializeField]
+    Shooting shootScript;
+    [SerializeField]
     private UI_Inventory uiInventory;    
     [SerializeField]
     private Cinemachine.CinemachineVirtualCamera playerCamera;
@@ -76,8 +78,8 @@ public class CharacterControl : MonoBehaviour
         inventory = new InventoryV2();
         uiInventory.SetInventory(inventory);
         uiInventory.SetPlayer(this);
-    }   
-
+        shootScript = GetComponent<Shooting>();
+    }
     void Update()
     {
         
