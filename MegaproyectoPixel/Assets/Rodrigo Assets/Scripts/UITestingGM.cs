@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class UITestingGM : MonoBehaviour
 {
@@ -12,9 +13,7 @@ public class UITestingGM : MonoBehaviour
     public GameObject player;
     [SerializeField]
     private float idleTimer;
-    [SerializeField]
     private int sizeWidth;
-    [SerializeField]
     private int sizeHeight;
     public bool canvasFadeable;
     private float canvasFadeTimer;
@@ -32,7 +31,11 @@ public class UITestingGM : MonoBehaviour
     private Item[] itemList = new Item[20];
     public GameObject Inventory3D;
     public GameObject InventoryGroupCanvas;
+    public GameObject InventoryItemWorldHolder;
     public GameObject[] inventoryTabs;
+    public GameObject[] inventoryTabsButtons;
+    public Camera renderTextureCam;
+    public GameObject renderTextureInventory;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +46,8 @@ public class UITestingGM : MonoBehaviour
         bloodDrops = healthBar.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>();
         spiritDrops = spookBar.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>();
         bloodDrops.Stop();
+        sizeWidth = Screen.width;
+        sizeHeight = Screen.height;
 
         if (canvasFadeable) {
             fadeGroup.alpha = 0f;
@@ -73,16 +78,24 @@ public class UITestingGM : MonoBehaviour
 
         // TODO: Pass this into a separate method in whatever gamemanager it's going to be handled in...
         if (inventoryAction.triggered && !inventoryShowing) {
-            Debug.Log("Hello from inventory");
+            // Show inventory and hide normal UI
             inventoryShowing = true;
             InventoryGroupCanvas.SetActive(true);
             fadeGroupObject.SetActive(false);
+            InventoryItemWorldHolder.SetActive(true);
             canvasVisible = false;
+
+            inventoryTabsButtons[0].GetComponent<Button>().Select();
+            inventoryTabsButtons[0].GetComponent<Button>().OnSelect(null);
+            showTab(0);
+            //moveBars(sizeWidth);
+            //renderTextureInventory.SetActive(true);
         } else if(inventoryAction.triggered && inventoryShowing){
-            Debug.Log("Bye from inventory");
+            // Hide inventory and show normal UI
             inventoryShowing = false;
             InventoryGroupCanvas.SetActive(false);
             fadeGroupObject.SetActive(true);
+            InventoryItemWorldHolder.SetActive(false);
             canvasVisible = false;
         }
     }
@@ -148,17 +161,30 @@ public class UITestingGM : MonoBehaviour
         InventoryGroupCanvas.gameObject.SetActive(true);
     }
 
-    // Change this to not be hardcoded. This is a "hotfix" implementation I guess.
+
     // Ask for index in editor and show that tab index and hide every other tab. Thats the solution.
-    public void showItemTab() {
-        inventoryTabs[0].SetActive(true);
-        inventoryTabs[1].SetActive(false);
+    public void showTab(int index) {
+        for(int i=0;i<inventoryTabs.Length;i++){
+            inventoryTabs[i].SetActive(false);
+            inventoryTabsButtons[i].transform.GetChild(0).GetComponent<Text>().color = new Color(0.7f, 0.7f, 0.7f, 1f);
+        }
+
+        inventoryTabsButtons[index].transform.GetChild(0).GetComponent<Text>().color = Color.white;
+        inventoryTabs[index].SetActive(true);        
     }
 
-    public void showMapTab() {
-        Debug.Log("A???");
-        inventoryTabs[0].SetActive(false);
-        inventoryTabs[1].SetActive(true);
+    private void moveBars(int xReference) {
+        Vector3 point = new Vector3();
+        GameObject parentHealthBar = healthBar.gameObject.transform.parent.gameObject;
+        point = renderTextureCam.ScreenToWorldPoint(
+                            new Vector3(
+                                xReference - parentHealthBar.transform.position.x - 80, 
+                                parentHealthBar.transform.position.y + 40, 
+                                renderTextureCam.nearClipPlane + 40
+                            ));
+
+        parentHealthBar.transform.position = point;
+
     }
     
 }
