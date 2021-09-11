@@ -1,9 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Shooting : MonoBehaviour
 {
+    private PlayerInput playerInput;
+
+    private InputAction shootAction;
+    private InputAction reloadAction;
+
+
     [SerializeField]
     Transform shootPoint;
     [SerializeField]
@@ -24,6 +31,15 @@ public class Shooting : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerInput = GetComponent<PlayerInput>();
+        shootAction = playerInput.actions["Shoot"];
+        shootAction.performed += _ => Shoot();
+        //shootAction.canceled
+
+        reloadAction = playerInput.actions["Reload"];
+        reloadAction.performed += _ => Reload();
+        //shootAction.canceled += _ => ;
+
         //inventory = GetComponent<Inventory>();
         /*
         ammo = Inventory.instance.inventory[gunIndex].ammo;
@@ -49,16 +65,12 @@ public class Shooting : MonoBehaviour
     void Update()
     {
 
-        Shoot();
-
-        Reload();
-
     }
 
     void Shoot()
     {
         //Logica de Raycast con el boton de raycast
-        if (Input.GetMouseButton(0) && !isShooting)
+        if (!isShooting)
         {
 
             StartCoroutine("ShootingMechanics", shootTimer);
@@ -92,7 +104,8 @@ public class Shooting : MonoBehaviour
 
     void Reload()
     {
-        if(magazine == 0 && Input.GetKeyDown(KeyCode.R))
+        
+        if(magazine == 0)
         {
             if(ammo > 0)
             {

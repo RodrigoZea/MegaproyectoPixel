@@ -18,8 +18,7 @@ public class Inventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        inventory.Add(WeaponsDatabase.instance.guns[0]);
-        inventory.Add(WeaponsDatabase.instance.guns[1]);
+        inventory.Add(WeaponsDatabase.instance.guns[0]);        
     }
 
     // Update is called once per frame
