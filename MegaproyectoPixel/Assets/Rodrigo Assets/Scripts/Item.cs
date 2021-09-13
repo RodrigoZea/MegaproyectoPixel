@@ -20,6 +20,7 @@ public class Item
     public GameObject model;
     public Sprite sprite;
     public int amount;
+    private int position;
 
     public Sprite GetSprite()
     {

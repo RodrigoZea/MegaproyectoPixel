@@ -28,7 +28,7 @@ public class UITestingGM : MonoBehaviour
 
     // ------------------------------------------------------------------------------------------
     // Inventory
-    private Item[] itemList = new Item[20];
+    private List<Item> itemList;
     public GameObject Inventory3D;
     public GameObject InventoryGroupCanvas;
     public GameObject InventoryItemWorldHolder;
@@ -36,6 +36,20 @@ public class UITestingGM : MonoBehaviour
     public GameObject[] inventoryTabsButtons;
     public Camera renderTextureCam;
     public GameObject renderTextureInventory;
+
+    //Singleton
+    public static UITestingGM Instance { get; private set; }
+
+    void Awake() {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }    
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -161,6 +175,13 @@ public class UITestingGM : MonoBehaviour
         InventoryGroupCanvas.gameObject.SetActive(true);
     }
 
+    public void updateItemList(List<Item> updatedItemList) {
+        itemList = updatedItemList;
+    }
+
+    public void highlightItem(Item itemToHighlight) {
+        
+    }
 
     // Ask for index in editor and show that tab index and hide every other tab. Thats the solution.
     public void showTab(int index) {

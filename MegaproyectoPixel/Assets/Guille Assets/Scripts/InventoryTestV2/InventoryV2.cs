@@ -8,7 +8,7 @@ public class InventoryV2
     public event EventHandler OnItemListChanged;
     private List<Item> itemList;
     private Action<Item> useItemAction;
-    
+
     public InventoryV2()
     {
         itemList = new List<Item>();
@@ -37,6 +37,7 @@ public class InventoryV2
             itemList.Add(item);
         }
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
+        UITestingGM.Instance.updateItemList(itemList);
     }
 
     public void RemoveItem(Item item)
@@ -62,6 +63,7 @@ public class InventoryV2
             itemList.Remove(item);
         }
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
+        UITestingGM.Instance.updateItemList(itemList);
     }
 
     public void UseItem(Item item)
