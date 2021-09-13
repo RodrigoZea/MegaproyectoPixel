@@ -24,13 +24,16 @@ public class InteractControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter(Collider other) {
         if (!interactables.Contains(other.gameObject))
         {
-            interactables.Add(other.gameObject);
+            if (other.GetComponent<ItemWorld>()){
+                interactables.Add(other.gameObject);
+                interactables[0].gameObject.GetComponentInChildren<Renderer>().materials[0].color = Color.red;
+            }
             Debug.Log("Entra "+other.gameObject.name);
         }
     }
@@ -38,12 +41,19 @@ public class InteractControl : MonoBehaviour
     private void OnTriggerExit(Collider other) {
         if (interactables.Contains(other.gameObject))
         {
-            interactables.Remove(other.gameObject);
+            if (other.GetComponent<ItemWorld>()){
+                other.gameObject.GetComponentInChildren<Renderer>().materials[0].color = Color.white;
+                interactables.Remove(other.gameObject);
+                if (interactables.Count > 0)
+                    interactables[0].gameObject.GetComponentInChildren<Renderer>().materials[0].color = Color.red;
+            }
             Debug.Log("Sale "+other.gameObject.name);
         }
         
     }
 
+
+    /*
     public void Interact(){
         ray.origin = raycastOrigin.position;
         ray.direction = raycastDestiny.position - raycastOrigin.position;
@@ -75,6 +85,29 @@ public class InteractControl : MonoBehaviour
                 hitInfo.collider.enabled = false;
                 hitInfo.transform.gameObject.SetActive(false);
             }
+        }
+    }
+    */
+    public void Interact(){
+        if (interactables.Count > 0){
+            if (interactables[0].GetComponent<ItemWorld>() != null)
+                {
+                    GameObject temp = interactables[0];
+                    ItemWorld itemWorld = temp.GetComponent<ItemWorld>();
+                    Item item = itemWorld.GetItem();
+                    player.inventory.AddItem(item);
+                    //interactables.Remove(hitInfo.transform.gameObject);
+                    //interactables.Remove(hitInfo.collider.gameObject);
+                    //Destroy(hitInfo.collider.gameObject);
+                    Debug.Log("I AM HERE");
+                    temp.gameObject.SetActive(false);
+                    interactables.Remove(temp.gameObject);
+                    if (interactables.Count > 0)
+                        interactables[0].gameObject.GetComponentInChildren<Renderer>().materials[0].color = Color.red;
+                    Destroy(temp);
+
+                    //hitInfo.transform.gameObject.SetActive(false);
+                }
         }
     }
 }

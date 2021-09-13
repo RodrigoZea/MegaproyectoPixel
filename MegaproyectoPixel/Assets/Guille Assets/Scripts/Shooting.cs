@@ -70,7 +70,7 @@ public class Shooting : MonoBehaviour
     void Shoot()
     {
         //Logica de Raycast con el boton de raycast
-        if (!isShooting)
+        if (!isShooting && magazine > 0)
         {
 
             StartCoroutine("ShootingMechanics", shootTimer);
