@@ -14,8 +14,6 @@ public class CharacterControl : MonoBehaviour
     private Cinemachine.CinemachineImpulseSource cameraShake;
     private bool groundedPlayer;
     [SerializeField]
-    Shooting shootScript;
-    [SerializeField]
     private UI_Inventory uiInventory;    
     [SerializeField]
     private Cinemachine.CinemachineVirtualCamera playerCamera;
@@ -65,8 +63,8 @@ public class CharacterControl : MonoBehaviour
         interactAction = playerInput.actions["Interact"];
         sprintAction.performed += _ => {runPressed = true;};
         sprintAction.canceled += _ => {runPressed = false;};
-        shootAction.performed += _ => weapon.StartFiring();
-        shootAction.canceled += _ => weapon.StopFiring();
+        shootAction.performed += _ => { weapon.StartFiring(); };
+        shootAction.canceled += _ => { weapon.StopFiring(); };
         shootAction.Disable();
         aimAction.performed += _ => characterAnim.enableAimLayer();
         aimAction.performed += _ => {shootAction.Enable(); speedLimit = 4.0f; aimTarget.Aiming();};
@@ -78,7 +76,7 @@ public class CharacterControl : MonoBehaviour
         inventory = new InventoryV2();
         uiInventory.SetInventory(inventory);
         uiInventory.SetPlayer(this);
-        shootScript = GetComponent<Shooting>();
+        weapon = GetComponent<Weapon>();
     }
     void Update()
     {

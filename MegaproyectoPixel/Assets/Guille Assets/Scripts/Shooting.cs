@@ -35,6 +35,8 @@ public class Shooting : MonoBehaviour
         shootAction = playerInput.actions["Shoot"];
         shootAction.performed += _ => Shoot();
         //shootAction.canceled
+        shootAction.canceled += _ => { };
+
 
         reloadAction = playerInput.actions["Reload"];
         reloadAction.performed += _ => Reload();
