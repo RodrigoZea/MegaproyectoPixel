@@ -646,7 +646,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6642069606354341757, guid: c42a31d4eb8c4ea40bb0200ce71ffa9c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.86483
+      value: 9.902762
       objectReference: {fileID: 0}
     - target: {fileID: 6642069606354341757, guid: c42a31d4eb8c4ea40bb0200ce71ffa9c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2280,9 +2280,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6539558048663070301}
     - target: {fileID: 2393488612145536042, guid: 326b7552d4a775f48b72e000674969b5, type: 3}
+      propertyPath: inventoryActionButtons
+      value: 
+      objectReference: {fileID: 1483585484}
+    - target: {fileID: 2393488612145536042, guid: 326b7552d4a775f48b72e000674969b5, type: 3}
       propertyPath: renderTextureInventory
       value: 
       objectReference: {fileID: 6539558048517437152}
+    - target: {fileID: 2393488612145536042, guid: 326b7552d4a775f48b72e000674969b5, type: 3}
+      propertyPath: inventorySlotsContainer
+      value: 
+      objectReference: {fileID: 2010411068}
     - target: {fileID: 2393488612145536042, guid: 326b7552d4a775f48b72e000674969b5, type: 3}
       propertyPath: InventoryItemWorldHolder
       value: 
@@ -2901,7 +2909,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4731843124130997464, guid: 836043f34903bd84cb27d8e1df14c784, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.319746
+      value: 10.420849
       objectReference: {fileID: 0}
     - target: {fileID: 4731843124130997464, guid: 836043f34903bd84cb27d8e1df14c784, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2976,7 +2984,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1483585485
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3737,7 +3745,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cfuStatus: PSXEffects v1.18.1 - update available (click to update).
   sections: 01010100
-  customRes: {x: 480, y: 320}
+  customRes: {x: 640, y: 360}
   resolutionFactor: 2
   limitFramerate: -1
   skipFrames: 0
@@ -4529,7 +4537,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7867969415483487187, guid: dfb3e69d40a4c754aa25c2a02d5e6104, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.319746
+      value: 10.420849
       objectReference: {fileID: 0}
     - target: {fileID: 7867969415483487187, guid: dfb3e69d40a4c754aa25c2a02d5e6104, type: 3}
       propertyPath: m_LocalPosition.y

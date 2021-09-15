@@ -36,6 +36,8 @@ public class UITestingGM : MonoBehaviour
     public GameObject[] inventoryTabsButtons;
     public Camera renderTextureCam;
     public GameObject renderTextureInventory;
+    public GameObject inventorySlotsContainer;
+    public GameObject inventoryActionButtons;
 
     //Singleton
     public static UITestingGM Instance { get; private set; }
@@ -106,6 +108,7 @@ public class UITestingGM : MonoBehaviour
             //renderTextureInventory.SetActive(true);
         } else if(inventoryAction.triggered && inventoryShowing){
             // Hide inventory and show normal UI
+            dehighlightSlots();
             inventoryShowing = false;
             InventoryGroupCanvas.SetActive(false);
             fadeGroupObject.SetActive(true);
@@ -167,20 +170,36 @@ public class UITestingGM : MonoBehaviour
     }
 
     // -------------------------------------------------------------------------------------------------------------------------------
-    public void showInventory() {
-        fadeGroup.gameObject.SetActive(false);
-        canvasVisible = false;
-
-        Inventory3D.gameObject.SetActive(true);
-        InventoryGroupCanvas.gameObject.SetActive(true);
-    }
-
     public void updateItemList(List<Item> updatedItemList) {
         itemList = updatedItemList;
     }
 
     public void highlightItem(Item itemToHighlight) {
+        dehighlightSlots();
+
+        int highlightedItemIndex = itemList.IndexOf(itemToHighlight);
+        GameObject toHighlight = inventorySlotsContainer.transform.GetChild(highlightedItemIndex).gameObject;
         
+        // Change later :)
+        toHighlight.GetComponent<Image>().color = Color.yellow;
+        //toHighlight.GetComponent<Image>().color = new Color(161f/225f, 159f/225f, 124f/225f);
+        inventoryShowActionButtons(itemToHighlight);
+    }
+
+    private void inventoryShowActionButtons(Item selectedItem) {
+        inventoryActionButtons.SetActive(true);
+
+        // Set child 0 (use function) to item's UseItem Function
+        // Set child 1 (drop function) to item's DropItem/RemoveItem/whatever Function
+    }
+
+    private void dehighlightSlots() {
+        inventoryActionButtons.SetActive(false);
+        int slots = inventorySlotsContainer.transform.childCount;
+        for (int i=0; i < slots; i++) {
+            GameObject otherSlot = inventorySlotsContainer.transform.GetChild(i).gameObject;
+            otherSlot.GetComponent<Image>().color = Color.white;
+        }
     }
 
     // Ask for index in editor and show that tab index and hide every other tab. Thats the solution.

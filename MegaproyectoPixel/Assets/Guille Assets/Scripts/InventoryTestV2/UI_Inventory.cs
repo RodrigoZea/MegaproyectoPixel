@@ -54,12 +54,13 @@ public class UI_Inventory : MonoBehaviour
 
             itemSlotRectTransform.GetComponent<Button_UI>().ClickFunc = () => {
                 //Use Item
-                inventory.UseItem(item);
+                //inventory.UseItem(item);
+                inventory.HighlightItem(item);
             };
-            itemSlotRectTransform.GetComponent<Button_UI>().MouseRightClickFunc = () => {
+            /*itemSlotRectTransform.GetComponent<Button_UI>().MouseRightClickFunc = () => {
                 //Eliminate Item from inventory
                 inventory.RemoveItem(item);
-            };
+            };*/
 
             itemSlotRectTransform.gameObject.SetActive(true);
             itemSlotRectTransform.anchoredPosition = new Vector2(x * itemSlotCellSize, y * itemSlotCellSize);
