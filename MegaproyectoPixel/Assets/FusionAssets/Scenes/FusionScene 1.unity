@@ -1862,11 +1862,19 @@ PrefabInstance:
       objectReference: {fileID: 783640872}
     - target: {fileID: 856497904453031396, guid: 6e4dd30dcac58714caa0e1710a66342b, type: 3}
       propertyPath: m_VerticalAxis.m_MaxSpeed
-      value: 100
+      value: 125
+      objectReference: {fileID: 0}
+    - target: {fileID: 856497904453031396, guid: 6e4dd30dcac58714caa0e1710a66342b, type: 3}
+      propertyPath: m_VerticalAxis.m_AccelTime
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 856497904453031396, guid: 6e4dd30dcac58714caa0e1710a66342b, type: 3}
       propertyPath: m_HorizontalAxis.m_MaxSpeed
-      value: 100
+      value: 125
+      objectReference: {fileID: 0}
+    - target: {fileID: 856497904453031396, guid: 6e4dd30dcac58714caa0e1710a66342b, type: 3}
+      propertyPath: m_HorizontalAxis.m_AccelTime
+      value: 0.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e4dd30dcac58714caa0e1710a66342b, type: 3}
@@ -2466,9 +2474,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b416fbce5a38cc47a3a1e709f95f5e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cfuStatus: PSXEffects v1.18.1 - up to date.
+  cfuStatus: PSXEffects v1.18.1 - update available (click to update).
   sections: 01010100
-  customRes: {x: 480, y: 320}
+  customRes: {x: 162, y: 207}
   resolutionFactor: 2
   limitFramerate: -1
   skipFrames: 0
