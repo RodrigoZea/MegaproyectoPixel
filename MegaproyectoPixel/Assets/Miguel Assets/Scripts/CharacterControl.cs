@@ -63,9 +63,9 @@ public class CharacterControl : MonoBehaviour
         interactAction = playerInput.actions["Interact"];
         sprintAction.performed += _ => {runPressed = true;};
         sprintAction.canceled += _ => {runPressed = false;};
-        //shootAction.performed += _ => { weapon.StartFiring(); };
-        //shootAction.canceled += _ => { weapon.StopFiring(); };
-        //shootAction.Disable();
+        shootAction.performed += _ => { weapon.StartFiring(); };
+        shootAction.canceled += _ => { };
+        shootAction.Disable();
         aimAction.performed += _ => characterAnim.enableAimLayer();
         aimAction.performed += _ => {shootAction.Enable(); speedLimit = 4.0f; aimTarget.Aiming();};
         aimAction.canceled += _ => characterAnim.disableAimLayer();
@@ -76,7 +76,7 @@ public class CharacterControl : MonoBehaviour
         inventory = new InventoryV2();
         uiInventory.SetInventory(inventory);
         uiInventory.SetPlayer(this);
-        weapon = GetComponent<Weapon>();
+        weapon = GetComponentInChildren<Weapon>();
         Cursor.lockState = CursorLockMode.Locked;
     }
     void Update()

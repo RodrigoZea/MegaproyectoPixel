@@ -20,7 +20,7 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     private Vector2[] pattern;
     private float time = 0;
-    private Ray ray;
+
     private RaycastHit hitInfo;
     private bool firing = false;
     private bool fireAvailable = true;
@@ -41,9 +41,11 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     bool isShooting = false;
     [SerializeField]
-    int ammo = 32;
+    int ammo = 15;
     [SerializeField]
-    int magazine = 32;
+    int magazine = 10;
+    [SerializeField]
+    int fullMagSize = 10;
     [SerializeField]
     float shootTimer = 0.5f;
     [SerializeField]
@@ -55,11 +57,11 @@ public class Weapon : MonoBehaviour
 
     private void Start()
     {
-        playerInput = GetComponent<PlayerInput>();
+        playerInput = GetComponentInParent<PlayerInput>();
         shootAction = playerInput.actions["Shoot"];
-        shootAction.performed += _ => { StartFiring(); Fire(); };
+        shootAction.performed += _ => { StartFiring(); };
         //shootAction.canceled
-        shootAction.canceled += _ => { StopFiring(); };
+        shootAction.canceled += _ => { };
 
         reloadAction = playerInput.actions["Reload"];
         reloadAction.performed += _ => Reload();
@@ -69,57 +71,47 @@ public class Weapon : MonoBehaviour
         cameraShake = GetComponent<CinemachineImpulseSource>();  
     }
     void Update() {
-        if (fireAvailable && firing){
-            Fire();
-        }
-        if (time > 0){
-            aimCamera.GetCinemachineComponent<CinemachinePOV>().m_VerticalAxis.Value -= (verticaRecoil * Time.deltaTime) / duration;
-            aimCamera.GetCinemachineComponent<CinemachinePOV>().m_HorizontalAxis.Value -= (horizontalRecoil * Time.deltaTime) / duration;
-            time -= Time.deltaTime;
-        }
-    }
 
-    private void Fire(){
-        Debug.Log("Fire");
-        ray.origin = raycastOrigin.position;
-        ray.direction = raycastDestiny.position - raycastOrigin.position;
-        if(Physics.Raycast(ray, out hitInfo)){
-            Debug.DrawLine(ray.origin, hitInfo.point, Color.red, 1.0f);
-            Debug.Log("Hit");
-        }
-        time = duration;
-        cameraShake.GenerateImpulse(aimCamera.transform.forward);
-        horizontalRecoil = pattern[index].x;
-        verticaRecoil = pattern[index].y;
-        Debug.Log(horizontalRecoil+", "+verticaRecoil);
-        index = NextIndex(index);
-        StartCoroutine(recovery(recoveryTime));
     }
 
     private int NextIndex(int index) {
         return (index + 1) % pattern.Length;
     }
     public void StartFiring() {
-        firing = true;
+        
         //Logica de Raycast con el boton de raycast
-        if (!isShooting)
+        if (!isShooting && magazine > 0)
         {
             StartCoroutine("ShootingMechanics", shootTimer);
             Ray ray;
             RaycastHit hit;
+            time = duration;
             if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward, out hit, 100f))
             {
+                //Debug.DrawLine(ray.origin, hitInfo.point, Color.red, 1.0f);
                 //Si pega a algo
                 if (hit.collider)
                 {
+                    Debug.Log("Hit");
                     GameObject hitFX = Instantiate(hit_fx, hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal));
+                    GameObject bulletFX = Instantiate(bullet_hole, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
                 }
+                cameraShake.GenerateImpulse(aimCamera.transform.forward);
+                horizontalRecoil = pattern[index].x;
+                verticaRecoil = pattern[index].y;
+                //Debug.Log(horizontalRecoil + ", " + verticaRecoil);
+                index = NextIndex(index);
+                StartCoroutine(recovery(recoveryTime));
             }
-        }
-    }
 
-    public void StopFiring(){
-        firing = false;
+            if (time > 0)
+            {
+                aimCamera.GetCinemachineComponent<CinemachinePOV>().m_VerticalAxis.Value -= (verticaRecoil * Time.deltaTime) / duration;
+                aimCamera.GetCinemachineComponent<CinemachinePOV>().m_HorizontalAxis.Value -= (horizontalRecoil * Time.deltaTime) / duration;
+                time -= Time.deltaTime;
+            }                        
+            
+        }
     }
 
     IEnumerator recovery(float time){
@@ -144,21 +136,45 @@ public class Weapon : MonoBehaviour
 
     void Reload()
     {
-
         if (magazine == 0)
         {
             if (ammo > 0)
             {
                 //Si tiene suficientes balas para recargar todo el cartucho
-                if (ammo > 31)
+                if (ammo >= fullMagSize)
                 {
-                    ammo -= 32;
-                    magazine = 32;
+                    ammo -= fullMagSize;
+                    magazine = fullMagSize;
                 } //Si tiene balas pero no suficientes para cargar todo
                 else
                 {
                     magazine = ammo;
                     ammo = 0;
+                }
+            }
+        }
+        else if (magazine > 0)
+        {
+            if (ammo > 0)
+            {
+                //Si tiene suficientes balas para recargar todo el cartucho
+                if (ammo >= fullMagSize)
+                {
+                    ammo = ammo - (fullMagSize-magazine);
+                    magazine = fullMagSize;
+                } //Si tiene balas pero no suficientes para cargar todo
+                else
+                {
+                    if (magazine + ammo >= fullMagSize)
+                    {
+                        ammo = ammo - (fullMagSize - magazine);
+                        magazine = fullMagSize;
+                    }
+                    else
+                    {
+                        magazine = ammo;
+                        ammo = 0;
+                    }
                 }
             }
             else
