@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Weapon : MonoBehaviour
 {
@@ -54,6 +55,9 @@ public class Weapon : MonoBehaviour
     GameObject hit_fx;
     [SerializeField]
     GameObject bullet_hole;
+    [SerializeField]
+    private Text magText;
+
 
     private void Start()
     {
@@ -65,6 +69,7 @@ public class Weapon : MonoBehaviour
 
         reloadAction = playerInput.actions["Reload"];
         reloadAction.performed += _ => Reload();
+        magText.text = ("" + magazine);
     }
 
     void Awake() {
@@ -125,6 +130,7 @@ public class Weapon : MonoBehaviour
         if (magazine > 0)
             magazine--;
 
+        magText.text = ("" + magazine);
         isShooting = true;
 
         shootSound.Play();
@@ -182,6 +188,7 @@ public class Weapon : MonoBehaviour
 
             }
         }
+        magText.text = (""+magazine);
     }
 
 }
