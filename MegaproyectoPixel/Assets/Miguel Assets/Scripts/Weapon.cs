@@ -29,6 +29,7 @@ public class Weapon : MonoBehaviour
 
 
     //Shooting mechanic
+    [SerializeField]
     private PlayerInput playerInput;
 
     private InputAction shootAction;
@@ -56,9 +57,9 @@ public class Weapon : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInput>();
         shootAction = playerInput.actions["Shoot"];
-        shootAction.performed += _ => StartFiring();
+        shootAction.performed += _ => { StartFiring(); Fire(); };
         //shootAction.canceled
-        shootAction.canceled += _ => { };
+        shootAction.canceled += _ => { StopFiring(); };
 
         reloadAction = playerInput.actions["Reload"];
         reloadAction.performed += _ => Reload();
@@ -103,7 +104,6 @@ public class Weapon : MonoBehaviour
         //Logica de Raycast con el boton de raycast
         if (!isShooting)
         {
-
             StartCoroutine("ShootingMechanics", shootTimer);
             Ray ray;
             RaycastHit hit;

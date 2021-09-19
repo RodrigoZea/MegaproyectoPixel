@@ -104,9 +104,11 @@ public class UITestingGM : MonoBehaviour
             inventoryTabsButtons[0].GetComponent<Button>().Select();
             inventoryTabsButtons[0].GetComponent<Button>().OnSelect(null);
             showTab(0);
+            Cursor.lockState = CursorLockMode.None;
             //moveBars(sizeWidth);
             //renderTextureInventory.SetActive(true);
         } else if(inventoryAction.triggered && inventoryShowing){
+            Cursor.lockState = CursorLockMode.Locked;
             // Hide inventory and show normal UI
             dehighlightSlots();
             inventoryShowing = false;
