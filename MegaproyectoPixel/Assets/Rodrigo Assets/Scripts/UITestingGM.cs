@@ -12,6 +12,8 @@ public class UITestingGM : MonoBehaviour
     public GameObject spookBar;
     public GameObject player;
     [SerializeField]
+    private GameObject options;
+    [SerializeField]
     private float idleTimer;
     private int sizeWidth;
     private int sizeHeight;
@@ -25,6 +27,7 @@ public class UITestingGM : MonoBehaviour
     private InputAction moveAction;
     // TODO: Refactorize inventory input handling to a separate gamemanager in next iteration.
     private InputAction inventoryAction;
+    private InputAction optionsAction;
 
     // ------------------------------------------------------------------------------------------
     // Inventory
@@ -58,6 +61,7 @@ public class UITestingGM : MonoBehaviour
     {
         moveAction = player.GetComponent<PlayerInput>().actions["Move"];
         inventoryAction = player.GetComponent<PlayerInput>().actions["Inventory"];
+        optionsAction = player.GetComponent<PlayerInput>().actions["Options"];
         fadeGroup = fadeGroupObject.GetComponent<CanvasGroup>();
         bloodDrops = healthBar.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>();
         spiritDrops = spookBar.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>();
@@ -92,6 +96,13 @@ public class UITestingGM : MonoBehaviour
             }
         }
 
+        if(optionsAction.triggered && options.activeSelf){
+            options.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+        } else if(optionsAction.triggered && !options.activeSelf) {
+            options.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+        }
         // TODO: Pass this into a separate method in whatever gamemanager it's going to be handled in...
         if (inventoryAction.triggered && !inventoryShowing) {
             // Show inventory and hide normal UI
