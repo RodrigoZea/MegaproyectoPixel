@@ -107,6 +107,7 @@ public class Weapon : MonoBehaviour
                         //Personalizacion para pegar enemigos con AI
                         hit.collider.GetComponent<EnemyAI>().health -= 1;
                         //Cambiar a bloodhit_fx y poner particulas de sangre
+                        Debug.Log("Hit Life");
                         GameObject hitFX = Instantiate(hit_fx, hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal));
                     }
                     else
