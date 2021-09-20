@@ -58,15 +58,15 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     private Text magText;
 
+    private bool hold;
 
     private void Start()
     {
+        hold = false;
         playerInput = GetComponentInParent<PlayerInput>();
         shootAction = playerInput.actions["Shoot"];
-        shootAction.performed += _ => { StartFiring(); };
-        //shootAction.canceled
-        shootAction.canceled += _ => { };
-
+        shootAction.performed += _ => { StartFiring(); hold = true; };
+        shootAction.canceled += _ => { hold = false; };
         reloadAction = playerInput.actions["Reload"];
         reloadAction.performed += _ => Reload();
         magText.text = ("" + magazine);
@@ -76,7 +76,8 @@ public class Weapon : MonoBehaviour
         cameraShake = GetComponent<CinemachineImpulseSource>();  
     }
     void Update() {
-
+        if (hold)
+            StartFiring();
     }
 
     private int NextIndex(int index) {
