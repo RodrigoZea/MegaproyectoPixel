@@ -9,7 +9,7 @@ public class InteractControl : MonoBehaviour
     private Transform raycastOrigin;
     [SerializeField]
     private Transform raycastDestiny;
-
+    public bool raycast;
     private Ray ray;
     private RaycastHit hitInfo;
 
@@ -89,6 +89,23 @@ public class InteractControl : MonoBehaviour
     }
     */
     public void Interact(){
+        if (raycast){
+            ray.origin = raycastOrigin.position;
+            ray.direction = raycastDestiny.position - raycastOrigin.position;
+            if(Physics.Raycast(ray, out hitInfo, 5.0f)){
+                Debug.DrawLine(ray.origin, hitInfo.point, Color.blue, 1.0f);
+                if(hitInfo.collider.gameObject.GetComponent<ItemWorld>() != null)
+                {
+                    GameObject temp = hitInfo.collider.gameObject;
+                    ItemWorld itemWorld = temp.GetComponent<ItemWorld>();
+                    Item item = itemWorld.GetItem();
+                    player.inventory.AddItem(item);
+                    temp.gameObject.SetActive(false);
+                    interactables.Remove(temp.gameObject);
+                    Destroy(temp);
+                }
+            }
+        }
         if (interactables.Count > 0){
             if (interactables[0].GetComponent<ItemWorld>() != null)
                 {
