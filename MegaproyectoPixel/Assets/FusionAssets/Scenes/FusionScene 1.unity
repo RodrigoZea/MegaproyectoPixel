@@ -7671,6 +7671,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 100002, guid: 3b1513bcb86426b4795879be6a128ed7, type: 3}
     - target: {fileID: 3654893790641822541, guid: 05891f02678f8bc488c452a3b3c63d85, type: 3}
+      propertyPath: magText
+      value: 
+      objectReference: {fileID: 6539558048475333119}
+    - target: {fileID: 3654893790641822541, guid: 05891f02678f8bc488c452a3b3c63d85, type: 3}
       propertyPath: aimCamera
       value: 
       objectReference: {fileID: 349872678}
@@ -13607,7 +13611,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cfuStatus: PSXEffects v1.18.1 - update available (click to update).
   sections: 01010100
-  customRes: {x: 181, y: 209}
+  customRes: {x: 480, y: 320}
   resolutionFactor: 2
   limitFramerate: -1
   skipFrames: 0

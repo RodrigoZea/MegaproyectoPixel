@@ -2655,31 +2655,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04dd01add62f1704a98e28b51a1e4df7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerInput: {fileID: 0}
-  shootAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-  reloadAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-  shootPoint: {fileID: 2017904384}
-  isShooting: 0
-  ammo: 32
-  magazine: 32
-  shootTimer: 0.5
-  shootSound: {fileID: 827148353}
-  hit_fx: {fileID: 100002, guid: 3b1513bcb86426b4795879be6a128ed7, type: 3}
-  bullet_hole: {fileID: 100002, guid: 957385c45b877e645a128e11a3efb2f9, type: 3}
 --- !u!82 &827148353
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3072,7 +3047,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f53dc41bc8bf6ee439630802afe97edc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.47
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f53dc41bc8bf6ee439630802afe97edc, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3145,7 +3120,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1.85
-  m_BaseOffset: 1
+  m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &875813828
@@ -3186,20 +3161,13 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 875813826}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 1af0e836003bed443b9009e95febb5c0, type: 3}
+  m_Avatar: {fileID: 9000000, guid: f53dc41bc8bf6ee439630802afe97edc, type: 3}
   m_Controller: {fileID: 9100000, guid: 06f5e9f9d8aacd746b9338354eae92cd, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
-    are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
-    'mixamorig:LeftHandThumb2'\n\tTransform 'mixamorig:LeftHandIndex1'\n\tTransform
-    'mixamorig:LeftHandPinky2'\n\tTransform 'mixamorig:RightHandRing2'\n\tTransform
-    'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:LeftHandThumb3'\n\tTransform
-    'mixamorig:RightArm'\n\tand more ...\n\tFrom animation clip 'Zombie Running'\n\tFrom
-    animation clip 'Zombie Reaction Hit'"
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
