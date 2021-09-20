@@ -11,7 +11,7 @@ public class EnemyAI : MonoBehaviour
 
     public LayerMask whatIsGround, whatIsPlayer;
 
-    private int health;
+    public float health;
 
     //Patroling
     public Vector3 walkpoint;
@@ -21,6 +21,7 @@ public class EnemyAI : MonoBehaviour
     //Attacking
     public float timeBetweenAttacks;
     bool alreadyAttacked;
+    public GameObject projectile;
 
     //States
     public float sightRange, attackRange;
@@ -40,6 +41,11 @@ public class EnemyAI : MonoBehaviour
         if (!playerInsighRange && !playerInAttackRange) Patroling();
         if (playerInsighRange && !playerInAttackRange) ChasePlayer();
         if (playerInsighRange && playerInAttackRange) AttackPlayer();
+
+        if(health <= 0)
+        {
+            DestroyEnemy();
+        }
     }
 
     private void Patroling()
@@ -81,7 +87,9 @@ public class EnemyAI : MonoBehaviour
         if (!alreadyAttacked)
         {
             //Attack Code
-
+            Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+            rb.AddForce(transform.up * 32f, ForceMode.Impulse);
 
             //
             alreadyAttacked = true;
@@ -104,6 +112,11 @@ public class EnemyAI : MonoBehaviour
     private void DestroyEnemy()
     {
         Destroy(gameObject);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        
     }
 
 }

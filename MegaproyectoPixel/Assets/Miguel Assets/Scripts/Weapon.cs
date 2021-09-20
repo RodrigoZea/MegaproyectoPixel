@@ -54,6 +54,8 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     GameObject hit_fx;
     [SerializeField]
+    GameObject bloodhit_fx;
+    [SerializeField]
     GameObject bullet_hole;
     [SerializeField]
     private Text magText;
@@ -100,9 +102,19 @@ public class Weapon : MonoBehaviour
                 //Si pega a algo
                 if (hit.collider)
                 {
-                    Debug.Log("Hit");
-                    GameObject hitFX = Instantiate(hit_fx, hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal));
-                    GameObject bulletFX = Instantiate(bullet_hole, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
+                    if (hit.collider.GetComponent<EnemyAI>())
+                    {
+                        //Personalizacion para pegar enemigos con AI
+                        hit.collider.GetComponent<EnemyAI>().health -= 1;
+                        //Cambiar a bloodhit_fx y poner particulas de sangre
+                        GameObject hitFX = Instantiate(hit_fx, hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal));
+                    }
+                    else
+                    {
+                        //Solo al pegar a objetos que no sean enemigos instanciar los bulletholes
+                        GameObject hitFX = Instantiate(hit_fx, hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal));
+                        GameObject bulletFX = Instantiate(bullet_hole, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
+                    }
                 }
                 cameraShake.GenerateImpulse(aimCamera.transform.forward);
                 horizontalRecoil = pattern[index].x;
