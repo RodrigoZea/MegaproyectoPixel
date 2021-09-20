@@ -89,10 +89,12 @@ public class Weapon : MonoBehaviour
         if (!isShooting && magazine > 0)
         {
             StartCoroutine("ShootingMechanics", shootTimer);
-            Ray ray;
+            Ray ray = new Ray();
             RaycastHit hit;
+            ray.origin = raycastOrigin.position;
+            ray.direction = raycastDestiny.position - raycastOrigin.position;
             time = duration;
-            if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward, out hit, 100f))
+            if (Physics.Raycast(ray, out hit, 100f))
             {
                 //Debug.DrawLine(ray.origin, hitInfo.point, Color.red, 1.0f);
                 //Si pega a algo

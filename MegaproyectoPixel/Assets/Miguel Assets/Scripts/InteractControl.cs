@@ -14,6 +14,10 @@ public class InteractControl : MonoBehaviour
     private RaycastHit hitInfo;
 
     public CharacterControl player;
+    private Ray rayHighlight;
+    private RaycastHit highlightInfo;
+    private GameObject currentHighlight;
+
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +28,30 @@ public class InteractControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (raycast){
+            rayHighlight.origin = raycastOrigin.position;
+            rayHighlight.direction = raycastDestiny.position - raycastOrigin.position;
+            if (Physics.Raycast(rayHighlight, out highlightInfo, 3.0f)){
+                Debug.DrawLine(rayHighlight.origin, highlightInfo.point, Color.blue, 2.0f);
+                if (highlightInfo.collider.gameObject.GetComponent<ItemWorld>() != null){
+                    if (currentHighlight != null){
+                        currentHighlight.GetComponentInChildren<Renderer>().materials[0].color = Color.white;
+                    }
+                    currentHighlight = highlightInfo.collider.gameObject;
+                    currentHighlight.GetComponentInChildren<Renderer>().materials[0].color = Color.red;
+                } else {
+                    if (currentHighlight != null){
+                        currentHighlight.GetComponentInChildren<Renderer>().materials[0].color = Color.white;
+                        currentHighlight = null;
+                    }
+                }
+            } else {
+                if (currentHighlight != null){
+                        currentHighlight.GetComponentInChildren<Renderer>().materials[0].color = Color.white;
+                        currentHighlight = null;
+                    }
+            }
+        }
 
     }
 
@@ -92,8 +120,8 @@ public class InteractControl : MonoBehaviour
         if (raycast){
             ray.origin = raycastOrigin.position;
             ray.direction = raycastDestiny.position - raycastOrigin.position;
-            if(Physics.Raycast(ray, out hitInfo, 5.0f)){
-                Debug.DrawLine(ray.origin, hitInfo.point, Color.blue, 1.0f);
+            if(Physics.Raycast(ray, out hitInfo, 2.0f)){
+                Debug.DrawLine(ray.origin, hitInfo.point, Color.blue, 2.0f);
                 if(hitInfo.collider.gameObject.GetComponent<ItemWorld>() != null)
                 {
                     GameObject temp = hitInfo.collider.gameObject;
