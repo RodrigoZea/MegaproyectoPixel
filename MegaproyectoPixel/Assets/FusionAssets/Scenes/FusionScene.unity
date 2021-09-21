@@ -2062,7 +2062,7 @@ PrefabInstance:
       objectReference: {fileID: 6539558048475333119}
     - target: {fileID: 4368123201481391260, guid: ff8bad0c53b7b674984b26d8f4a78735, type: 3}
       propertyPath: magazine
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4368123201481391260, guid: ff8bad0c53b7b674984b26d8f4a78735, type: 3}
       propertyPath: aimCamera
