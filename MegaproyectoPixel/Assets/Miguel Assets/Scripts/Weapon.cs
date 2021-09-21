@@ -52,6 +52,8 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     AudioSource shootSound;
     [SerializeField]
+    AudioSource cockedGunSound;
+    [SerializeField]
     GameObject hit_fx;
     [SerializeField]
     GameObject bloodhit_fx;
@@ -132,7 +134,18 @@ public class Weapon : MonoBehaviour
                 time -= Time.deltaTime;
             }                        
             
+        } else if (!isShooting && magazine <= 0)
+        {
+            StartCoroutine("playjammedGun", shootTimer);
         }
+    }
+
+    IEnumerator playjammedGun(float time)
+    {
+        isShooting = true;
+        cockedGunSound.Play();        
+        yield return new WaitForSeconds(time);
+        isShooting = false;
     }
 
     IEnumerator recovery(float time){
@@ -147,6 +160,8 @@ public class Weapon : MonoBehaviour
             magazine--;
 
         magText.text = ("" + magazine);
+        
+
         isShooting = true;
 
         shootSound.Play();
