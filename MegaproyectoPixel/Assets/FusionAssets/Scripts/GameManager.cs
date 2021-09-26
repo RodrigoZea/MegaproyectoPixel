@@ -40,4 +40,14 @@ public class GameManager : MonoBehaviour
     private void Update() {
         
     }
+
+    public void updateHealth(float damage)
+    {
+        playerHealth -= damage;
+    }
+
+    public void updateInsanity(float insanity)
+    {
+        playerInsanity += insanity;
+    }
 }

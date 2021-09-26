@@ -130,7 +130,7 @@ public class CharacterControl : MonoBehaviour
     {
         switch (item.itemType)
         {
-            case Item.ItemType.Health:
+            /*case Item.ItemType.Health:
                 inventory.RemoveItem(new Item { itemType = Item.ItemType.Health, amount = 1 });
                 break;
             case Item.ItemType.KEY_ITEM:
@@ -141,7 +141,7 @@ public class CharacterControl : MonoBehaviour
                 break;
             case Item.ItemType.AMMO:
                 inventory.RemoveItem(new Item { itemType = Item.ItemType.AMMO, amount = 1 });
-                break;
+                break;*/
         }
     }
 

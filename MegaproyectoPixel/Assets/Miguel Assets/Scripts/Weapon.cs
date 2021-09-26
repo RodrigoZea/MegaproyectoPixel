@@ -73,7 +73,7 @@ public class Weapon : MonoBehaviour
         shootAction.canceled += _ => { hold = false; };
         reloadAction = playerInput.actions["Reload"];
         reloadAction.performed += _ => Reload();
-        magText.text = ("" + magazine);
+        magText.text = ("" + magazine + "|" + ammo);
     }
 
     void Awake() {
@@ -159,7 +159,7 @@ public class Weapon : MonoBehaviour
         if (magazine > 0)
             magazine--;
 
-        magText.text = ("" + magazine);
+        magText.text = ("" + magazine + "|" + ammo);
         
 
         isShooting = true;
@@ -219,7 +219,7 @@ public class Weapon : MonoBehaviour
 
             }
         }
-        magText.text = (""+magazine);
+        magText.text = (""+magazine + "|" + ammo);
     }
 
 }

@@ -935,7 +935,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6642069606354341757, guid: c42a31d4eb8c4ea40bb0200ce71ffa9c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.242762
+      value: 17.20483
       objectReference: {fileID: 0}
     - target: {fileID: 6642069606354341757, guid: c42a31d4eb8c4ea40bb0200ce71ffa9c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2390,6 +2390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInfo: {fileID: 827148354}
+  playerInput: {fileID: 827148355}
 --- !u!4 &704080576
 Transform:
   m_ObjectHideFlags: 0
@@ -3166,6 +3167,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4
   health: 5
+  playerController: {fileID: 0}
   walkpoint: {x: 1, y: 1, z: 0}
   walkPointRange: 2
   timeBetweenAttacks: 4
@@ -4182,6 +4184,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4
   health: 5
+  playerController: {fileID: 0}
   walkpoint: {x: 1, y: 1, z: 0}
   walkPointRange: 2
   timeBetweenAttacks: 1
@@ -5531,7 +5534,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4731843124130997464, guid: 836043f34903bd84cb27d8e1df14c784, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.760849
+      value: 17.659746
       objectReference: {fileID: 0}
     - target: {fileID: 4731843124130997464, guid: 836043f34903bd84cb27d8e1df14c784, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7045,7 +7048,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cfuStatus: PSXEffects v1.18.1 - update available (click to update).
   sections: 01010100
-  customRes: {x: 960, y: 540}
+  customRes: {x: 480, y: 320}
   resolutionFactor: 2
   limitFramerate: -1
   skipFrames: 0
@@ -8347,7 +8350,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7867969415483487187, guid: dfb3e69d40a4c754aa25c2a02d5e6104, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.760849
+      value: 17.659746
       objectReference: {fileID: 0}
     - target: {fileID: 7867969415483487187, guid: dfb3e69d40a4c754aa25c2a02d5e6104, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11002,8 +11005,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -104.2, y: -3.1}
-  m_SizeDelta: {x: 87, y: 87.3}
+  m_AnchoredPosition: {x: -164.66699, y: -3.1}
+  m_SizeDelta: {x: 206.312, y: 87.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6539558048475333119
 MonoBehaviour:
@@ -11038,7 +11041,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 10
+  m_Text: 10|10
 --- !u!1 &6539558048495145180
 GameObject:
   m_ObjectHideFlags: 0
@@ -11351,7 +11354,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6539558048663070302
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12163,7 +12166,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &6539558049985450146
 MonoBehaviour:
   m_ObjectHideFlags: 0

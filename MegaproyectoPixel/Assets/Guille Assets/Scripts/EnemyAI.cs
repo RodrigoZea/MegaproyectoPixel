@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+
+public enum enemyType{
+    Normal, 
+    Insanity
+}
+
 public class EnemyAI : MonoBehaviour
 {
     public NavMeshAgent agent;
@@ -12,6 +18,12 @@ public class EnemyAI : MonoBehaviour
     public LayerMask whatIsGround, whatIsPlayer;
 
     public float health;
+
+    public CharacterControl playerController;
+
+    private float damage;
+
+    private enemyType EnemyType;
 
     //Patroling
     public Vector3 walkpoint;
@@ -100,10 +112,32 @@ public class EnemyAI : MonoBehaviour
             rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
             rb.AddForce(transform.up * 32f, ForceMode.Impulse);
 
+
+
+
             //
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (EnemyType == enemyType.Normal)
+        {
+            if (collision.collider.GetComponent<CharacterControl>())
+            {
+                GameManager.Instance.updateHealth(damage);
+            }
+
+        } else if(EnemyType == enemyType.Insanity)
+        {
+            if (collision.collider.GetComponent<CharacterControl>())
+            {
+                GameManager.Instance.updateInsanity(damage);
+            }
+        }
+
     }
 
     private void ResetAttack()

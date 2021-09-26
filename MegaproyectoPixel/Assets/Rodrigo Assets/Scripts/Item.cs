@@ -7,20 +7,21 @@ using UnityEngine;
 public class Item 
 {
     public enum ItemType {
-        HEALING,
-        AMMO,
-        KEY_ITEM,
-        OTHER,
-        Health,
-        Coin,
-        Medkit,
+        Medkit,         //+ Vida
+        Beer,           //- Insanity, - Vida
+        PillBottle,     //- Insanity
+        Syringe,        //+ Vida, + Insanity
+        Ammo,           //+ Ammo
+
     }
 
     public ItemType itemType;
+    public Weapon weapon;
     public GameObject model;
     public Sprite sprite;
     public int amount;
     private int position;
+    
 
     public Sprite GetSprite()
     {
@@ -44,13 +45,14 @@ public class Item
         switch (itemType)
         {
             default:
-            case Item.ItemType.Coin:
-            case Item.ItemType.AMMO:
-            case Item.ItemType.Health:
+            case Item.ItemType.Ammo:
                 return true;
             case Item.ItemType.Medkit:
-            case Item.ItemType.KEY_ITEM:
+            case Item.ItemType.PillBottle:
+            case Item.ItemType.Beer:
+            case Item.ItemType.Syringe:
                 return false;
         }
     }
+
 }
