@@ -202,7 +202,6 @@ public class Weapon : MonoBehaviour
                 } //Si tiene balas pero no suficientes para cargar todo
                 else
                 {
-                    //6 mag 2 ammo
                     if (magazine + ammo >= fullMagSize)
                     {
                         ammo = ammo - (fullMagSize - magazine);
