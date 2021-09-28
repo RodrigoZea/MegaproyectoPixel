@@ -35,7 +35,7 @@ public class UI_Inventory : MonoBehaviour
         RefreshInvetoryItems();
     }
 
-    private void RefreshInvetoryItems()
+    public void RefreshInvetoryItems()
     {
         foreach (Transform child in itemSlotContainer)
         {
@@ -56,8 +56,8 @@ public class UI_Inventory : MonoBehaviour
                 //Use Item
                 //inventory.UseItem(item);
                 inventory.HighlightItem(item);
-            };
-            /*itemSlotRectTransform.GetComponent<Button_UI>().MouseRightClickFunc = () => {
+            };/*
+            itemSlotRectTransform.GetComponent<Button_UI>().MouseRightClickFunc = () => {
                 //Eliminate Item from inventory
                 inventory.RemoveItem(item);
             };*/

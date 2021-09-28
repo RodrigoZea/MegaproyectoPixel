@@ -13,13 +13,10 @@ public class ItemAssets : MonoBehaviour
 
     public Transform pfItemWorld;
 
-    public Sprite sword;
-    public Sprite health;
+    public Sprite pills;
+    public Sprite syringe;
     public Sprite ammo;
-    public Sprite mana;
-    public Sprite coin;
     public Sprite medkit;
-
-
+    public Sprite beer;
 
 }

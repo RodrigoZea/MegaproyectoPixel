@@ -20,18 +20,19 @@ public class Item
     public GameObject model;
     public Sprite sprite;
     public int amount;
-    private int position;
-    
+    private int position;    
 
     public Sprite GetSprite()
     {
         return sprite;
-/*        switch (itemType)
+        /*switch (itemType)
         {
             default:
-            case ItemType.HEALING: return ItemAssets.Instance.health;
-            case ItemType.Coin: return ItemAssets.Instance.coin;
+            case ItemType.Beer: return ItemAssets.Instance.beer;
+            case ItemType.PillBottle: return ItemAssets.Instance.pills;
             case ItemType.Medkit: return ItemAssets.Instance.medkit;
+            case ItemType.Syringe: return ItemAssets.Instance.syringe;
+            case ItemType.Ammo: return ItemAssets.Instance.ammo;
         }*/
     }
 

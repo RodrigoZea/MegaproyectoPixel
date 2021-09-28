@@ -126,22 +126,38 @@ public class CharacterControl : MonoBehaviour
         
     }
 
-    private void UseItem(Item item)
+    public void UseItem(Item item)
     {
+        //Medkit         //+ Vida
+        //Beer           //- Insanity, - Vida
+        //PillBottle     //- Insanity
+        //Syringe        //+ Vida, + Insanity
+        //Ammo           //+ Ammo
         switch (item.itemType)
         {
-            /*case Item.ItemType.Health:
-                inventory.RemoveItem(new Item { itemType = Item.ItemType.Health, amount = 1 });
-                break;
-            case Item.ItemType.KEY_ITEM:
-                inventory.RemoveItem(new Item { itemType = Item.ItemType.KEY_ITEM, amount = 1 });
-                break;
             case Item.ItemType.Medkit:
-                inventory.RemoveItem(new Item { itemType = Item.ItemType.Medkit, amount = 1 });
+                inventory.RemoveItem(item);
+                GameManager.Instance.addHealth(1);
                 break;
-            case Item.ItemType.AMMO:
-                inventory.RemoveItem(new Item { itemType = Item.ItemType.AMMO, amount = 1 });
-                break;*/
+            case Item.ItemType.Beer:
+                inventory.RemoveItem(item);
+                GameManager.Instance.updateHealth(1);
+                GameManager.Instance.decreaseInsanity(1);
+                break;            
+            case Item.ItemType.PillBottle:
+                inventory.RemoveItem(item);
+                GameManager.Instance.decreaseInsanity(1);
+                break;
+            case Item.ItemType.Syringe:
+                inventory.RemoveItem(item);
+                GameManager.Instance.addHealth(1);
+                GameManager.Instance.updateInsanity(1);
+                break;
+            case Item.ItemType.Ammo:
+                inventory.RemoveItem(item);
+                weapon.ammo += 1;
+                weapon.magText.text = ("" + weapon.magazine + "|" + weapon.ammo);
+                break;
         }
     }
 

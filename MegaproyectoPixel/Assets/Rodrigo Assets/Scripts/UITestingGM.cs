@@ -11,12 +11,15 @@ public class UITestingGM : MonoBehaviour
     public GameObject healthBar;
     public GameObject spookBar;
     public GameObject player;
+    public CharacterControl playerController;
+    public UI_Inventory ui_inventory;
     [SerializeField]
     private GameObject options;
     [SerializeField]
     private float idleTimer;
     private int sizeWidth;
     private int sizeHeight;
+    public InventoryV2 inventory;
     public bool canvasFadeable;
     private float canvasFadeTimer;
     private bool canvasVisible = false;
@@ -68,6 +71,7 @@ public class UITestingGM : MonoBehaviour
         bloodDrops.Stop();
         sizeWidth = Screen.width;
         sizeHeight = Screen.height;
+        inventory = playerController.inventory;
 
         if (canvasFadeable) {
             fadeGroup.alpha = 0f;
@@ -201,9 +205,29 @@ public class UITestingGM : MonoBehaviour
 
     private void inventoryShowActionButtons(Item selectedItem) {
         inventoryActionButtons.SetActive(true);
+        Button useButton = inventoryActionButtons.transform.Find("UseOption").GetComponent<Button>();
+        useButton.onClick.AddListener(delegate { useItem(selectedItem); });
+        Button removeButton = inventoryActionButtons.transform.Find("DropOption").GetComponent<Button>();
+        removeButton.onClick.AddListener(delegate { removeItem(selectedItem); });
+        // Set child 0 (use function) to item's UseItem Function        
+        // Set child 1 (drop function) to item's DropItem/RemoveItem/whatever Function        
+    }
 
-        // Set child 0 (use function) to item's UseItem Function
-        // Set child 1 (drop function) to item's DropItem/RemoveItem/whatever Function
+    private void useItem(Item selectedItem)
+    {
+        playerController.UseItem(selectedItem);
+        inventoryActionButtons.SetActive(false);
+        ui_inventory.RefreshInvetoryItems();
+        dehighlightSlots();
+    }
+
+    private void removeItem(Item selectedItem)
+    {
+        //Funciona bien solo que hay que cerrar inventario y volverlo a abrir para que aparezcan los otros objetos pero si permanecen
+        inventory.RemoveItem(selectedItem);
+        inventoryActionButtons.SetActive(false);
+        ui_inventory.RefreshInvetoryItems();
+        dehighlightSlots();
     }
 
     private void dehighlightSlots() {
