@@ -100,15 +100,15 @@ public class UITestingGM : MonoBehaviour
             }
         }
 
-        if(optionsAction.triggered && options.activeSelf){
+        if(optionsAction.triggered && options.activeSelf && !inventoryShowing){
             options.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
-        } else if(optionsAction.triggered && !options.activeSelf) {
+        } else if(optionsAction.triggered && !options.activeSelf && !inventoryShowing) {
             options.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
         }
         // TODO: Pass this into a separate method in whatever gamemanager it's going to be handled in...
-        if (inventoryAction.triggered && !inventoryShowing) {
+        if (inventoryAction.triggered && !inventoryShowing && options.activeSelf == false) {
             // Show inventory and hide normal UI
             inventoryShowing = true;
             InventoryGroupCanvas.SetActive(true);
@@ -122,7 +122,8 @@ public class UITestingGM : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             //moveBars(sizeWidth);
             //renderTextureInventory.SetActive(true);
-        } else if(inventoryAction.triggered && inventoryShowing){
+        } else if(inventoryAction.triggered && inventoryShowing && options.activeSelf == false)
+        {
             Cursor.lockState = CursorLockMode.Locked;
             // Hide inventory and show normal UI
             dehighlightSlots();
