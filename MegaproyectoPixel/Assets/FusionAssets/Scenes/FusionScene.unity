@@ -967,7 +967,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6642069606354341757, guid: c42a31d4eb8c4ea40bb0200ce71ffa9c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.20483
+      value: 17.117481
       objectReference: {fileID: 0}
     - target: {fileID: 6642069606354341757, guid: c42a31d4eb8c4ea40bb0200ce71ffa9c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2017,6 +2017,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4368123201408844383, guid: ff8bad0c53b7b674984b26d8f4a78735, type: 3}
+      propertyPath: aimCamera
+      value: 
+      objectReference: {fileID: 689042110}
     - target: {fileID: 4368123201408844383, guid: ff8bad0c53b7b674984b26d8f4a78735, type: 3}
       propertyPath: aimTarget
       value: 
@@ -5641,7 +5645,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4731843124130997464, guid: 836043f34903bd84cb27d8e1df14c784, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.659746
+      value: 17.426926
       objectReference: {fileID: 0}
     - target: {fileID: 4731843124130997464, guid: 836043f34903bd84cb27d8e1df14c784, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7143,7 +7147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cfuStatus: PSXEffects v1.18.1 - update available (click to update).
   sections: 01010100
-  customRes: {x: 480, y: 320}
+  customRes: {x: 177, y: 206}
   resolutionFactor: 2
   limitFramerate: -1
   skipFrames: 0
@@ -8511,7 +8515,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7867969415483487187, guid: dfb3e69d40a4c754aa25c2a02d5e6104, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.659746
+      value: 17.426926
       objectReference: {fileID: 0}
     - target: {fileID: 7867969415483487187, guid: dfb3e69d40a4c754aa25c2a02d5e6104, type: 3}
       propertyPath: m_LocalPosition.y
