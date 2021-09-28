@@ -13,6 +13,7 @@ public class UITestingGM : MonoBehaviour
     public GameObject player;
     public CharacterControl playerController;
     public UI_Inventory ui_inventory;
+    public GameObject highlightedItem;
     [SerializeField]
     private GameObject options;
     [SerializeField]
@@ -197,7 +198,13 @@ public class UITestingGM : MonoBehaviour
 
         int highlightedItemIndex = itemList.IndexOf(itemToHighlight);
         GameObject toHighlight = inventorySlotsContainer.transform.GetChild(highlightedItemIndex).gameObject;
-        
+
+        Image CurrentObjectSprite =  highlightedItem.transform.Find("CurrentObjectSprite").GetComponent<Image>();
+        CurrentObjectSprite.sprite = itemToHighlight.GetSprite();
+
+        Text CurrentObjectDescription = highlightedItem.transform.Find("CurrentObjectDescription").GetComponent<Text>();
+        CurrentObjectDescription.text = (""+itemToHighlight.description);
+
         // Change later :)
         toHighlight.GetComponent<Image>().color = Color.yellow;
         //toHighlight.GetComponent<Image>().color = new Color(161f/225f, 159f/225f, 124f/225f);
@@ -219,15 +226,24 @@ public class UITestingGM : MonoBehaviour
         playerController.UseItem(selectedItem);
         inventoryActionButtons.SetActive(false);
         ui_inventory.RefreshInvetoryItems();
+        InventoryItemWorldHolder.SetActive(true);
+        Image CurrentObjectSprite = highlightedItem.transform.Find("CurrentObjectSprite").GetComponent<Image>();
+        CurrentObjectSprite.sprite = null;
+        Text CurrentObjectDescription = highlightedItem.transform.Find("CurrentObjectDescription").GetComponent<Text>();
+        CurrentObjectDescription.text = ("");
         dehighlightSlots();
     }
 
     private void removeItem(Item selectedItem)
     {
-        //Funciona bien solo que hay que cerrar inventario y volverlo a abrir para que aparezcan los otros objetos pero si permanecen
         inventory.RemoveItem(selectedItem);
         inventoryActionButtons.SetActive(false);
         ui_inventory.RefreshInvetoryItems();
+        InventoryItemWorldHolder.SetActive(true);
+        Image CurrentObjectSprite = highlightedItem.transform.Find("CurrentObjectSprite").GetComponent<Image>();
+        CurrentObjectSprite.sprite = null;
+        Text CurrentObjectDescription = highlightedItem.transform.Find("CurrentObjectDescription").GetComponent<Text>();
+        CurrentObjectDescription.text = ("");
         dehighlightSlots();
     }
 

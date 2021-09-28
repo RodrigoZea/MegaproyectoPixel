@@ -42,9 +42,9 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     bool isShooting = false;
     [SerializeField]
-    public int ammo = 15;
+    int ammo = 15;
     [SerializeField]
-    public int magazine = 10;
+    int magazine = 10;
     [SerializeField]
     int fullMagSize = 10;
     [SerializeField]
@@ -60,7 +60,7 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     GameObject bullet_hole;
     [SerializeField]
-    public Text magText;
+    Text magText;
 
     private bool hold;
 

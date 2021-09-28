@@ -161,11 +161,9 @@ public class CharacterControl : MonoBehaviour
                 GameManager.Instance.addHealth(1);
                 GameManager.Instance.updateInsanity(1);
                 break;
-            case Item.ItemType.Ammo:
+            /*case Item.ItemType.Ammo:
                 inventory.RemoveItem(item);
-                weapon.ammo += 1;
-                weapon.magText.text = ("" + weapon.magazine + "|" + weapon.ammo);
-                break;
+                break;*/
         }
     }
 

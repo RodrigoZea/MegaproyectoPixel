@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [Serializable]
 public class Item 
@@ -19,6 +20,8 @@ public class Item
     public Weapon weapon;
     public GameObject model;
     public Sprite sprite;
+    [TextArea]
+    public String description;
     public int amount;
     private int position;    
 

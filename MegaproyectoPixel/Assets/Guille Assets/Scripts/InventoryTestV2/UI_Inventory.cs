@@ -77,7 +77,6 @@ public class UI_Inventory : MonoBehaviour
             }
 
             x++;
-            Debug.Log(x);
             if (x > 7)
             {
                 x = 0;
