@@ -18,6 +18,8 @@ public class CharacterControl : MonoBehaviour
     [SerializeField]
     private Cinemachine.CinemachineVirtualCamera playerCamera;
     [SerializeField]
+    private Cinemachine.CinemachineVirtualCamera aimCamera;
+    [SerializeField]
     private float playerSpeed = 2.0f;
     [SerializeField]
     private float jumpHeight = 1.0f;
@@ -34,6 +36,7 @@ public class CharacterControl : MonoBehaviour
     [SerializeField]
     [Range(1.0f,3.0f)]
     private float speedFactor = 2.0f, recoveryTime = 1.0f;
+    private float runSpeed = 1.0f, walkSpeed = 4.0f;
     float speedLimit = 1.0f;
     [SerializeField]
     public InventoryV2 inventory;
@@ -47,10 +50,14 @@ public class CharacterControl : MonoBehaviour
     private InputAction interactAction;
     private bool runPressed = false;
     private bool recovering = false;
+    private CinemachineBasicMultiChannelPerlin aimNoise;
+    private CinemachineBasicMultiChannelPerlin cameraNoise;
 
 
     private void Start()
     {
+        aimNoise = aimCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        cameraNoise = playerCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         cameraShake = GetComponent<CinemachineImpulseSource>();
         controller = GetComponent<CharacterController>();
         playerInput = GetComponent<PlayerInput>();
@@ -67,9 +74,9 @@ public class CharacterControl : MonoBehaviour
         shootAction.canceled += _ => { };
         shootAction.Disable();
         aimAction.performed += _ => characterAnim.enableAimLayer();
-        aimAction.performed += _ => {shootAction.Enable(); speedLimit = 4.0f; aimTarget.Aiming();};
+        aimAction.performed += _ => {shootAction.Enable(); speedLimit = walkSpeed; aimTarget.Aiming();};
         aimAction.canceled += _ => characterAnim.disableAimLayer();
-        aimAction.canceled += _ => {shootAction.Disable(); speedLimit = 1.0f; aimTarget.NotAiming();};
+        aimAction.canceled += _ => {shootAction.Disable(); speedLimit = runSpeed; aimTarget.NotAiming();};
         interactAction.performed += _ => interact.Interact();
         jumpAction.performed += _ => HitReaction();
         cameraTransform = Camera.main.transform;
@@ -78,11 +85,12 @@ public class CharacterControl : MonoBehaviour
         uiInventory.SetPlayer(this);
         weapon = GetComponentInChildren<Weapon>();
         Cursor.lockState = CursorLockMode.Locked;
+        //changeBasedOnHealth(15.0f);
     }
     void Update()
     {
         
-
+        //Debug.Log(aimAction.phase.ToString());
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0)
         {
@@ -153,5 +161,42 @@ public class CharacterControl : MonoBehaviour
         recovering = false;
         speedLimit = 1.0f;
         Debug.Log("Not Hit");
+    }
+
+    public void changeBasedOnHealth(float health){
+        if (health <= 100.0f && health > 75.0f){
+            runSpeed = 1.0f;
+            walkSpeed = 4.0f;
+            aimNoise.m_AmplitudeGain = 1.0f;
+            cameraNoise.m_AmplitudeGain = 0.5f;
+        }else
+        if (health <= 75.0f && health > 50.0f){
+            runSpeed = 1.25f;
+            walkSpeed = 4.25f;
+            aimNoise.m_AmplitudeGain = 1.25f;
+            cameraNoise.m_AmplitudeGain = 0.75f;
+        }else
+        if (health <= 50.0f && health > 25.0f){
+            runSpeed = 1.50f;
+            walkSpeed = 4.50f;
+            aimNoise.m_AmplitudeGain = 1.50f;
+            cameraNoise.m_AmplitudeGain = 1.00f;
+        }else
+        if (health <= 25.0f && health > 0.0f){
+            runSpeed = 1.75f;
+            walkSpeed = 4.75f;
+            aimNoise.m_AmplitudeGain = 1.75f;
+            cameraNoise.m_AmplitudeGain = 1.25f;
+        }
+
+        if (aimAction.phase.ToString() == "Started"){
+            speedLimit = walkSpeed;
+        }else{
+            speedLimit = runSpeed;
+        }
+    }
+
+    public void changeBasedOnInsanity(float health){
+
     }
 }
