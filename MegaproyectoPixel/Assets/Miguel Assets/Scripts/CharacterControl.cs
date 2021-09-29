@@ -52,6 +52,7 @@ public class CharacterControl : MonoBehaviour
     private bool recovering = false;
     private CinemachineBasicMultiChannelPerlin aimNoise;
     private CinemachineBasicMultiChannelPerlin cameraNoise;
+    private SoundChange insanitySound;
 
 
     private void Start()
@@ -62,6 +63,7 @@ public class CharacterControl : MonoBehaviour
         controller = GetComponent<CharacterController>();
         playerInput = GetComponent<PlayerInput>();
         characterAnim = GetComponent<CharacterAnimation>();
+        insanitySound = GetComponent<SoundChange>();
         moveAction = playerInput.actions["Move"];
         jumpAction = playerInput.actions["Jump"];
         aimAction = playerInput.actions["Aim"];
@@ -183,24 +185,28 @@ public class CharacterControl : MonoBehaviour
             walkSpeed = 4.0f;
             aimNoise.m_AmplitudeGain = 1.0f;
             cameraNoise.m_AmplitudeGain = 0.5f;
+            insanitySound.StopSound();
         }else
         if (health <= 75.0f && health > 50.0f){
             runSpeed = 1.25f;
             walkSpeed = 4.25f;
             aimNoise.m_AmplitudeGain = 1.25f;
             cameraNoise.m_AmplitudeGain = 0.75f;
+            insanitySound.SetSound(0.1f);
         }else
         if (health <= 50.0f && health > 25.0f){
             runSpeed = 1.50f;
             walkSpeed = 4.50f;
             aimNoise.m_AmplitudeGain = 1.50f;
             cameraNoise.m_AmplitudeGain = 1.00f;
+            insanitySound.SetSound(0.2f);
         }else
         if (health <= 25.0f && health > 0.0f){
             runSpeed = 1.75f;
             walkSpeed = 4.75f;
             aimNoise.m_AmplitudeGain = 1.75f;
             cameraNoise.m_AmplitudeGain = 1.25f;
+            insanitySound.SetSound(0.3f);
         }
 
         if (aimAction.phase.ToString() == "Started"){
