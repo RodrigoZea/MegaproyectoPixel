@@ -52,16 +52,8 @@ public class UI_Inventory : MonoBehaviour
             
             itemSlotContainer.gameObject.SetActive(true);
 
-            itemSlotRectTransform.GetComponent<Button_UI>().ClickFunc = () => {
-                //Use Item
-                //inventory.UseItem(item);
-                inventory.HighlightItem(item);
-            };/*
-            itemSlotRectTransform.GetComponent<Button_UI>().MouseRightClickFunc = () => {
-                //Eliminate Item from inventory
-                inventory.RemoveItem(item);
-            };*/
-
+            itemSlotRectTransform.GetComponent<Button>().onClick.AddListener(delegate { inventory.HighlightItem(item); });
+            
             itemSlotRectTransform.gameObject.SetActive(true);
             itemSlotRectTransform.anchoredPosition = new Vector2(x * itemSlotCellSize, y * itemSlotCellSize);
             Image image = itemSlotRectTransform.Find("image").GetComponent<Image>();            

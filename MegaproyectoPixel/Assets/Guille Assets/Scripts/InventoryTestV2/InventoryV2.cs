@@ -74,6 +74,7 @@ public class InventoryV2
     public void HighlightItem(Item item) {
         UITestingGM.Instance.highlightItem(item);
     }
+
     public List<Item> GetItemList()
     {
         return itemList;
