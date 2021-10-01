@@ -87,6 +87,20 @@ public class Weapon : MonoBehaviour
     private int NextIndex(int index) {
         return (index + 1) % pattern.Length;
     }
+
+    public void addAmmo(int extraAmmo)
+    {
+        if (ammo + extraAmmo <= 20)
+        {
+            ammo += extraAmmo;
+            magText.text = ("" + magazine + "|" + ammo);
+        }
+        else
+        {
+            
+        }
+    }
+
     public void StartFiring() {
         
         //Logica de Raycast con el boton de raycast

@@ -37,6 +37,7 @@ public class UI_Inventory : MonoBehaviour
 
     public void RefreshInvetoryItems()
     {
+        
         foreach (Transform child in itemSlotContainer)
         {
             if (child == itemSlotTemplate) continue;
@@ -46,13 +47,15 @@ public class UI_Inventory : MonoBehaviour
         int x = 0;
         int y = 0;
         float itemSlotCellSize = 175.5f;
-        foreach(Item item in inventory.GetItemList())
+
+
+        foreach (Item item in inventory.GetItemList())
         {
             RectTransform itemSlotRectTransform = Instantiate(itemSlotTemplate, itemSlotContainer).GetComponent<RectTransform>();
-            
-            itemSlotContainer.gameObject.SetActive(true);
 
-            itemSlotRectTransform.GetComponent<Button>().onClick.AddListener(delegate { inventory.HighlightItem(item); });
+            itemSlotRectTransform.GetComponent<Button>().onClick.AddListener(delegate { inventory.HighlightItem(item); } );
+
+            itemSlotContainer.gameObject.SetActive(true);
             
             itemSlotRectTransform.gameObject.SetActive(true);
             itemSlotRectTransform.anchoredPosition = new Vector2(x * itemSlotCellSize, y * itemSlotCellSize);
@@ -62,10 +65,6 @@ public class UI_Inventory : MonoBehaviour
             if (item.amount > 1)
             {
                 //uiText.SetText(item.amount.ToString());
-            }
-            else
-            {
-                //uiText.SetText("");
             }
 
             x++;
