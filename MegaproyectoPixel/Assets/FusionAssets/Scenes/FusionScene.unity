@@ -784,7 +784,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 900
+    m_Bits: 896
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 866554d706e7f554b980e0241b872216, type: 2}
   m_TargetDisplay: 0
@@ -4672,6 +4672,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 622487401}
     - target: {fileID: 2393488612145536042, guid: 326b7552d4a775f48b72e000674969b5, type: 3}
+      propertyPath: defaultSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e5629caa531f71043b7d279841a9c0fd, type: 3}
+    - target: {fileID: 2393488612145536042, guid: 326b7552d4a775f48b72e000674969b5, type: 3}
       propertyPath: fadeGroupObject
       value: 
       objectReference: {fileID: 6539558049495606338}
@@ -6230,7 +6234,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8568821962264594916, guid: 545bcb4e828e8dc44a2341c66d6812a9, type: 3}
   m_PrefabInstance: {fileID: 1747011368}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1647733470
+--- !u!114 &1647733471
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

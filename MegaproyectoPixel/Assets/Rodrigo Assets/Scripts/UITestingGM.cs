@@ -45,6 +45,7 @@ public class UITestingGM : MonoBehaviour
     public GameObject renderTextureInventory;
     public GameObject inventorySlotsContainer;
     public GameObject inventoryActionButtons;
+    public Sprite defaultSprite;
 
     //Singleton
     public static UITestingGM Instance { get; private set; }
@@ -124,15 +125,17 @@ public class UITestingGM : MonoBehaviour
             //moveBars(sizeWidth);
             //renderTextureInventory.SetActive(true);
         } else if(inventoryAction.triggered && inventoryShowing && options.activeSelf == false)
-        {
+        {            
             Cursor.lockState = CursorLockMode.Locked;
             // Hide inventory and show normal UI
+            resetItemHighlighted();
             dehighlightSlots();
             inventoryShowing = false;
             InventoryGroupCanvas.SetActive(false);
             fadeGroupObject.SetActive(true);
             InventoryItemWorldHolder.SetActive(false);
             canvasVisible = false;
+            
         }
     }
 
@@ -195,11 +198,11 @@ public class UITestingGM : MonoBehaviour
 
     public void highlightItem(Item itemToHighlight) {
         dehighlightSlots();
-
         int highlightedItemIndex = itemList.IndexOf(itemToHighlight);
+
         GameObject toHighlight = inventorySlotsContainer.transform.GetChild(highlightedItemIndex).gameObject;
 
-        Image CurrentObjectSprite =  highlightedItem.transform.Find("CurrentObjectSprite").GetComponent<Image>();
+        Image CurrentObjectSprite =  highlightedItem.transform.Find("CurrentObjectSprite").GetComponent<Image>();        
         CurrentObjectSprite.sprite = itemToHighlight.GetSprite();
 
         Text CurrentObjectDescription = highlightedItem.transform.Find("CurrentObjectDescription").GetComponent<Text>();
@@ -213,11 +216,12 @@ public class UITestingGM : MonoBehaviour
 
     private void inventoryShowActionButtons(Item selectedItem) {
         inventoryActionButtons.SetActive(true);
+
         Button useButton = inventoryActionButtons.transform.Find("UseOption").GetComponent<Button>();
         useButton.onClick.AddListener(delegate { useItem(selectedItem); });
         Button removeButton = inventoryActionButtons.transform.Find("DropOption").GetComponent<Button>();
-        removeButton.onClick.AddListener(delegate { removeItem(selectedItem); });
-        // Set child 0 (use function) to item's UseItem Function        
+        removeButton.onClick.AddListener(delegate { removeItem(selectedItem); } );
+        // Set child 0 (use function) to item's UseItem Function
         // Set child 1 (drop function) to item's DropItem/RemoveItem/whatever Function        
     }
 
@@ -227,10 +231,7 @@ public class UITestingGM : MonoBehaviour
         inventoryActionButtons.SetActive(false);
         ui_inventory.RefreshInvetoryItems();
         InventoryItemWorldHolder.SetActive(true);
-        Image CurrentObjectSprite = highlightedItem.transform.Find("CurrentObjectSprite").GetComponent<Image>();
-        CurrentObjectSprite.sprite = null;
-        Text CurrentObjectDescription = highlightedItem.transform.Find("CurrentObjectDescription").GetComponent<Text>();
-        CurrentObjectDescription.text = ("");
+        resetItemHighlighted();
         dehighlightSlots();
     }
 
@@ -240,11 +241,16 @@ public class UITestingGM : MonoBehaviour
         inventoryActionButtons.SetActive(false);
         ui_inventory.RefreshInvetoryItems();
         InventoryItemWorldHolder.SetActive(true);
+        resetItemHighlighted();
+        dehighlightSlots();
+    }
+
+    private void resetItemHighlighted()
+    {
         Image CurrentObjectSprite = highlightedItem.transform.Find("CurrentObjectSprite").GetComponent<Image>();
-        CurrentObjectSprite.sprite = null;
+        CurrentObjectSprite.sprite = defaultSprite;
         Text CurrentObjectDescription = highlightedItem.transform.Find("CurrentObjectDescription").GetComponent<Text>();
         CurrentObjectDescription.text = ("");
-        dehighlightSlots();
     }
 
     private void dehighlightSlots() {

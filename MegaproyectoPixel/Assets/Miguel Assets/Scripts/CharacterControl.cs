@@ -147,25 +147,26 @@ public class CharacterControl : MonoBehaviour
         {
             case Item.ItemType.Medkit:
                 inventory.RemoveItem(item);
-                GameManager.Instance.addHealth(1);
+                GameManager.Instance.addHealth(0.1f);
                 break;
             case Item.ItemType.Beer:
                 inventory.RemoveItem(item);
-                GameManager.Instance.updateHealth(1);
-                GameManager.Instance.decreaseInsanity(1);
+                GameManager.Instance.updateHealth(0.1f);
+                GameManager.Instance.decreaseInsanity(0.1f);
                 break;            
             case Item.ItemType.PillBottle:
                 inventory.RemoveItem(item);
-                GameManager.Instance.decreaseInsanity(1);
+                GameManager.Instance.decreaseInsanity(0.1f);
                 break;
             case Item.ItemType.Syringe:
                 inventory.RemoveItem(item);
-                GameManager.Instance.addHealth(1);
-                GameManager.Instance.updateInsanity(1);
+                GameManager.Instance.addHealth(0.1f);
+                GameManager.Instance.updateInsanity(0.1f);
                 break;
-            /*case Item.ItemType.Ammo:
+            case Item.ItemType.Ammo:
+                weapon.addAmmo(5);
                 inventory.RemoveItem(item);
-                break;*/
+                break;
         }
     }
 
