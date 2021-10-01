@@ -58,7 +58,7 @@ public class InteractControl : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if (!interactables.Contains(other.gameObject))
         {
-            if (other.GetComponent<ItemWorld>()){
+            if (other.GetComponent<ItemWorld>() || other.GetComponent<IInteractable>() != null){
                 interactables.Add(other.gameObject);
                 interactables[0].gameObject.GetComponentInChildren<Renderer>().materials[0].color = Color.red;
             }
@@ -69,7 +69,7 @@ public class InteractControl : MonoBehaviour
     private void OnTriggerExit(Collider other) {
         if (interactables.Contains(other.gameObject))
         {
-            if (other.GetComponent<ItemWorld>()){
+            if (other.GetComponent<ItemWorld>() || other.GetComponent<IInteractable>() != null){
                 other.gameObject.GetComponentInChildren<Renderer>().materials[0].color = Color.white;
                 interactables.Remove(other.gameObject);
                 if (interactables.Count > 0)
@@ -152,6 +152,12 @@ public class InteractControl : MonoBehaviour
                     Destroy(temp);
 
                     //hitInfo.transform.gameObject.SetActive(false);
+                }
+            if (interactables[0].GetComponent<IInteractable>() != null)
+                {
+                    GameObject temp = interactables[0];
+                    IInteractable interactable = temp.GetComponent<IInteractable>();
+                    interactable.OnInteract("hola");
                 }
         }
     }
