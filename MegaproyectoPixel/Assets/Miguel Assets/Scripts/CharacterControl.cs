@@ -82,7 +82,7 @@ public class CharacterControl : MonoBehaviour
         interactAction.performed += _ => interact.Interact();
         jumpAction.performed += _ => HitReaction();
         cameraTransform = Camera.main.transform;
-        inventory = new InventoryV2();
+        inventory = new InventoryV2(UseItem);
         uiInventory.SetInventory(inventory);
         uiInventory.SetPlayer(this);
         weapon = GetComponentInChildren<Weapon>();
@@ -164,7 +164,7 @@ public class CharacterControl : MonoBehaviour
                 GameManager.Instance.updateInsanity(0.1f);
                 break;
             case Item.ItemType.Ammo:
-                weapon.addAmmo(5);
+                weapon.addAmmo(item.amount);
                 inventory.RemoveItem(item);
                 break;
         }

@@ -227,9 +227,9 @@ public class UITestingGM : MonoBehaviour
 
     private void useItem(Item selectedItem)
     {
-        playerController.UseItem(selectedItem);
+        //playerController.UseItem(selectedItem);
+        inventory.UseItem(selectedItem);
         inventoryActionButtons.SetActive(false);
-        ui_inventory.RefreshInvetoryItems();
         InventoryItemWorldHolder.SetActive(true);
         resetItemHighlighted();
         dehighlightSlots();
@@ -239,7 +239,6 @@ public class UITestingGM : MonoBehaviour
     {
         inventory.RemoveItem(selectedItem);
         inventoryActionButtons.SetActive(false);
-        ui_inventory.RefreshInvetoryItems();
         InventoryItemWorldHolder.SetActive(true);
         resetItemHighlighted();
         dehighlightSlots();
