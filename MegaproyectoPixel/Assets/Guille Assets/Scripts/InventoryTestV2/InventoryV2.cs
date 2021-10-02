@@ -9,9 +9,8 @@ public class InventoryV2
     private List<Item> itemList;
     private Action<Item> useItemAction;
 
-    public InventoryV2(Action<Item> useItemAction)
+    public InventoryV2()
     {
-        this.useItemAction = useItemAction;
         itemList = new List<Item>();
     }
 
@@ -55,8 +54,8 @@ public class InventoryV2
                 }
             }
             if(itemInventory != null && itemInventory.amount <= 0)
-            {                
-                itemList.Remove(item);
+            {
+                itemList.Remove(itemInventory);
             }
         }
         else

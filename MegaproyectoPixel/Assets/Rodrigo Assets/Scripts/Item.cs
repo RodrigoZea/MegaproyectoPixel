@@ -18,14 +18,30 @@ public class Item
 
     public ItemType itemType;
     public Weapon weapon;
+    public GameObject model;
     public Sprite sprite;
     [TextArea]
     public String description;
     public int amount;
+    private int position;    
 
     public Sprite GetSprite()
     {
         return sprite;
+        /*switch (itemType)
+        {
+            default:
+            case ItemType.Beer: return ItemAssets.Instance.beer;
+            case ItemType.PillBottle: return ItemAssets.Instance.pills;
+            case ItemType.Medkit: return ItemAssets.Instance.medkit;
+            case ItemType.Syringe: return ItemAssets.Instance.syringe;
+            case ItemType.Ammo: return ItemAssets.Instance.ammo;
+        }*/
+    }
+
+    public GameObject GetObject()
+    {
+        return model;
     }
 
     public bool isStackable()
@@ -33,12 +49,12 @@ public class Item
         switch (itemType)
         {
             default:
+            case Item.ItemType.Ammo:
                 return true;
             case Item.ItemType.Medkit:
             case Item.ItemType.PillBottle:
             case Item.ItemType.Beer:
             case Item.ItemType.Syringe:
-            case Item.ItemType.Ammo:
                 return false;
         }
     }

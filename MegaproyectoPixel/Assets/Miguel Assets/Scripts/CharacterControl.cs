@@ -14,8 +14,6 @@ public class CharacterControl : MonoBehaviour
     private Cinemachine.CinemachineImpulseSource cameraShake;
     private bool groundedPlayer;
     [SerializeField]
-    public InventoryV2 inventory;
-    [SerializeField]
     private UI_Inventory uiInventory;    
     [SerializeField]
     private Cinemachine.CinemachineVirtualCamera playerCamera;
@@ -40,7 +38,8 @@ public class CharacterControl : MonoBehaviour
     private float speedFactor = 2.0f, recoveryTime = 1.0f;
     private float runSpeed = 1.0f, walkSpeed = 4.0f;
     float speedLimit = 1.0f;
-
+    [SerializeField]
+    public InventoryV2 inventory;
 
     private InputAction moveAction;
     private InputAction lookAction;
@@ -83,7 +82,7 @@ public class CharacterControl : MonoBehaviour
         interactAction.performed += _ => interact.Interact();
         jumpAction.performed += _ => HitReaction();
         cameraTransform = Camera.main.transform;
-        inventory = new InventoryV2(UseItem);
+        inventory = new InventoryV2();
         uiInventory.SetInventory(inventory);
         uiInventory.SetPlayer(this);
         weapon = GetComponentInChildren<Weapon>();
@@ -137,7 +136,7 @@ public class CharacterControl : MonoBehaviour
         
     }
 
-    private void UseItem(Item item)
+    public void UseItem(Item item)
     {
         //Medkit         //+ Vida
         //Beer           //- Insanity, - Vida
@@ -165,7 +164,7 @@ public class CharacterControl : MonoBehaviour
                 GameManager.Instance.updateInsanity(0.1f);
                 break;
             case Item.ItemType.Ammo:
-                weapon.addAmmo(item.amount);
+                weapon.addAmmo(5);
                 inventory.RemoveItem(item);
                 break;
         }
