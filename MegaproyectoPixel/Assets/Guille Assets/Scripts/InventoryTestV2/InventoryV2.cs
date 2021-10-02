@@ -9,8 +9,9 @@ public class InventoryV2
     private List<Item> itemList;
     private Action<Item> useItemAction;
 
-    public InventoryV2()
+    public InventoryV2(Action<Item> useItemAction)
     {
+        this.useItemAction = useItemAction;
         itemList = new List<Item>();
     }
 

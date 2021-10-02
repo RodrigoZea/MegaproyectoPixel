@@ -97,7 +97,8 @@ public class Weapon : MonoBehaviour
         }
         else
         {
-            
+            ammo = 20;
+            magText.text = ("" + magazine + "|" + ammo);
         }
     }
 
