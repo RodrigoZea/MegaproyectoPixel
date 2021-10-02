@@ -50,9 +50,9 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     float shootTimer = 0.5f;
     [SerializeField]
-    AudioSource shootSound;
+    float reloadTimer = 2.5f;
     [SerializeField]
-    AudioSource cockedGunSound;
+    AudioSource shootSound;
     [SerializeField]
     GameObject hit_fx;
     [SerializeField]
@@ -61,6 +61,8 @@ public class Weapon : MonoBehaviour
     GameObject bullet_hole;
     [SerializeField]
     Text magText;
+    [SerializeField]
+    AudioClip shoot, cocked, reload;
 
     private bool hold;
 
@@ -74,6 +76,10 @@ public class Weapon : MonoBehaviour
         reloadAction = playerInput.actions["Reload"];
         reloadAction.performed += _ => Reload();
         magText.text = ("" + magazine + "|" + ammo);
+        if (magazine > 0)
+            shootSound.clip = shoot;
+        else    
+            shootSound.clip = reload;
     }
 
     void Awake() {
@@ -151,6 +157,7 @@ public class Weapon : MonoBehaviour
             
         } else if (!isShooting && magazine <= 0)
         {
+            shootSound.clip = cocked;
             StartCoroutine("playjammedGun", shootTimer);
         }
     }
@@ -158,7 +165,7 @@ public class Weapon : MonoBehaviour
     IEnumerator playjammedGun(float time)
     {
         isShooting = true;
-        cockedGunSound.Play();        
+        shootSound.Play();        
         yield return new WaitForSeconds(time);
         isShooting = false;
     }
@@ -167,6 +174,18 @@ public class Weapon : MonoBehaviour
         fireAvailable = false;
         yield return new WaitForSeconds(time);
         fireAvailable = true;
+    }
+
+    IEnumerator playreload(float time)
+    {
+        shootSound.clip = reload;
+        shootSound.Play();
+        shootAction.Disable();
+        reloadAction.Disable();
+        yield return new WaitForSeconds(time);
+        shootSound.clip = shoot;
+        reloadAction.Enable();
+        shootAction.Enable();
     }
 
     IEnumerator ShootingMechanics(float timer)
@@ -192,6 +211,7 @@ public class Weapon : MonoBehaviour
         {
             if (ammo > 0)
             {
+                StartCoroutine("playreload", reloadTimer);
                 //Si tiene suficientes balas para recargar todo el cartucho
                 if (ammo >= fullMagSize)
                 {
@@ -209,6 +229,7 @@ public class Weapon : MonoBehaviour
         {
             if (ammo > 0)
             {
+                StartCoroutine("playreload", reloadTimer);
                 //Si tiene suficientes balas para recargar todo el cartucho
                 if (ammo >= fullMagSize)
                 {
