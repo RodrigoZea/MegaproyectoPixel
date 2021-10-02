@@ -227,9 +227,8 @@ public class UITestingGM : MonoBehaviour
 
     private void useItem(Item selectedItem)
     {
-        playerController.UseItem(selectedItem);
+        inventory.UseItem(selectedItem);
         inventoryActionButtons.SetActive(false);
-        ui_inventory.RefreshInvetoryItems();
         InventoryItemWorldHolder.SetActive(true);
         resetItemHighlighted();
         dehighlightSlots();
@@ -239,7 +238,6 @@ public class UITestingGM : MonoBehaviour
     {
         inventory.RemoveItem(selectedItem);
         inventoryActionButtons.SetActive(false);
-        ui_inventory.RefreshInvetoryItems();
         InventoryItemWorldHolder.SetActive(true);
         resetItemHighlighted();
         dehighlightSlots();
@@ -266,6 +264,7 @@ public class UITestingGM : MonoBehaviour
     public void showTab(int index) {
         for(int i=0;i<inventoryTabs.Length;i++){
             inventoryTabs[i].SetActive(false);
+            //ui_inventory.enabled = false;
             inventoryTabsButtons[i].transform.GetChild(0).GetComponent<Text>().color = new Color(0.7f, 0.7f, 0.7f, 1f);
         }
 

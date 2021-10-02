@@ -51,21 +51,18 @@ public class UI_Inventory : MonoBehaviour
 
         foreach (Item item in inventory.GetItemList())
         {
+            Debug.Log(item);
             RectTransform itemSlotRectTransform = Instantiate(itemSlotTemplate, itemSlotContainer).GetComponent<RectTransform>();
 
-            itemSlotRectTransform.GetComponent<Button>().onClick.AddListener(delegate { inventory.HighlightItem(item); } );
+            itemSlotRectTransform.GetComponent<Button>().onClick.AddListener(delegate { inventory.HighlightItem(item);  } );
 
             itemSlotContainer.gameObject.SetActive(true);
             
             itemSlotRectTransform.gameObject.SetActive(true);
             itemSlotRectTransform.anchoredPosition = new Vector2(x * itemSlotCellSize, y * itemSlotCellSize);
-            Image image = itemSlotRectTransform.Find("image").GetComponent<Image>();            
+            Image image = itemSlotRectTransform.Find("image").GetComponent<Image>();
             image.sprite = item.GetSprite();
-            TextMeshProUGUI uiText = itemSlotRectTransform.Find("text").GetComponent<TextMeshProUGUI>();
-            if (item.amount > 1)
-            {
-                //uiText.SetText(item.amount.ToString());
-            }
+            TextMeshProUGUI uiText = itemSlotRectTransform.Find("text").GetComponent<TextMeshProUGUI>();            
 
             x++;
             if (x > 7)
