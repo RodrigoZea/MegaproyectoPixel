@@ -46,6 +46,7 @@ public class UITestingGM : MonoBehaviour
     public GameObject inventorySlotsContainer;
     public GameObject inventoryActionButtons;
     public Sprite defaultSprite;
+    public GameObject UI_Inventory;
 
     //Singleton
     public static UITestingGM Instance { get; private set; }
@@ -116,6 +117,7 @@ public class UITestingGM : MonoBehaviour
             InventoryGroupCanvas.SetActive(true);
             fadeGroupObject.SetActive(false);
             InventoryItemWorldHolder.SetActive(true);
+            UI_Inventory.SetActive(true);
             canvasVisible = false;
 
             inventoryTabsButtons[0].GetComponent<Button>().Select();
@@ -133,6 +135,7 @@ public class UITestingGM : MonoBehaviour
             inventoryShowing = false;
             InventoryGroupCanvas.SetActive(false);
             fadeGroupObject.SetActive(true);
+            UI_Inventory.SetActive(true);
             InventoryItemWorldHolder.SetActive(false);
             canvasVisible = false;
             
@@ -266,10 +269,20 @@ public class UITestingGM : MonoBehaviour
         for(int i=0;i<inventoryTabs.Length;i++){
             inventoryTabs[i].SetActive(false);
             inventoryTabsButtons[i].transform.GetChild(0).GetComponent<Text>().color = new Color(0.7f, 0.7f, 0.7f, 1f);
+            
+        }
+
+        if(index == 1)
+        {
+            UI_Inventory.SetActive(false);
+        }
+        else
+        {
+            UI_Inventory.SetActive(true);
         }
 
         inventoryTabsButtons[index].transform.GetChild(0).GetComponent<Text>().color = Color.white;
-        inventoryTabs[index].SetActive(true);        
+        inventoryTabs[index].SetActive(true);
     }
 
     private void moveBars(int xReference) {

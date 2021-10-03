@@ -23,7 +23,6 @@ public class Item
     [TextArea]
     public String description;
     public int amount;
-    private int position;    
 
     public Sprite GetSprite()
     {
@@ -49,8 +48,8 @@ public class Item
         switch (itemType)
         {
             default:
-            case Item.ItemType.Ammo:
                 return true;
+            case Item.ItemType.Ammo:
             case Item.ItemType.Medkit:
             case Item.ItemType.PillBottle:
             case Item.ItemType.Beer:
