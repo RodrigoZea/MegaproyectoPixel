@@ -153,6 +153,7 @@ public class InteractControl : MonoBehaviour
 
                     //hitInfo.transform.gameObject.SetActive(false);
                 }
+            else
             if (interactables[0].GetComponent<IInteractable>() != null)
                 {
                     GameObject temp = interactables[0];
