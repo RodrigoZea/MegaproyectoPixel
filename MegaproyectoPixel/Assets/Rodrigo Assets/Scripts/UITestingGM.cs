@@ -23,7 +23,7 @@ public class UITestingGM : MonoBehaviour
     public InventoryV2 inventory;
     public bool canvasFadeable;
     private float canvasFadeTimer;
-    private bool canvasVisible = false;
+    private bool canvasVisible = true;
     private bool updatingValue = false;
     private bool inventoryShowing = false;
     private ParticleSystem bloodDrops;
@@ -84,25 +84,6 @@ public class UITestingGM : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 input = moveAction.ReadValue<Vector2>();
-        Vector3 move = new Vector3(input.x, 0, input.y);
-
-        if (canvasFadeable) {
-            // If player is idle and canvas not visible
-            if (!canvasVisible && move.magnitude == 0f) {
-                canvasFadeTimer += Time.deltaTime;
-                // Fade in
-                if (canvasFadeTimer >= idleTimer) {
-                    StartCoroutine(fadeGroupFade(fadeGroup.alpha, 1, true));
-                }
-            // Else if player is moving
-            // Hide canvas and reset timer
-            } else if (move.magnitude != 0f) {
-                // Fade out
-                StartCoroutine(fadeGroupFade(fadeGroup.alpha, 0, false));
-            }
-        }
-
         if(optionsAction.triggered && options.activeSelf && !inventoryShowing){
             options.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
@@ -139,20 +120,6 @@ public class UITestingGM : MonoBehaviour
             InventoryItemWorldHolder.SetActive(false);
             canvasVisible = false;
             
-        }
-    }
-
-    // Visibility true means canvas will be shown eventually
-    IEnumerator fadeGroupFade(float start, float end, bool visibility) {
-        float counter = 0f;
-
-        canvasVisible = visibility;
-
-        while(counter < 2.0f) {
-            counter += Time.deltaTime;
-            fadeGroup.alpha = Mathf.Lerp(start, end, counter/2.0f);
-            canvasFadeTimer = 0f;
-            yield return null;
         }
     }
 
