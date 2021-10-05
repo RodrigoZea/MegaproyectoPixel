@@ -41,15 +41,17 @@ public class GameManager : MonoBehaviour
         
     }
     
-    public void updateHealth(float damage)
+    public void updateHealth(float changeInHealth)
     {
-        playerHealth += damage;
+        playerHealth += changeInHealth;
         playerInfo.changeBasedOnHealth(playerHealth);
+        UITestingGM.Instance.changeHealth(changeInHealth);
     }
 
     public void updateInsanity(float insanity)
     {
         playerInsanity += insanity;
         playerInfo.changeBasedOnInsanity(playerInsanity);
+        UITestingGM.Instance.changeSpook(insanity);
     }
 }

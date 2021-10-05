@@ -124,7 +124,7 @@ public class UITestingGM : MonoBehaviour
 
     // -------------------------------------------------------------------------------------------------------------------------------
 
-    public void changeHealth(int value) {
+    public void changeHealth(float value) {
         if (bloodDrops.isStopped) {
             bloodDrops.Play();
         }
@@ -134,28 +134,22 @@ public class UITestingGM : MonoBehaviour
             fadeGroup.alpha = 1;
         }
 
-        // Normalize value to 1 max
-        float adjustedValue = -0.10f;
+        Vector3 updatedHealthScale = new Vector3(healthBar.transform.localScale.x, healthBar.transform.localScale.y + value,  healthBar.transform.localScale.z);
 
-        Vector3 updatedHealthScale = new Vector3(healthBar.transform.localScale.x, healthBar.transform.localScale.y + adjustedValue,  healthBar.transform.localScale.z);
-
-        if (updatedHealthScale.y <= 1.1f && updatedHealthScale.y >= -0.1f) {
+        if (updatedHealthScale.y <= 1.00f && updatedHealthScale.y >= -0.00f) {
             healthBar.transform.localScale = updatedHealthScale;
         }
     }
 
-    public void changeSpook(int value) {
+    public void changeSpook(float value) {
         if (!canvasVisible) {
             canvasVisible = true;
             fadeGroup.alpha = 1;
         }
 
-        // Normalize value to 1 max
-        float adjustedValue = 0.10f;
+        Vector3 updatedSpookScale = new Vector3(spookBar.transform.localScale.x, spookBar.transform.localScale.y + value,  spookBar.transform.localScale.z);
 
-        Vector3 updatedSpookScale = new Vector3(spookBar.transform.localScale.x, spookBar.transform.localScale.y + adjustedValue,  spookBar.transform.localScale.z);
-
-        if (updatedSpookScale.y <= 1.1f && updatedSpookScale.y >= -0.1f) {
+        if (updatedSpookScale.y <= 1.00f && updatedSpookScale.y >= -0.00f) {
             spookBar.transform.localScale = updatedSpookScale;
         }
     }
