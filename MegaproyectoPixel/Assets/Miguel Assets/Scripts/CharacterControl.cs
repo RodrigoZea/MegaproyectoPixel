@@ -41,6 +41,8 @@ public class CharacterControl : MonoBehaviour
     [SerializeField]
     public InventoryV2 inventory;
 
+    public Inventory newInventory;
+
     private InputAction moveAction;
     private InputAction lookAction;
     private InputAction jumpAction;
@@ -83,6 +85,7 @@ public class CharacterControl : MonoBehaviour
         jumpAction.performed += _ => HitReaction();
         cameraTransform = Camera.main.transform;
         inventory = new InventoryV2(UseItem);
+        newInventory = new Inventory();
         uiInventory.SetInventory(inventory);
         uiInventory.SetPlayer(this);
         weapon = GetComponentInChildren<Weapon>();

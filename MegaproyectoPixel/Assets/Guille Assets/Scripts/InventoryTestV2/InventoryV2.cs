@@ -17,7 +17,7 @@ public class InventoryV2
 
     public void AddItem(Item item)
     {
-        if(item.isStackable())
+        /*if(item.isStackable())
         {
             bool itemAlreadyInInventory = false;
             foreach (Item inventoryItem in itemList)
@@ -36,14 +36,15 @@ public class InventoryV2
         else
         {
             itemList.Add(item);
-        }
+        }*/
+        itemList.Add(item);
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
-        UITestingGM.Instance.updateItemList(itemList);
+        //UITestingGM.Instance.updateItemList(itemList);
     }
 
     public void RemoveItem(Item item)
     {
-        if (item.isStackable())
+        /*if (item.isStackable())
         {
             Item itemInventory = null;
             foreach (Item inventoryItem in itemList)
@@ -62,9 +63,10 @@ public class InventoryV2
         else
         {
             itemList.Remove(item);
-        }
+        }*/
+        itemList.Remove(item);
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
-        UITestingGM.Instance.updateItemList(itemList);
+        //UITestingGM.Instance.updateItemList(itemList);
     }
 
     public void UseItem(Item item)

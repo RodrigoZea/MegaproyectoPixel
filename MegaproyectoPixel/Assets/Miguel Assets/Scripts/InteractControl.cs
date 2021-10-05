@@ -127,10 +127,12 @@ public class InteractControl : MonoBehaviour
                     GameObject temp = hitInfo.collider.gameObject;
                     ItemWorld itemWorld = temp.GetComponent<ItemWorld>();
                     Item item = itemWorld.GetItem();
+                    bool waspickedup = player.newInventory.addItem(item);
                     player.inventory.AddItem(item);
                     temp.gameObject.SetActive(false);
                     interactables.Remove(temp.gameObject);
-                    Destroy(temp);
+                    if (waspickedup) 
+                        Destroy(temp);
                 }
             }
         }

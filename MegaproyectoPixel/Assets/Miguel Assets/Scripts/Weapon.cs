@@ -36,7 +36,6 @@ public class Weapon : MonoBehaviour
     private InputAction shootAction;
     private InputAction reloadAction;
 
-
     [SerializeField]
     Transform shootPoint;
     [SerializeField]
@@ -131,7 +130,7 @@ public class Weapon : MonoBehaviour
                         hit.collider.GetComponent<EnemyAI>().health -= 1;
                         //Cambiar a bloodhit_fx y poner particulas de sangre
                         Debug.Log("Hit Life");
-                        GameObject hitFX = Instantiate(hit_fx, hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal));
+                        GameObject hitFX = Instantiate(bloodhit_fx, hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal));
                     }
                     else
                     {
