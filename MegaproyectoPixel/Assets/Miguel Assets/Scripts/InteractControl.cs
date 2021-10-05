@@ -116,6 +116,12 @@ public class InteractControl : MonoBehaviour
         }
     }
     */
+
+    public virtual void Interacting ()
+    {
+
+    }
+
     public void Interact(){
         if (raycast){
             ray.origin = raycastOrigin.position;
@@ -127,12 +133,10 @@ public class InteractControl : MonoBehaviour
                     GameObject temp = hitInfo.collider.gameObject;
                     ItemWorld itemWorld = temp.GetComponent<ItemWorld>();
                     Item item = itemWorld.GetItem();
-                    bool waspickedup = player.newInventory.addItem(item);
-                    player.inventory.AddItem(item);
+                    bool waspickedup = player.inventory.addItem(item);
+                    player.inventory.addItem(item);
                     temp.gameObject.SetActive(false);
-                    interactables.Remove(temp.gameObject);
-                    if (waspickedup) 
-                        Destroy(temp);
+                    interactables.Remove(temp.gameObject);                    
                 }
             }
         }
@@ -142,7 +146,7 @@ public class InteractControl : MonoBehaviour
                     GameObject temp = interactables[0];
                     ItemWorld itemWorld = temp.GetComponent<ItemWorld>();
                     Item item = itemWorld.GetItem();
-                    player.inventory.AddItem(item);
+                    player.inventory.addItem(item);
                     //interactables.Remove(hitInfo.transform.gameObject);
                     //interactables.Remove(hitInfo.collider.gameObject);
                     //Destroy(hitInfo.collider.gameObject);

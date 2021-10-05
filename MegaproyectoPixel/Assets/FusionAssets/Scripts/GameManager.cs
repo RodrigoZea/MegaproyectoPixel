@@ -41,21 +41,9 @@ public class GameManager : MonoBehaviour
         
     }
     
-    public void addHealth(float healing)
-    {
-        playerHealth += healing;
-        playerInfo.changeBasedOnHealth(playerHealth);
-    }
-
-    public void decreaseInsanity(float insanity)
-    {
-        playerInsanity -= insanity;
-        playerInfo.changeBasedOnInsanity(playerInsanity);
-    }
-
     public void updateHealth(float damage)
     {
-        playerHealth -= damage;
+        playerHealth += damage;
         playerInfo.changeBasedOnHealth(playerHealth);
     }
 

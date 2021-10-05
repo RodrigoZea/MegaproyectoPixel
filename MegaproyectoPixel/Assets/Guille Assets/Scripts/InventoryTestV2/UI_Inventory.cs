@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class UI_Inventory : MonoBehaviour
+/*public class UI_Inventory : MonoBehaviour
 {
     private InventoryV2 inventory;
     private Transform itemSlotContainer;
@@ -71,4 +71,4 @@ public class UI_Inventory : MonoBehaviour
         }
     }
 
-}
+}*/

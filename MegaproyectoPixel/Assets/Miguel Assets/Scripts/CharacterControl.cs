@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 using Cinemachine;
 
 [RequireComponent(typeof(CharacterController), typeof(PlayerInput))]
@@ -13,8 +14,6 @@ public class CharacterControl : MonoBehaviour
     private Transform cameraTransform;
     private Cinemachine.CinemachineImpulseSource cameraShake;
     private bool groundedPlayer;
-    [SerializeField]
-    private UI_Inventory uiInventory;    
     [SerializeField]
     private Cinemachine.CinemachineVirtualCamera playerCamera;
     [SerializeField]
@@ -38,11 +37,9 @@ public class CharacterControl : MonoBehaviour
     private float speedFactor = 2.0f, recoveryTime = 1.0f;
     private float runSpeed = 1.0f, walkSpeed = 4.0f;
     float speedLimit = 1.0f;
-    [SerializeField]
-    public InventoryV2 inventory;
 
-    public Inventory newInventory;
 
+    public Inventory inventory;
     private InputAction moveAction;
     private InputAction lookAction;
     private InputAction jumpAction;
@@ -84,17 +81,17 @@ public class CharacterControl : MonoBehaviour
         interactAction.performed += _ => interact.Interact();
         jumpAction.performed += _ => HitReaction();
         cameraTransform = Camera.main.transform;
-        inventory = new InventoryV2(UseItem);
-        newInventory = new Inventory();
-        uiInventory.SetInventory(inventory);
-        uiInventory.SetPlayer(this);
+        inventory = new Inventory();
         weapon = GetComponentInChildren<Weapon>();
         Cursor.lockState = CursorLockMode.Locked;
         //changeBasedOnHealth(15.0f);
     }
     void Update()
     {
-        
+
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+
         //Debug.Log(aimAction.phase.ToString());
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0)
@@ -149,26 +146,26 @@ public class CharacterControl : MonoBehaviour
         switch (item.itemType)
         {
             case Item.ItemType.Medkit:
-                inventory.RemoveItem(item);
-                GameManager.Instance.addHealth(0.1f);
+                inventory.removeItem(item);
+                GameManager.Instance.updateHealth(0.1f);
                 break;
             case Item.ItemType.Beer:
-                inventory.RemoveItem(item);
-                GameManager.Instance.updateHealth(0.1f);
-                GameManager.Instance.decreaseInsanity(0.1f);
-                break;            
+                inventory.removeItem(item);
+                GameManager.Instance.updateHealth(-0.1f);
+                GameManager.Instance.updateInsanity(-0.1f);
+                break;
             case Item.ItemType.PillBottle:
-                inventory.RemoveItem(item);
-                GameManager.Instance.decreaseInsanity(0.1f);
+                inventory.removeItem(item);
+                GameManager.Instance.updateInsanity(-0.1f);
                 break;
             case Item.ItemType.Syringe:
-                inventory.RemoveItem(item);
-                GameManager.Instance.addHealth(0.1f);
+                inventory.removeItem(item);
+                GameManager.Instance.updateHealth(0.1f);
                 GameManager.Instance.updateInsanity(0.1f);
                 break;
             case Item.ItemType.Ammo:
                 weapon.addAmmo(item.amount);
-                inventory.RemoveItem(item);
+                inventory.removeItem(item);
                 break;
         }
     }

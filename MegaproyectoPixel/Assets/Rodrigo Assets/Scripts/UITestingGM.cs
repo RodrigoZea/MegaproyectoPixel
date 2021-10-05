@@ -12,7 +12,6 @@ public class UITestingGM : MonoBehaviour
     public GameObject spookBar;
     public GameObject player;
     public CharacterControl playerController;
-    public UI_Inventory ui_inventory;
     public GameObject highlightedItem;
     [SerializeField]
     private GameObject options;
@@ -20,7 +19,7 @@ public class UITestingGM : MonoBehaviour
     private float idleTimer;
     private int sizeWidth;
     private int sizeHeight;
-    public InventoryV2 inventory;
+    public Inventory inventory;
     public bool canvasFadeable;
     private float canvasFadeTimer;
     private bool canvasVisible = true;
@@ -116,7 +115,7 @@ public class UITestingGM : MonoBehaviour
             inventoryShowing = false;
             InventoryGroupCanvas.SetActive(false);
             fadeGroupObject.SetActive(true);
-            UI_Inventory.SetActive(true);
+            UI_Inventory.SetActive(false);
             InventoryItemWorldHolder.SetActive(false);
             canvasVisible = false;
             
@@ -179,7 +178,7 @@ public class UITestingGM : MonoBehaviour
         CurrentObjectDescription.text = (""+itemToHighlight.description);
 
         // Change later :)
-        toHighlight.GetComponent<Image>().color = Color.yellow;
+        //toHighlight.GetComponent<Image>().color = Color.yellow;
         //toHighlight.GetComponent<Image>().color = new Color(161f/225f, 159f/225f, 124f/225f);
         inventoryShowActionButtons(itemToHighlight);
     }
@@ -197,8 +196,8 @@ public class UITestingGM : MonoBehaviour
 
     private void useItem(Item selectedItem)
     {
-        //playerController.UseItem(selectedItem);
-        inventory.UseItem(selectedItem);
+        playerController.UseItem(selectedItem);
+        //inventory.useItem(selectedItem);
         inventoryActionButtons.SetActive(false);
         InventoryItemWorldHolder.SetActive(true);
         resetItemHighlighted();
@@ -207,7 +206,7 @@ public class UITestingGM : MonoBehaviour
 
     private void removeItem(Item selectedItem)
     {
-        inventory.RemoveItem(selectedItem);
+        inventory.removeItem(selectedItem);
         inventoryActionButtons.SetActive(false);
         InventoryItemWorldHolder.SetActive(true);
         resetItemHighlighted();

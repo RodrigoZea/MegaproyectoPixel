@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [Serializable]
-public class Item 
+public class Item
 {
     public enum ItemType {
         Medkit,         //+ Vida
@@ -19,7 +19,7 @@ public class Item
     public ItemType itemType;
     public Weapon weapon;
     public GameObject model;
-    public Sprite sprite;
+    public Sprite sprite = null;
     [TextArea]
     public String description;
     public int amount;
@@ -27,15 +27,6 @@ public class Item
     public Sprite GetSprite()
     {
         return sprite;
-        /*switch (itemType)
-        {
-            default:
-            case ItemType.Beer: return ItemAssets.Instance.beer;
-            case ItemType.PillBottle: return ItemAssets.Instance.pills;
-            case ItemType.Medkit: return ItemAssets.Instance.medkit;
-            case ItemType.Syringe: return ItemAssets.Instance.syringe;
-            case ItemType.Ammo: return ItemAssets.Instance.ammo;
-        }*/
     }
 
     public GameObject GetObject()

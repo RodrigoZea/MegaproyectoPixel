@@ -3905,7 +3905,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6642069606354341757, guid: c42a31d4eb8c4ea40bb0200ce71ffa9c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.117643
+      value: 17.20483
       objectReference: {fileID: 0}
     - target: {fileID: 6642069606354341757, guid: c42a31d4eb8c4ea40bb0200ce71ffa9c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9016,6 +9016,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1373662619}
     - target: {fileID: 4368123201408844383, guid: ff8bad0c53b7b674984b26d8f4a78735, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 704080577}
+    - target: {fileID: 4368123201408844383, guid: ff8bad0c53b7b674984b26d8f4a78735, type: 3}
       propertyPath: shootScript
       value: 
       objectReference: {fileID: 827148352}
@@ -9685,6 +9689,7 @@ GameObject:
   m_Component:
   - component: {fileID: 704080576}
   - component: {fileID: 704080575}
+  - component: {fileID: 704080577}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -9720,6 +9725,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &704080577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 704080574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 745f2341c48798849b7ac0554699dabf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemList: []
+  space: 16
 --- !u!1 &705008053
 GameObject:
   m_ObjectHideFlags: 0
@@ -21739,7 +21758,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4731843124130997464, guid: 836043f34903bd84cb27d8e1df14c784, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.364645
+      value: 17.550554
       objectReference: {fileID: 0}
     - target: {fileID: 4731843124130997464, guid: 836043f34903bd84cb27d8e1df14c784, type: 3}
       propertyPath: m_LocalPosition.y
@@ -31199,7 +31218,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8568821962759760194, guid: 545bcb4e828e8dc44a2341c66d6812a9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8568821962759760195, guid: 545bcb4e828e8dc44a2341c66d6812a9, type: 3}
       propertyPath: m_Pivot.x
@@ -32124,7 +32143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cfuStatus: PSXEffects v1.18.1 - update available (click to update).
   sections: 01010100
-  customRes: {x: 174, y: 202}
+  customRes: {x: 480, y: 320}
   resolutionFactor: 2
   limitFramerate: -1
   skipFrames: 0
@@ -35996,7 +36015,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2010411069
 RectTransform:
   m_ObjectHideFlags: 0
@@ -37054,7 +37073,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7867969415483487187, guid: dfb3e69d40a4c754aa25c2a02d5e6104, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.364645
+      value: 17.550554
       objectReference: {fileID: 0}
     - target: {fileID: 7867969415483487187, guid: dfb3e69d40a4c754aa25c2a02d5e6104, type: 3}
       propertyPath: m_LocalPosition.y
@@ -42349,6 +42368,7 @@ GameObject:
   - component: {fileID: 6539558049985450204}
   - component: {fileID: 6539558049985450147}
   - component: {fileID: 6539558049985450146}
+  - component: {fileID: 6539558049985450148}
   m_Layer: 5
   m_Name: MainCanvas2D
   m_TagString: Untagged
@@ -42396,6 +42416,20 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 0
+--- !u!114 &6539558049985450148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6539558049985450145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e73324fd9b48f8c4db3040c2d21cdec7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemsParent: {fileID: 899190746}
+  inventoryUI: {fileID: 6539558049985450145}
 --- !u!223 &6539558049985450204
 Canvas:
   m_ObjectHideFlags: 0
