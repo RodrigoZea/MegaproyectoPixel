@@ -10,6 +10,8 @@ public class CharacterControl : MonoBehaviour
     private CharacterController controller;
     private PlayerInput playerInput;
     private CharacterAnimation characterAnim;
+    [SerializeField]
+    private AimOptions aimOptions;
     private Vector3 playerVelocity;
     private Transform cameraTransform;
     private Cinemachine.CinemachineImpulseSource cameraShake;
@@ -216,5 +218,21 @@ public class CharacterControl : MonoBehaviour
 
     public void changeBasedOnInsanity(float health){
 
+    }
+
+    public void activateControls(){
+        moveAction.Enable();
+        aimAction.Enable();
+        sprintAction.Enable();
+        interactAction.Enable();
+        aimOptions.startCamera();
+    }
+
+    public void deactivateControls(){
+        moveAction.Disable();
+        aimAction.Disable();
+        sprintAction.Disable();
+        interactAction.Disable();
+        aimOptions.stopCamera();
     }
 }

@@ -101,6 +101,7 @@ public class UITestingGM : MonoBehaviour
             inventoryTabsButtons[0].GetComponent<Button>().OnSelect(null);
             showTab(0);
             Cursor.lockState = CursorLockMode.None;
+            playerController.deactivateControls();
             //moveBars(sizeWidth);
             //renderTextureInventory.SetActive(true);
         } else if(inventoryAction.triggered && inventoryShowing && options.activeSelf == false)
@@ -114,7 +115,7 @@ public class UITestingGM : MonoBehaviour
             fadeGroupObject.SetActive(true);
             inventorySlotsContainer.SetActive(false);
             canvasVisible = false;
-            
+            playerController.activateControls();
         }
     }
 

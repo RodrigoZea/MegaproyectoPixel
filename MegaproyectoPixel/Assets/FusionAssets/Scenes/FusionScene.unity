@@ -3580,6 +3580,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2881950192756375634, guid: adbe860020703294c84c414a47252d5c, type: 3}
   m_PrefabInstance: {fileID: 1656101742}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &232950474 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2881950192756375633, guid: adbe860020703294c84c414a47252d5c, type: 3}
+  m_PrefabInstance: {fileID: 1656101742}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232950472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e36022471a295c242afbf348c399afbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &233798136 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3135921509060577837, guid: f53dc41bc8bf6ee439630802afe97edc, type: 3}
@@ -3959,7 +3970,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6642069606354341757, guid: c42a31d4eb8c4ea40bb0200ce71ffa9c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.20483
+      value: 17.117643
       objectReference: {fileID: 0}
     - target: {fileID: 6642069606354341757, guid: c42a31d4eb8c4ea40bb0200ce71ffa9c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -13875,6 +13886,10 @@ PrefabInstance:
       propertyPath: inventory
       value: 
       objectReference: {fileID: 704080577}
+    - target: {fileID: 4368123201408844383, guid: ff8bad0c53b7b674984b26d8f4a78735, type: 3}
+      propertyPath: aimOptions
+      value: 
+      objectReference: {fileID: 232950474}
     - target: {fileID: 4368123201408844383, guid: ff8bad0c53b7b674984b26d8f4a78735, type: 3}
       propertyPath: shootScript
       value: 
@@ -36473,7 +36488,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4731843124130997464, guid: 836043f34903bd84cb27d8e1df14c784, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.550554
+      value: 17.364645
       objectReference: {fileID: 0}
     - target: {fileID: 4731843124130997464, guid: 836043f34903bd84cb27d8e1df14c784, type: 3}
       propertyPath: m_LocalPosition.y
@@ -46702,7 +46717,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cfuStatus: PSXEffects v1.18.1 - update available (click to update).
   sections: 01010100
-  customRes: {x: 480, y: 320}
+  customRes: {x: 174, y: 202}
   resolutionFactor: 2
   limitFramerate: -1
   skipFrames: 0
@@ -56559,7 +56574,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7867969415483487187, guid: dfb3e69d40a4c754aa25c2a02d5e6104, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.550554
+      value: 17.364645
       objectReference: {fileID: 0}
     - target: {fileID: 7867969415483487187, guid: dfb3e69d40a4c754aa25c2a02d5e6104, type: 3}
       propertyPath: m_LocalPosition.y

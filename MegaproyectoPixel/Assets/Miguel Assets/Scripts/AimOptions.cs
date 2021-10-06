@@ -18,6 +18,7 @@ public class AimOptions : MonoBehaviour
     private Text lookSliderText;
     [SerializeField]
     private Cinemachine.CinemachineVirtualCamera lookCamera;
+    private float aimX, aimY;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,8 +43,15 @@ public class AimOptions : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
+    public void stopCamera(){
+        aimY = lookCamera.GetCinemachineComponent<CinemachinePOV>().m_VerticalAxis.m_MaxSpeed;
+        aimX = lookCamera.GetCinemachineComponent<CinemachinePOV>().m_HorizontalAxis.m_MaxSpeed;
+        lookCamera.GetCinemachineComponent<CinemachinePOV>().m_VerticalAxis.m_MaxSpeed = 0.0f;
+        lookCamera.GetCinemachineComponent<CinemachinePOV>().m_HorizontalAxis.m_MaxSpeed = 0.0f;
+    }
+
+    public void startCamera(){
+        lookCamera.GetCinemachineComponent<CinemachinePOV>().m_VerticalAxis.m_MaxSpeed = aimY;
+        lookCamera.GetCinemachineComponent<CinemachinePOV>().m_HorizontalAxis.m_MaxSpeed = aimX;
     }
 }
