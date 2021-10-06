@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class ItemPickup : InteractControl
 {
-
     public Item item;
 
     public override void Interacting()

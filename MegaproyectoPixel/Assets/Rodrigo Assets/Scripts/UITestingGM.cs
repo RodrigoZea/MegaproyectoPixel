@@ -37,7 +37,6 @@ public class UITestingGM : MonoBehaviour
     private List<Item> itemList;
     public GameObject Inventory3D;
     public GameObject InventoryGroupCanvas;
-    public GameObject InventoryItemWorldHolder;
     public GameObject[] inventoryTabs;
     public GameObject[] inventoryTabsButtons;
     public Camera renderTextureCam;
@@ -45,7 +44,6 @@ public class UITestingGM : MonoBehaviour
     public GameObject inventorySlotsContainer;
     public GameObject inventoryActionButtons;
     public Sprite defaultSprite;
-    public GameObject UI_Inventory;
 
     //Singleton
     public static UITestingGM Instance { get; private set; }
@@ -96,8 +94,7 @@ public class UITestingGM : MonoBehaviour
             inventoryShowing = true;
             InventoryGroupCanvas.SetActive(true);
             fadeGroupObject.SetActive(false);
-            InventoryItemWorldHolder.SetActive(true);
-            UI_Inventory.SetActive(true);
+            inventorySlotsContainer.SetActive(true);
             canvasVisible = false;
 
             inventoryTabsButtons[0].GetComponent<Button>().Select();
@@ -115,8 +112,7 @@ public class UITestingGM : MonoBehaviour
             inventoryShowing = false;
             InventoryGroupCanvas.SetActive(false);
             fadeGroupObject.SetActive(true);
-            UI_Inventory.SetActive(false);
-            InventoryItemWorldHolder.SetActive(false);
+            inventorySlotsContainer.SetActive(false);
             canvasVisible = false;
             
         }
@@ -191,9 +187,8 @@ public class UITestingGM : MonoBehaviour
     private void useItem(Item selectedItem)
     {
         playerController.UseItem(selectedItem);
-        //inventory.useItem(selectedItem);
         inventoryActionButtons.SetActive(false);
-        InventoryItemWorldHolder.SetActive(true);
+        inventorySlotsContainer.SetActive(true);
         resetItemHighlighted();
         dehighlightSlots();
     }
@@ -202,7 +197,7 @@ public class UITestingGM : MonoBehaviour
     {
         inventory.removeItem(selectedItem);
         inventoryActionButtons.SetActive(false);
-        InventoryItemWorldHolder.SetActive(true);
+        inventorySlotsContainer.SetActive(true);
         resetItemHighlighted();
         dehighlightSlots();
     }
@@ -230,15 +225,6 @@ public class UITestingGM : MonoBehaviour
             inventoryTabs[i].SetActive(false);
             inventoryTabsButtons[i].transform.GetChild(0).GetComponent<Text>().color = new Color(0.7f, 0.7f, 0.7f, 1f);
             
-        }
-
-        if(index == 1)
-        {
-            UI_Inventory.SetActive(false);
-        }
-        else
-        {
-            UI_Inventory.SetActive(true);
         }
 
         inventoryTabsButtons[index].transform.GetChild(0).GetComponent<Text>().color = Color.white;

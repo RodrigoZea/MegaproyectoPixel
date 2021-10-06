@@ -89,9 +89,6 @@ public class CharacterControl : MonoBehaviour
     void Update()
     {
 
-        if (EventSystem.current.IsPointerOverGameObject())
-            return;
-
         //Debug.Log(aimAction.phase.ToString());
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0)
