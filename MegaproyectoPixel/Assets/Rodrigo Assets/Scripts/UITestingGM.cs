@@ -169,7 +169,7 @@ public class UITestingGM : MonoBehaviour
         CurrentObjectDescription.text = (""+itemToHighlight.description);
 
         // Change later :)
-        //toHighlight.GetComponent<Image>().color = Color.yellow;
+        toHighlight.GetComponent<Image>().color = Color.yellow;
         //toHighlight.GetComponent<Image>().color = new Color(161f/225f, 159f/225f, 124f/225f);
         inventoryShowActionButtons(itemToHighlight);
     }

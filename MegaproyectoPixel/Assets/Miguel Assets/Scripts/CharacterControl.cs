@@ -42,7 +42,7 @@ public class CharacterControl : MonoBehaviour
 
 
     public Inventory inventory;
-    public GameObject inventoryGO;
+    private GameObject tempInv;
     private InputAction moveAction;
     private InputAction lookAction;
     private InputAction jumpAction;
@@ -84,7 +84,7 @@ public class CharacterControl : MonoBehaviour
         interactAction.performed += _ => interact.Interact();
         jumpAction.performed += _ => HitReaction();
         cameraTransform = Camera.main.transform;
-        inventory = inventoryGO.AddComponent<Inventory>();
+        inventory = Inventory.instance;
         weapon = GetComponentInChildren<Weapon>();
         Cursor.lockState = CursorLockMode.Locked;
         //changeBasedOnHealth(15.0f);
