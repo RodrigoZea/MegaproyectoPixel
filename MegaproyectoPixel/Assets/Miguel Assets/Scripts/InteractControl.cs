@@ -117,12 +117,7 @@ public class InteractControl : MonoBehaviour
     }
     */
 
-    public virtual void Interacting ()
-    {
-
-    }
-
-    public void Interact(){
+    public virtual void Interact(){
         if (raycast){
             ray.origin = raycastOrigin.position;
             ray.direction = raycastDestiny.position - raycastOrigin.position;
@@ -134,9 +129,11 @@ public class InteractControl : MonoBehaviour
                     ItemWorld itemWorld = temp.GetComponent<ItemWorld>();
                     Item item = itemWorld.GetItem();
                     bool waspickedup = player.inventory.addItem(item);
-                    player.inventory.addItem(item);
-                    temp.gameObject.SetActive(false);
-                    interactables.Remove(temp.gameObject);                    
+                    if (waspickedup)
+                    {
+                        temp.gameObject.SetActive(false);
+                        interactables.Remove(temp.gameObject);
+                    }                                     
                 }
             }
         }
@@ -146,10 +143,14 @@ public class InteractControl : MonoBehaviour
                     GameObject temp = interactables[0];
                     ItemWorld itemWorld = temp.GetComponent<ItemWorld>();
                     Item item = itemWorld.GetItem();
-                    player.inventory.addItem(item);
-                    //interactables.Remove(hitInfo.transform.gameObject);
-                    //interactables.Remove(hitInfo.collider.gameObject);
-                    //Destroy(hitInfo.collider.gameObject);
+                    bool waspickedup = player.inventory.addItem(item);
+                    if (waspickedup)
+                    {
+                        Debug.Log("I was picked up");
+                        //interactables.Remove(hitInfo.transform.gameObject);
+                        //interactables.Remove(hitInfo.collider.gameObject);
+                        //Destroy(hitInfo.collider.gameObject);
+                    }
                     Debug.Log("I AM HERE");
                     temp.gameObject.SetActive(false);
                     interactables.Remove(temp.gameObject);

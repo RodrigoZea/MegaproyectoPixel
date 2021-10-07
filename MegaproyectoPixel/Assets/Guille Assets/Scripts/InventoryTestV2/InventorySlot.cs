@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class InventorySlot : MonoBehaviour
 {
     public Image icon;
+    public Sprite defaultSprite;
 
     Item item;
 
@@ -12,16 +13,19 @@ public class InventorySlot : MonoBehaviour
         item = newItem;
 
         icon.sprite = item.sprite;
-        icon.enabled = true;
-
     }
 
     public void ClearSlot()
     {
         item = null;
 
-        icon.sprite = null;
-        icon.enabled = false;
+        icon.sprite = defaultSprite;
+    }
+
+
+    public void itemHighlight()
+    {
+        UITestingGM.Instance.highlightItem(item);
     }
 
 }

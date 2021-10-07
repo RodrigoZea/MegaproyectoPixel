@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 {
     public CharacterControl playerInfo;
     public PlayerInput playerInput;
+    public Inventory inventory;
 
     private float playerHealth;
     private float playerInsanity;
@@ -53,5 +54,11 @@ public class GameManager : MonoBehaviour
         playerInsanity += insanity;
         playerInfo.changeBasedOnInsanity(playerInsanity);
         UITestingGM.Instance.changeSpook(insanity);
+    }
+
+    public void updateInventory()
+    {
+        inventory.onItemChangedCallback += updateInventory;
+        Debug.Log("UPDATING");
     }
 }

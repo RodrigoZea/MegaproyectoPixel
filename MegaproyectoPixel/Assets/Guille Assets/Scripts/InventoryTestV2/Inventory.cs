@@ -32,7 +32,6 @@ public class Inventory : MonoBehaviour
 
     public bool addItem(Item item)
     {
-
         if (itemList.Count >= space)
         {
             return false;
@@ -40,7 +39,7 @@ public class Inventory : MonoBehaviour
         else
         {
             itemList.Add(item);
-            if(onItemChangedCallback != null)
+            if (onItemChangedCallback != null)
             {
                 onItemChangedCallback.Invoke();
             }

@@ -5,9 +5,8 @@ using UnityEngine.UI;
 public class InventoryUI : MonoBehaviour
 {
     public Transform itemsParent;
-    public GameObject inventoryUI;
 
-    Inventory inventory;
+    public Inventory inventory;
 
     InventorySlot[] slots;
 
@@ -18,7 +17,6 @@ public class InventoryUI : MonoBehaviour
         inventory = Inventory.instance;
         //Subscribed to Change on Inventory
         inventory.onItemChangedCallback += UpdateUI;
-
         slots = itemsParent.GetComponentsInChildren<InventorySlot>();
     }
 
@@ -30,6 +28,7 @@ public class InventoryUI : MonoBehaviour
 
     void UpdateUI ()
     {
+        UITestingGM.Instance.updateItemList(inventory.itemList);
         for (int i=0; i<slots.Length; i++)
         {
             if(i< inventory.itemList.Count)
