@@ -25,6 +25,7 @@ public class Weapon : MonoBehaviour
     private RaycastHit hitInfo;
     private bool firing = false;
     private bool fireAvailable = true;
+    public bool isReloading = false;
     float verticaRecoil, horizontalRecoil;
     int index;
 
@@ -35,6 +36,7 @@ public class Weapon : MonoBehaviour
 
     private InputAction shootAction;
     private InputAction reloadAction;
+    private InputAction aimAction;
 
     [SerializeField]
     Transform shootPoint;
@@ -69,6 +71,7 @@ public class Weapon : MonoBehaviour
     {
         hold = false;
         playerInput = GetComponentInParent<PlayerInput>();
+        aimAction = playerInput.actions["Aim"];
         shootAction = playerInput.actions["Shoot"];
         shootAction.performed += _ => { StartFiring(); hold = true; };
         shootAction.canceled += _ => { hold = false; };
@@ -179,12 +182,16 @@ public class Weapon : MonoBehaviour
     {
         shootSound.clip = reload;
         shootSound.Play();
+        //aimAction.Disable();
         shootAction.Disable();
         reloadAction.Disable();
+        isReloading = true;
         yield return new WaitForSeconds(time);
+        isReloading = false;
         shootSound.clip = shoot;
         reloadAction.Enable();
         shootAction.Enable();
+        //aimAction.Enable();
     }
 
     IEnumerator ShootingMechanics(float timer)

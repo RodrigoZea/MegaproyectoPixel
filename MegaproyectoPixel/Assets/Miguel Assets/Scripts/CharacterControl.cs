@@ -78,7 +78,7 @@ public class CharacterControl : MonoBehaviour
         shootAction.canceled += _ => { };
         shootAction.Disable();
         aimAction.performed += _ => characterAnim.enableAimLayer();
-        aimAction.performed += _ => {shootAction.Enable(); speedLimit = walkSpeed; aimTarget.Aiming();};
+        aimAction.performed += _ => {if (!weapon.isReloading) {shootAction.Enable();} speedLimit = walkSpeed; aimTarget.Aiming();};
         aimAction.canceled += _ => characterAnim.disableAimLayer();
         aimAction.canceled += _ => {shootAction.Disable(); speedLimit = runSpeed; aimTarget.NotAiming();};
         interactAction.performed += _ => interact.Interact();
@@ -181,28 +181,28 @@ public class CharacterControl : MonoBehaviour
     }
 
     public void changeBasedOnHealth(float health){
-        if (health <= 100.0f && health > 75.0f){
+        if (health <= 1.0f && health > 0.75f){
             runSpeed = 1.0f;
             walkSpeed = 4.0f;
             aimNoise.m_AmplitudeGain = 1.0f;
             cameraNoise.m_AmplitudeGain = 0.5f;
             insanitySound.StopSound();
         }else
-        if (health <= 75.0f && health > 50.0f){
+        if (health <= 0.75f && health > 0.50f){
             runSpeed = 1.25f;
             walkSpeed = 4.25f;
             aimNoise.m_AmplitudeGain = 1.25f;
             cameraNoise.m_AmplitudeGain = 0.75f;
             insanitySound.SetSound(0.1f);
         }else
-        if (health <= 50.0f && health > 25.0f){
+        if (health <= 0.50f && health > 0.25f){
             runSpeed = 1.50f;
             walkSpeed = 4.50f;
             aimNoise.m_AmplitudeGain = 1.50f;
             cameraNoise.m_AmplitudeGain = 1.00f;
             insanitySound.SetSound(0.2f);
         }else
-        if (health <= 25.0f && health > 0.0f){
+        if (health <= 0.25f && health > 0.0f){
             runSpeed = 1.75f;
             walkSpeed = 4.75f;
             aimNoise.m_AmplitudeGain = 1.75f;

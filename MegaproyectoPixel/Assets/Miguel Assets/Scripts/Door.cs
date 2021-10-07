@@ -10,15 +10,30 @@ public class Door : MonoBehaviour, IInteractable
     [SerializeField]
     private Animator animator;
     public string key {get;} 
+    public bool locked {get;}
+    [SerializeField]
+    private AudioClip openClip;
+    [SerializeField]
+    private AudioClip closeClip;
+    private AudioSource source;
     // Start is called before the first frame update
+    private void Start() {
+        source = GetComponent<AudioSource>();
+    }
 
     public void OnInteract(string condition){
-        isOpen = !isOpen;
-        if (isOpen){
-            animator.SetBool("isOpen", true);
-        } else {
-            animator.SetBool("isOpen", false);
+        if (!locked){
+            isOpen = !isOpen;
+            if (isOpen){
+                animator.SetBool("isOpen", true);
+                source.clip = openClip;
+                source.Play();
+            } else {
+                animator.SetBool("isOpen", false);
+                source.clip = closeClip;
+                source.Play();
 
+            }
         }
     }
 }
