@@ -35,19 +35,23 @@ public class InteractControl : MonoBehaviour
                 Debug.DrawLine(rayHighlight.origin, highlightInfo.point, Color.blue, 2.0f);
                 if (highlightInfo.collider.gameObject.GetComponent<ItemWorld>() != null){
                     if (currentHighlight != null){
-                        currentHighlight.GetComponentInChildren<Renderer>().materials[0].color = Color.white;
+                        //currentHighlight.GetComponentInChildren<Renderer>().materials[0].color = Color.white;
+                        currentHighlight.GetComponentInChildren<Outline>().enabled = false;
                     }
                     currentHighlight = highlightInfo.collider.gameObject;
-                    currentHighlight.GetComponentInChildren<Renderer>().materials[0].color = Color.red;
+                    //currentHighlight.GetComponentInChildren<Renderer>().materials[0].color = Color.red;
+                    currentHighlight.GetComponentInChildren<Outline>().enabled = true;
                 } else {
                     if (currentHighlight != null){
-                        currentHighlight.GetComponentInChildren<Renderer>().materials[0].color = Color.white;
+                        //currentHighlight.GetComponentInChildren<Renderer>().materials[0].color = Color.white;
+                        currentHighlight.GetComponentInChildren<Outline>().enabled = false;
                         currentHighlight = null;
                     }
                 }
             } else {
                 if (currentHighlight != null){
-                        currentHighlight.GetComponentInChildren<Renderer>().materials[0].color = Color.white;
+                        //currentHighlight.GetComponentInChildren<Renderer>().materials[0].color = Color.white;
+                        currentHighlight.GetComponentInChildren<Outline>().enabled = false;
                         currentHighlight = null;
                     }
             }
@@ -60,7 +64,8 @@ public class InteractControl : MonoBehaviour
         {
             if (other.GetComponent<ItemWorld>() || other.GetComponent<IInteractable>() != null){
                 interactables.Add(other.gameObject);
-                interactables[0].gameObject.GetComponentInChildren<Renderer>().materials[0].color = Color.red;
+                //interactables[0].gameObject.GetComponentInChildren<Renderer>().materials[0].color = Color.red;
+                interactables[0].gameObject.GetComponentInChildren<Outline>().enabled = true;
             }
             Debug.Log("Entra "+other.gameObject.name);
         }
@@ -70,10 +75,12 @@ public class InteractControl : MonoBehaviour
         if (interactables.Contains(other.gameObject))
         {
             if (other.GetComponent<ItemWorld>() || other.GetComponent<IInteractable>() != null){
-                other.gameObject.GetComponentInChildren<Renderer>().materials[0].color = Color.white;
+                //other.gameObject.GetComponentInChildren<Renderer>().materials[0].color = Color.white;
+                other.gameObject.GetComponentInChildren<Outline>().enabled = false;
                 interactables.Remove(other.gameObject);
                 if (interactables.Count > 0)
-                    interactables[0].gameObject.GetComponentInChildren<Renderer>().materials[0].color = Color.red;
+                    //interactables[0].gameObject.GetComponentInChildren<Renderer>().materials[0].color = Color.red;
+                    interactables[0].gameObject.GetComponentInChildren<Outline>().enabled = true;
             }
             Debug.Log("Sale "+other.gameObject.name);
         }
@@ -155,7 +162,8 @@ public class InteractControl : MonoBehaviour
                     temp.gameObject.SetActive(false);
                     interactables.Remove(temp.gameObject);
                     if (interactables.Count > 0)
-                        interactables[0].gameObject.GetComponentInChildren<Renderer>().materials[0].color = Color.red;
+                        //interactables[0].gameObject.GetComponentInChildren<Renderer>().materials[0].color = Color.red;
+                        interactables[0].gameObject.GetComponentInChildren<Outline>().enabled = true;
                     Destroy(temp);
 
                     //hitInfo.transform.gameObject.SetActive(false);
