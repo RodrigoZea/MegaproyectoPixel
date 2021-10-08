@@ -2861,7 +2861,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.7607843, g: 0.9137255, b: 1, a: 1}
-  m_Intensity: 0.5
+  m_Intensity: 0.8
   m_Range: 250
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -3822,12 +3822,16 @@ PrefabInstance:
       value: Light3 (2)
       objectReference: {fileID: 0}
     - target: {fileID: 7422884631001150420, guid: 61023d022e1355d42831cc250e357c6b, type: 3}
+      propertyPath: m_Intensity
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7422884631001150420, guid: 61023d022e1355d42831cc250e357c6b, type: 3}
       propertyPath: m_RenderMode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7422884631001150420, guid: 61023d022e1355d42831cc250e357c6b, type: 3}
       propertyPath: m_Lightmapping
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9221977698223416972, guid: 61023d022e1355d42831cc250e357c6b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4893,12 +4897,16 @@ PrefabInstance:
       value: Light3
       objectReference: {fileID: 0}
     - target: {fileID: 7422884631001150420, guid: 61023d022e1355d42831cc250e357c6b, type: 3}
+      propertyPath: m_Intensity
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7422884631001150420, guid: 61023d022e1355d42831cc250e357c6b, type: 3}
       propertyPath: m_RenderMode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7422884631001150420, guid: 61023d022e1355d42831cc250e357c6b, type: 3}
       propertyPath: m_Lightmapping
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9221977698223416972, guid: 61023d022e1355d42831cc250e357c6b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7503,11 +7511,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7422884631001150420, guid: 61023d022e1355d42831cc250e357c6b, type: 3}
       propertyPath: m_Range
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7422884631001150420, guid: 61023d022e1355d42831cc250e357c6b, type: 3}
       propertyPath: m_Intensity
-      value: 0.8
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 7422884631001150420, guid: 61023d022e1355d42831cc250e357c6b, type: 3}
       propertyPath: m_RenderMode
@@ -7515,7 +7523,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7422884631001150420, guid: 61023d022e1355d42831cc250e357c6b, type: 3}
       propertyPath: m_Lightmapping
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61023d022e1355d42831cc250e357c6b, type: 3}
@@ -15379,11 +15387,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7422884631001150420, guid: 61023d022e1355d42831cc250e357c6b, type: 3}
       propertyPath: m_Range
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7422884631001150420, guid: 61023d022e1355d42831cc250e357c6b, type: 3}
       propertyPath: m_Intensity
-      value: 0.8
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 7422884631001150420, guid: 61023d022e1355d42831cc250e357c6b, type: 3}
       propertyPath: m_RenderMode
@@ -15391,7 +15399,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7422884631001150420, guid: 61023d022e1355d42831cc250e357c6b, type: 3}
       propertyPath: m_Lightmapping
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61023d022e1355d42831cc250e357c6b, type: 3}
@@ -19589,12 +19597,16 @@ PrefabInstance:
       value: Light3 (1)
       objectReference: {fileID: 0}
     - target: {fileID: 7422884631001150420, guid: 61023d022e1355d42831cc250e357c6b, type: 3}
+      propertyPath: m_Intensity
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7422884631001150420, guid: 61023d022e1355d42831cc250e357c6b, type: 3}
       propertyPath: m_RenderMode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7422884631001150420, guid: 61023d022e1355d42831cc250e357c6b, type: 3}
       propertyPath: m_Lightmapping
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9221977698223416972, guid: 61023d022e1355d42831cc250e357c6b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -25121,11 +25133,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7422884631001150420, guid: 61023d022e1355d42831cc250e357c6b, type: 3}
       propertyPath: m_Range
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7422884631001150420, guid: 61023d022e1355d42831cc250e357c6b, type: 3}
       propertyPath: m_Intensity
-      value: 0.8
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 7422884631001150420, guid: 61023d022e1355d42831cc250e357c6b, type: 3}
       propertyPath: m_RenderMode
@@ -25133,7 +25145,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7422884631001150420, guid: 61023d022e1355d42831cc250e357c6b, type: 3}
       propertyPath: m_Lightmapping
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61023d022e1355d42831cc250e357c6b, type: 3}
@@ -65462,11 +65474,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7422884631001150420, guid: 61023d022e1355d42831cc250e357c6b, type: 3}
       propertyPath: m_Range
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7422884631001150420, guid: 61023d022e1355d42831cc250e357c6b, type: 3}
       propertyPath: m_Intensity
-      value: 0.8
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 7422884631001150420, guid: 61023d022e1355d42831cc250e357c6b, type: 3}
       propertyPath: m_RenderMode
@@ -65474,7 +65486,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7422884631001150420, guid: 61023d022e1355d42831cc250e357c6b, type: 3}
       propertyPath: m_Lightmapping
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61023d022e1355d42831cc250e357c6b, type: 3}
