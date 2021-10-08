@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public PlayerInput playerInput;
     public Inventory inventory;
 
-    private float playerHealth;
+    private float playerHealth = 1.0f;
     private float playerInsanity;
     private int playerAmmo;
     private GameState gameState;
@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
         playerHealth += changeInHealth;
         playerInfo.changeBasedOnHealth(playerHealth);
         UITestingGM.Instance.changeHealth(changeInHealth);
+        Debug.Log(playerHealth);
     }
 
     public void updateInsanity(float insanity)
