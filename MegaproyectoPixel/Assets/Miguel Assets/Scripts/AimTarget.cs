@@ -8,6 +8,8 @@ public class AimTarget : MonoBehaviour
     Transform mainCamera;
     [SerializeField]
     Transform alternatePoint;
+    [SerializeField]
+    private LayerMask ignore;
     Ray ray;
     RaycastHit hitInfo;
     private bool aiming = false;

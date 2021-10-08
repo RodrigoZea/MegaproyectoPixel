@@ -131,7 +131,7 @@ public class CharacterControl : MonoBehaviour
 
 
     public void HitReaction(){
-        StartCoroutine(recovery(recoveryTime));
+        //StartCoroutine(recovery(recoveryTime));
         cameraShake.GenerateImpulse(playerCamera.transform.forward);
         
     }

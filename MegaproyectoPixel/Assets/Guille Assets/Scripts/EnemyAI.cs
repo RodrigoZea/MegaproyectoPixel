@@ -16,6 +16,7 @@ public class EnemyAI : MonoBehaviour
     public Transform player;
 
     public LayerMask whatIsGround, whatIsPlayer;
+    public GameObject attackArea;
 
     public float health;
 
@@ -25,6 +26,7 @@ public class EnemyAI : MonoBehaviour
 
     private enemyType EnemyType;
     private Animator animator;
+    private CapsuleCollider capsule;
 
     //Patroling
     public Vector3 walkpoint;
@@ -55,6 +57,7 @@ public class EnemyAI : MonoBehaviour
 
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
+        capsule = GetComponent<CapsuleCollider>();
     }
 
     private void Update()
@@ -74,6 +77,8 @@ public class EnemyAI : MonoBehaviour
             dead = true;
             animator.enabled = false;
             agent.enabled = false;
+            capsule.enabled = false;
+            attackArea.SetActive(false);
         }
     }
 
@@ -116,9 +121,9 @@ public class EnemyAI : MonoBehaviour
         if (!alreadyAttacked)
         {
             //Attack Code
-            Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-            rb.AddForce(transform.up * 32f, ForceMode.Impulse);
+            //Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            //rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+            //rb.AddForce(transform.up * 32f, ForceMode.Impulse);
 
 
 
@@ -131,6 +136,7 @@ public class EnemyAI : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("entro collision enter");
         if (EnemyType == enemyType.Normal)
         {
             if (collision.collider.GetComponent<CharacterControl>())
