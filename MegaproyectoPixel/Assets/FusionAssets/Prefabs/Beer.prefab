@@ -83,7 +83,9 @@ MonoBehaviour:
     description: 'Beer
 
       Solve your sanity problems while damaging your health,
-      win win.'
+      win win.
+
+      -10% Health, -10% Insanity.'
     amount: 1
 --- !u!65 &3579099866793864536
 BoxCollider:

@@ -111,9 +111,11 @@ MonoBehaviour:
     weapon: {fileID: 0}
     model: {fileID: 8202507819193966445}
     sprite: {fileID: 21300000, guid: 0f4949a6e361aea49bd7b3fbd60233c5, type: 3}
-    description: 'Ammo
+    description: 'Ammo box
 
-      Bullets +5.'
+      A box with some bullets inside
+
+      +5 Ammo.'
     amount: 5
 --- !u!1001 &9012899908904460860
 PrefabInstance:

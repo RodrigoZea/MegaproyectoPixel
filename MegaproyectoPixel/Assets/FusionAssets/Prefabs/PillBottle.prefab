@@ -82,7 +82,10 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: d383c0f5ec01f1d47a7445c4c85c1ada, type: 3}
     description: 'Pill Bottle
 
-      Might help getting over this headache.'
+      Might help getting over this headache.
+
+      -10%
+      Insanity'
     amount: 1
 --- !u!65 &1539741618187617470
 BoxCollider:
