@@ -24,7 +24,7 @@ public class EnemyAI : MonoBehaviour
 
     private float damage;
 
-    private enemyType EnemyType;
+    public enemyType EnemyType;
     private Animator animator;
     private CapsuleCollider capsule;
 
@@ -40,7 +40,7 @@ public class EnemyAI : MonoBehaviour
 
     //States
     public float sightRange, attackRange;
-    public bool playerInsighRange, playerInAttackRange;
+    public bool playerInsightRange, playerInAttackRange;
 
     private bool dead = false;
 
@@ -54,6 +54,8 @@ public class EnemyAI : MonoBehaviour
             player = GameObject.Find("FirstPerson").transform;
         }
 
+        playerInAttackRange = false;
+        playerInsightRange = false;
 
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
@@ -62,13 +64,14 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
+
         if (!dead){
-            playerInsighRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+            playerInsightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
             playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-            if (!playerInsighRange && !playerInAttackRange) Patroling();
-            if (playerInsighRange && !playerInAttackRange) ChasePlayer();
-            if (playerInsighRange && playerInAttackRange) AttackPlayer();
+            if (!playerInsightRange && !playerInAttackRange) Patroling();
+            if (playerInsightRange && !playerInAttackRange) ChasePlayer();
+            if (playerInsightRange && playerInAttackRange) AttackPlayer();
         }
 
         if(health <= 0)
@@ -124,8 +127,6 @@ public class EnemyAI : MonoBehaviour
             //Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
             //rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
             //rb.AddForce(transform.up * 32f, ForceMode.Impulse);
-
-
 
 
             //
