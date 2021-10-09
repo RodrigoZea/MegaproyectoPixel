@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InteractControl : MonoBehaviour
 {
-    private List<GameObject> interactables = new List<GameObject>();
+    public List<GameObject> interactables = new List<GameObject>();
     [SerializeField]
     private Transform raycastOrigin;
     [SerializeField]
@@ -65,7 +65,7 @@ public class InteractControl : MonoBehaviour
             if (other.GetComponent<ItemWorld>() || other.GetComponent<IInteractable>() != null){
                 if(other.GetComponent<Door>() != null)
                 {
-
+                    
                 }
                 interactables.Add(other.gameObject);
                 //interactables[0].gameObject.GetComponentInChildren<Renderer>().materials[0].color = Color.red;

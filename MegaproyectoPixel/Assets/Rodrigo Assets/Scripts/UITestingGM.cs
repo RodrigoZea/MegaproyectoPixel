@@ -14,6 +14,8 @@ public class UITestingGM : MonoBehaviour
     public CharacterControl playerController;
     public GameObject highlightedItem;
     [SerializeField]
+    private InteractControl interact;
+    [SerializeField]
     private GameObject options;
     [SerializeField]
     private float idleTimer;
@@ -178,32 +180,38 @@ public class UITestingGM : MonoBehaviour
         inventoryActionButtons.SetActive(true);
         if (selectedItem.itemType == Item.ItemType.Key)
         {
-            Button removeButton = inventoryActionButtons.transform.Find("DropOption").GetComponent<Button>();
-            removeButton.enabled = false;
             //Si el collider de enfrente del player me devuelve una door y el item que tengo seleccionado es una key
-            //if(playerController)
-            if (true)
+            if (interact.interactables[0].GetComponent<Door>() && selectedItem.door == interact.interactables[0].GetComponent<Door>())
             {
+                GameObject useGameObject = inventoryActionButtons.transform.Find("UseOption").gameObject;
+                useGameObject.SetActive(true);
 
-            } else{
-                Button useButton = inventoryActionButtons.transform.Find("UseOption").GetComponent<Button>();
-                useButton.enabled = false;
+                GameObject removeGameObject = inventoryActionButtons.transform.Find("DropOption").gameObject;
+                removeGameObject.SetActive(false);
             }
+            else
+            {
+                GameObject useGameObject = inventoryActionButtons.transform.Find("UseOption").gameObject;
+                useGameObject.SetActive(false);
 
-
+                GameObject removeGameObject = inventoryActionButtons.transform.Find("DropOption").gameObject;
+                removeGameObject.SetActive(false);
+            }
         }
         else
         {
-            Button useButton = inventoryActionButtons.transform.Find("UseOption").GetComponent<Button>();
-            useButton.onClick.RemoveAllListeners();
-            useButton.onClick.AddListener(delegate { useItem(selectedItem); });
-
-            Button removeButton = inventoryActionButtons.transform.Find("DropOption").GetComponent<Button>();
-            removeButton.enabled = true;
-            removeButton.onClick.RemoveAllListeners();
-            removeButton.onClick.AddListener(delegate { removeItem(selectedItem); });
+            //Si no es una llave se activan todas las opciones
+            GameObject removeGameObject = inventoryActionButtons.transform.Find("DropOption").gameObject;
+            removeGameObject.SetActive(true);
         }
 
+        Button useButton = inventoryActionButtons.transform.Find("UseOption").GetComponent<Button>();
+        useButton.onClick.RemoveAllListeners();
+        useButton.onClick.AddListener(delegate { useItem(selectedItem); });
+
+        Button removeButton = inventoryActionButtons.transform.Find("DropOption").GetComponent<Button>();
+        removeButton.onClick.RemoveAllListeners();
+        removeButton.onClick.AddListener(delegate { removeItem(selectedItem); });
         // Set child 0 (use function) to item's UseItem Function
         // Set child 1 (drop function) to item's DropItem/RemoveItem/whatever Function        
     }

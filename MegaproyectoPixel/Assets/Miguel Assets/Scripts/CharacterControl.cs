@@ -167,6 +167,10 @@ public class CharacterControl : MonoBehaviour
                 weapon.addAmmo(item.amount);
                 inventory.removeItem(item);
                 break;
+            case Item.ItemType.Key:
+                interact.interactables[0].GetComponent<Door>().locked = false;
+                inventory.removeItem(item);
+                break;
         }
     }
 
