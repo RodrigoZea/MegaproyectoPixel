@@ -111,7 +111,7 @@ MonoBehaviour:
     weapon: {fileID: 0}
     door: {fileID: 0}
     model: {fileID: 1516192418403772855}
-    sprite: {fileID: 21300000, guid: bccef07f7e1af4c4f94c130ebfd8075f, type: 3}
+    sprite: {fileID: 21300000, guid: 19e7345d8b5336e42ba6d8072943eae8, type: 3}
     description: 'Key
 
       Opens a door.'
