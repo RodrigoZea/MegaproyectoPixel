@@ -224,6 +224,7 @@ public class CharacterControl : MonoBehaviour
     public void activateControls(){
         moveAction.Enable();
         aimAction.Enable();
+        shootAction.Enable();
         sprintAction.Enable();
         interactAction.Enable();
         aimOptions.startCamera();
@@ -232,6 +233,7 @@ public class CharacterControl : MonoBehaviour
     public void deactivateControls(){
         moveAction.Disable();
         aimAction.Disable();
+        shootAction.Disable();
         sprintAction.Disable();
         interactAction.Disable();
         aimOptions.stopCamera();

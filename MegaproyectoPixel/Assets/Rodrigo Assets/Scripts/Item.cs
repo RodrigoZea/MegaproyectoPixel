@@ -18,6 +18,7 @@ public class Item
 
     public ItemType itemType;
     public Weapon weapon;
+    public Door door;
     public GameObject model;
     public Sprite sprite = null;
     [TextArea]
@@ -32,21 +33,6 @@ public class Item
     public GameObject GetObject()
     {
         return model;
-    }
-
-    public bool isStackable()
-    {
-        switch (itemType)
-        {
-            default:
-                return true;
-            case Item.ItemType.Ammo:
-            case Item.ItemType.Medkit:
-            case Item.ItemType.PillBottle:
-            case Item.ItemType.Beer:
-            case Item.ItemType.Syringe:
-                return false;
-        }
     }
 
 }

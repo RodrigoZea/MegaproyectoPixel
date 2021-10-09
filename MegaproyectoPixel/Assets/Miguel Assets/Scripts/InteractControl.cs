@@ -63,6 +63,10 @@ public class InteractControl : MonoBehaviour
         if (!interactables.Contains(other.gameObject))
         {
             if (other.GetComponent<ItemWorld>() || other.GetComponent<IInteractable>() != null){
+                if(other.GetComponent<Door>() != null)
+                {
+
+                }
                 interactables.Add(other.gameObject);
                 //interactables[0].gameObject.GetComponentInChildren<Renderer>().materials[0].color = Color.red;
                 interactables[0].gameObject.GetComponentInChildren<Outline>().enabled = true;

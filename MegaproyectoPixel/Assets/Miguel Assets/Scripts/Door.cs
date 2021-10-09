@@ -9,8 +9,8 @@ public class Door : MonoBehaviour, IInteractable
     private float speed = 0.5f;
     [SerializeField]
     private Animator animator;
-    public string key {get;} 
-    public bool locked {get;}
+    public string key {get;}
+    public bool locked;
     [SerializeField]
     private AudioClip openClip;
     [SerializeField]
@@ -18,6 +18,7 @@ public class Door : MonoBehaviour, IInteractable
     private AudioSource source;
     // Start is called before the first frame update
     private void Start() {
+        locked = true;
         source = GetComponent<AudioSource>();
     }
 
