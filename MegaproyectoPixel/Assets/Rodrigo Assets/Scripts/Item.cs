@@ -13,7 +13,7 @@ public class Item
         PillBottle,     //- Insanity
         Syringe,        //+ Vida, + Insanity
         Ammo,           //+ Ammo
-
+        Key,            //Open Doors
     }
 
     public ItemType itemType;

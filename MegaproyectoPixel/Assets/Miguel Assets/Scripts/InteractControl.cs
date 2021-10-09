@@ -87,63 +87,7 @@ public class InteractControl : MonoBehaviour
         
     }
 
-
-    /*
-    public void Interact(){
-        ray.origin = raycastOrigin.position;
-        ray.direction = raycastDestiny.position - raycastOrigin.position;
-        if(Physics.Raycast(ray, out hitInfo)){
-            Debug.DrawLine(ray.origin, hitInfo.point, Color.red, 1.0f);
-            Debug.Log("Hit"+hitInfo.collider.gameObject.name);
-            float distance = Vector3.Distance(hitInfo.transform.position, raycastOrigin.transform.position);
-
-            foreach (GameObject x in interactables){
-                Debug.Log("-"+x.name);
-            }
-            if (interactables.Contains(hitInfo.collider.gameObject))
-            {
-                IInteractable interS = hitInfo.collider.GetComponent<IInteractable>();
-                if (interS != null){
-                    interS.OnInteract("hello");
-                    Debug.Log("Run interact");                    
-                }
-            }
-            if (hitInfo.collider.GetComponent<ItemWorld>() != null)
-            {
-                ItemWorld itemWorld = hitInfo.collider.GetComponent<ItemWorld>();
-                Item item = itemWorld.GetItem();
-                player.inventory.AddItem(item);
-                //interactables.Remove(hitInfo.transform.gameObject);
-                //interactables.Remove(hitInfo.collider.gameObject);
-                //Destroy(hitInfo.collider.gameObject);
-                Debug.Log("I AM HERE");
-                hitInfo.collider.enabled = false;
-                hitInfo.transform.gameObject.SetActive(false);
-            }
-        }
-    }
-    */
-
     public virtual void Interact(){
-        if (raycast){
-            ray.origin = raycastOrigin.position;
-            ray.direction = raycastDestiny.position - raycastOrigin.position;
-            if(Physics.Raycast(ray, out hitInfo, 2.0f)){
-                Debug.DrawLine(ray.origin, hitInfo.point, Color.blue, 2.0f);
-                if(hitInfo.collider.gameObject.GetComponent<ItemWorld>() != null)
-                {
-                    GameObject temp = hitInfo.collider.gameObject;
-                    ItemWorld itemWorld = temp.GetComponent<ItemWorld>();
-                    Item item = itemWorld.GetItem();
-                    bool waspickedup = player.inventory.addItem(item);
-                    if (waspickedup)
-                    {
-                        temp.gameObject.SetActive(false);
-                        interactables.Remove(temp.gameObject);
-                    }                                     
-                }
-            }
-        }
         if (interactables.Count > 0){
             if (interactables[0].GetComponent<ItemWorld>() != null)
                 {
@@ -153,20 +97,14 @@ public class InteractControl : MonoBehaviour
                     bool waspickedup = player.inventory.addItem(item);
                     if (waspickedup)
                     {
-                        Debug.Log("I was picked up");
-                        //interactables.Remove(hitInfo.transform.gameObject);
-                        //interactables.Remove(hitInfo.collider.gameObject);
-                        //Destroy(hitInfo.collider.gameObject);
+
                     }
-                    Debug.Log("I AM HERE");
                     temp.gameObject.SetActive(false);
                     interactables.Remove(temp.gameObject);
                     if (interactables.Count > 0)
                         //interactables[0].gameObject.GetComponentInChildren<Renderer>().materials[0].color = Color.red;
                         interactables[0].gameObject.GetComponentInChildren<Outline>().enabled = true;
                     Destroy(temp);
-
-                    //hitInfo.transform.gameObject.SetActive(false);
                 }
             else
             if (interactables[0].GetComponent<IInteractable>() != null)
