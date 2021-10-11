@@ -14484,7 +14484,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInfo: {fileID: 827148354}
   playerInput: {fileID: 827148355}
-  inventory: {fileID: 0}
+  inventory: {fileID: 704080577}
 --- !u!4 &704080576
 Transform:
   m_ObjectHideFlags: 0

@@ -180,23 +180,28 @@ public class UITestingGM : MonoBehaviour
         inventoryActionButtons.SetActive(true);
         if (selectedItem.itemType == Item.ItemType.Key)
         {
+            GameObject removeGameObject = inventoryActionButtons.transform.Find("DropOption").gameObject;
+            removeGameObject.SetActive(false);
             //Si el collider de enfrente del player me devuelve una door y el item que tengo seleccionado es una key
-            if (interact.interactables[0].GetComponent<Door>() && selectedItem.door == interact.interactables[0].GetComponent<Door>())
+            try
             {
-                GameObject useGameObject = inventoryActionButtons.transform.Find("UseOption").gameObject;
-                useGameObject.SetActive(true);
-
-                GameObject removeGameObject = inventoryActionButtons.transform.Find("DropOption").gameObject;
-                removeGameObject.SetActive(false);
+                if(interact.interactables[0].GetComponent<Door>() && selectedItem.door == interact.interactables[0].GetComponent<Door>())
+                {
+                    GameObject useGameObject = inventoryActionButtons.transform.Find("UseOption").gameObject;
+                    useGameObject.SetActive(true);
+                }
+                else
+                {
+                    GameObject useGameObject = inventoryActionButtons.transform.Find("UseOption").gameObject;
+                    useGameObject.SetActive(false);
+                }
             }
-            else
+            catch
             {
                 GameObject useGameObject = inventoryActionButtons.transform.Find("UseOption").gameObject;
                 useGameObject.SetActive(false);
-
-                GameObject removeGameObject = inventoryActionButtons.transform.Find("DropOption").gameObject;
-                removeGameObject.SetActive(false);
             }
+            
         }
         else
         {

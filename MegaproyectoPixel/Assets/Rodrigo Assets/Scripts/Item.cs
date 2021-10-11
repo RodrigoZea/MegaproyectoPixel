@@ -19,7 +19,6 @@ public class Item
     public ItemType itemType;
     public Weapon weapon;
     public Door door;
-    public GameObject model;
     public Sprite sprite = null;
     [TextArea]
     public String description;
@@ -28,11 +27,6 @@ public class Item
     public Sprite GetSprite()
     {
         return sprite;
-    }
-
-    public GameObject GetObject()
-    {
-        return model;
     }
 
 }

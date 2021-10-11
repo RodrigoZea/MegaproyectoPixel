@@ -101,7 +101,7 @@ public class InteractControl : MonoBehaviour
                     bool waspickedup = player.inventory.addItem(item);
                     if (waspickedup)
                     {
-
+                        
                     }
                     temp.gameObject.SetActive(false);
                     interactables.Remove(temp.gameObject);

@@ -6,12 +6,11 @@ public class InventorySlot : MonoBehaviour
     public Image icon;
     public Sprite defaultSprite;
 
-    Item item;
+    public Item item;
 
     public void AddItem(Item newItem)
     {
         item = newItem;
-
         icon.sprite = item.sprite;
     }
 
