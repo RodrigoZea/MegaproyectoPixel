@@ -172,6 +172,7 @@ public class UITestingGM : MonoBehaviour
 
         // Change later :)
         toHighlight.GetComponent<Image>().color = Color.yellow;
+        toHighlight.transform.localScale = new Vector3(1.05f, 1.05f, 1.05f);
         //toHighlight.GetComponent<Image>().color = new Color(161f/225f, 159f/225f, 124f/225f);
         inventoryShowActionButtons(itemToHighlight);
     }
@@ -253,6 +254,7 @@ public class UITestingGM : MonoBehaviour
         for (int i=0; i < slots; i++) {
             GameObject otherSlot = inventorySlotsContainer.transform.GetChild(i).gameObject;
             otherSlot.GetComponent<Image>().color = Color.white;
+            otherSlot.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         }
     }
 
@@ -264,7 +266,7 @@ public class UITestingGM : MonoBehaviour
             
         }
 
-        inventoryTabsButtons[index].transform.GetChild(0).GetComponent<Text>().color = Color.white;
+        inventoryTabsButtons[index].transform.GetChild(0).GetComponent<Text>().color = new Color(225f/225f, 189f/225f, 0f/225f);;
         inventoryTabs[index].SetActive(true);
     }
 
