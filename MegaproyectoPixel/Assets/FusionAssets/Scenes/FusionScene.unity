@@ -35435,6 +35435,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4338630460251038357, guid: 85728303d9b645e44a8086847ff77c0d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8721339757102531986, guid: 85728303d9b645e44a8086847ff77c0d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85728303d9b645e44a8086847ff77c0d, type: 3}
 --- !u!4 &1466392739 stripped
@@ -35442,6 +35450,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4117645449204804367, guid: 85728303d9b645e44a8086847ff77c0d, type: 3}
   m_PrefabInstance: {fileID: 1466392738}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1466392740 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3634123513908654517, guid: 85728303d9b645e44a8086847ff77c0d, type: 3}
+  m_PrefabInstance: {fileID: 1466392738}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1466392741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1466392740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e1e0155e50097c4f88895f61b034b45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashTimer: 2
+  dimLight: {fileID: 2100000, guid: 4747739cbd584744abd3ff0142223e9d, type: 2}
 --- !u!1 &1468388021
 GameObject:
   m_ObjectHideFlags: 0
@@ -64647,7 +64674,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6539558048663070302
 RectTransform:
   m_ObjectHideFlags: 0
@@ -65385,7 +65412,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &6539558049985450146
 MonoBehaviour:
   m_ObjectHideFlags: 0
