@@ -147,7 +147,8 @@ public class CharacterControl : MonoBehaviour
         {
             case Item.ItemType.Medkit:
                 inventory.removeItem(item);
-                GameManager.Instance.updateHealth(0.1f);
+                //GameManager.Instance.updateHealth(0.1f);
+                GameManager.Instance.recoverHealth(0.1f);
                 break;
             case Item.ItemType.Beer:
                 inventory.removeItem(item);
@@ -156,7 +157,8 @@ public class CharacterControl : MonoBehaviour
                 break;
             case Item.ItemType.PillBottle:
                 inventory.removeItem(item);
-                GameManager.Instance.updateInsanity(-0.1f);
+                //GameManager.Instance.updateInsanity(-0.1f);
+                GameManager.Instance.recoverSanity(-0.1f);
                 break;
             case Item.ItemType.Syringe:
                 inventory.removeItem(item);
@@ -228,7 +230,7 @@ public class CharacterControl : MonoBehaviour
     public void activateControls(){
         moveAction.Enable();
         aimAction.Enable();
-        shootAction.Enable();
+        //shootAction.Enable();
         sprintAction.Enable();
         interactAction.Enable();
         aimOptions.startCamera();
