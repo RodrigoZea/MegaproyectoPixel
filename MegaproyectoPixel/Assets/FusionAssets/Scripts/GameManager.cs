@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public Inventory inventory;
 
     private float playerHealth = 1.0f;
-    private float playerInsanity;
+    private float playerInsanity = 1.0f;
     private int playerAmmo;
     private GameState gameState;
 
@@ -61,5 +61,10 @@ public class GameManager : MonoBehaviour
     {
         inventory.onItemChangedCallback += updateInventory;
         Debug.Log("UPDATING");
+    }
+
+    public float getInsanity()
+    {
+        return playerInsanity;
     }
 }

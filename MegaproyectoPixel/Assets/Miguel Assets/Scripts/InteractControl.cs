@@ -70,6 +70,7 @@ public class InteractControl : MonoBehaviour
                 interactables.Add(other.gameObject);
                 //interactables[0].gameObject.GetComponentInChildren<Renderer>().materials[0].color = Color.red;
                 interactables[0].gameObject.GetComponentInChildren<Outline>().enabled = true;
+                UITestingGM.Instance.ItemLabel(interactables[0]);
             }
             //Debug.Log("Entra "+other.gameObject.name);
         }
@@ -83,10 +84,18 @@ public class InteractControl : MonoBehaviour
                 other.gameObject.GetComponentInChildren<Outline>().enabled = false;
                 interactables.Remove(other.gameObject);
                 if (interactables.Count > 0)
+                {
                     //interactables[0].gameObject.GetComponentInChildren<Renderer>().materials[0].color = Color.red;
                     interactables[0].gameObject.GetComponentInChildren<Outline>().enabled = true;
+                    UITestingGM.Instance.ItemLabel(interactables[0]);
+                }
+                else { 
+                    UITestingGM.Instance.hideItemLabel(); 
+                }
+                    
             }
             //Debug.Log("Sale "+other.gameObject.name);
+            
         }
         
     }
@@ -106,9 +115,16 @@ public class InteractControl : MonoBehaviour
                     temp.gameObject.SetActive(false);
                     interactables.Remove(temp.gameObject);
                     if (interactables.Count > 0)
-                        //interactables[0].gameObject.GetComponentInChildren<Renderer>().materials[0].color = Color.red;
+                    {
                         interactables[0].gameObject.GetComponentInChildren<Outline>().enabled = true;
-                    Destroy(temp);
+                        UITestingGM.Instance.ItemLabel(interactables[0]);
+                    }
+                    else
+                    {
+                        UITestingGM.Instance.hideItemLabel();
+                    }
+                //interactables[0].gameObject.GetComponentInChildren<Renderer>().materials[0].color = Color.red;
+                Destroy(temp);
                 }
             else
             if (interactables[0].GetComponent<IInteractable>() != null)

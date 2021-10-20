@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Door : MonoBehaviour, IInteractable
 {
-    private bool isOpen = false;
+    public bool isOpen = false;
     [SerializeField]
     private float speed = 0.5f;
     [SerializeField]
