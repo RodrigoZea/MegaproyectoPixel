@@ -35467,7 +35467,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e1e0155e50097c4f88895f61b034b45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flashTimer: 2
+  flashTimeLimit: 0.75
   dimLight: {fileID: 2100000, guid: 4747739cbd584744abd3ff0142223e9d, type: 2}
 --- !u!1 &1468388021
 GameObject:
