@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public Inventory inventory;
 
     private float playerHealth = 1.0f;
-    private float playerInsanity;
+    private float playerInsanity = 1.0f;
     private int playerAmmo;
     private GameState gameState;
     private float healingValue = 0.0f;
@@ -123,5 +123,8 @@ public class GameManager : MonoBehaviour
         insanitying = false;
         
         //Debug.Log("Not Hit");
+    public float getInsanity()
+    {
+        return playerInsanity;
     }
 }

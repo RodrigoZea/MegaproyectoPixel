@@ -14,6 +14,7 @@ public class Item
         Syringe,        //+ Vida, + Insanity
         Ammo,           //+ Ammo
         Key,            //Open Doors
+        Note,           //Side Story/Guidance
     }
 
     public ItemType itemType;
@@ -22,6 +23,8 @@ public class Item
     public Sprite sprite = null;
     [TextArea]
     public String description;
+    [TextArea]
+    public String AlternativeDescription;
     public int amount;
 
     public Sprite GetSprite()

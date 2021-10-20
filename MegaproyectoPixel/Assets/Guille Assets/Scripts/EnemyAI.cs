@@ -24,6 +24,9 @@ public class EnemyAI : MonoBehaviour
 
     private float damage;
 
+    [SerializeField]
+    private List<GameObject> puntos;
+
     public enemyType EnemyType;
     private Animator animator;
     private CapsuleCollider capsule;

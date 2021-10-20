@@ -43,9 +43,9 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     bool isShooting = false;
     [SerializeField]
-    int ammo = 15;
+    int ammo = 0;
     [SerializeField]
-    int magazine = 10;
+    int magazine = 7;
     [SerializeField]
     int fullMagSize = 10;
     [SerializeField]
@@ -98,7 +98,7 @@ public class Weapon : MonoBehaviour
 
     public void addAmmo(int extraAmmo)
     {
-        if (ammo + extraAmmo <= 20)
+        if (ammo + extraAmmo <= 14)
         {
             ammo += extraAmmo;
             magText.text = ("" + magazine + "|" + ammo);

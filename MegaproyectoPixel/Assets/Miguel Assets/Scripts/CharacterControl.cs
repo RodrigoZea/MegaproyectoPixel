@@ -147,8 +147,7 @@ public class CharacterControl : MonoBehaviour
         {
             case Item.ItemType.Medkit:
                 inventory.removeItem(item);
-                //GameManager.Instance.updateHealth(0.1f);
-                GameManager.Instance.recoverHealth(0.1f);
+                GameManager.Instance.updateHealth(0.20f);
                 break;
             case Item.ItemType.Beer:
                 inventory.removeItem(item);
@@ -169,8 +168,13 @@ public class CharacterControl : MonoBehaviour
                 weapon.addAmmo(item.amount);
                 inventory.removeItem(item);
                 break;
+            case Item.ItemType.Note:
+                GameManager.Instance.updateInsanity(-0.05f);
+                inventory.removeItem(item);
+                break;
             case Item.ItemType.Key:
                 interact.interactables[0].GetComponent<Door>().locked = false;
+                UITestingGM.Instance.ItemLabel(interact.interactables[0]);
                 inventory.removeItem(item);
                 break;
         }

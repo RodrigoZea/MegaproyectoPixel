@@ -19,6 +19,8 @@ public class UITestingGM : MonoBehaviour
     private GameObject options;
     [SerializeField]
     private float idleTimer;
+    [SerializeField]
+    private GameObject grabLabel;
     private int sizeWidth;
     private int sizeHeight;
     public Inventory inventory;
@@ -167,14 +169,64 @@ public class UITestingGM : MonoBehaviour
         Image CurrentObjectSprite =  highlightedItem.transform.Find("CurrentObjectSprite").GetComponent<Image>();        
         CurrentObjectSprite.sprite = itemToHighlight.GetSprite();
 
-        Text CurrentObjectDescription = highlightedItem.transform.Find("CurrentObjectDescription").GetComponent<Text>();
-        CurrentObjectDescription.text = (""+itemToHighlight.description);
+        //Alternative Text for Notes
+        if(itemToHighlight.itemType == Item.ItemType.Note)
+        {
+            if (GameManager.Instance.getInsanity() > 0.4f)
+            {
+                Text CurrentObjectDescription = highlightedItem.transform.Find("CurrentObjectDescription").GetComponent<Text>();
+                CurrentObjectDescription.text = ("" + itemToHighlight.AlternativeDescription);
+            }
+            else
+            {
+                Text CurrentObjectDescription = highlightedItem.transform.Find("CurrentObjectDescription").GetComponent<Text>();
+                CurrentObjectDescription.text = ("" + itemToHighlight.description);
+            }
+        }
+        else
+        {
+            Text CurrentObjectDescription = highlightedItem.transform.Find("CurrentObjectDescription").GetComponent<Text>();
+            CurrentObjectDescription.text = ("" + itemToHighlight.description);
+
+        }
 
         // Change later :)
         toHighlight.GetComponent<Image>().color = Color.yellow;
         toHighlight.transform.localScale = new Vector3(1.05f, 1.05f, 1.05f);
         //toHighlight.GetComponent<Image>().color = new Color(161f/225f, 159f/225f, 124f/225f);
         inventoryShowActionButtons(itemToHighlight);
+    }
+
+    public void ItemLabel(GameObject itemToGrab)
+    {
+        grabLabel.SetActive(true);
+        if (itemToGrab.GetComponent<Door>())
+        {
+            if (itemToGrab.GetComponent<Door>().locked == false)
+            {
+                if(itemToGrab.GetComponent<Door>().isOpen == false) {
+                    grabLabel.GetComponent<Text>().text = "Press F to open door";
+                }
+                else
+                {
+                    grabLabel.GetComponent<Text>().text = "Press F to close door";
+                }
+
+            }
+            else
+            {
+                grabLabel.GetComponent<Text>().text = "";
+            }
+        }
+        else
+        {
+            grabLabel.GetComponent<Text>().text = "Press F to grab " + itemToGrab.name;
+        }
+    }
+
+    public void hideItemLabel()
+    {
+        grabLabel.SetActive(false);
     }
 
     private void inventoryShowActionButtons(Item selectedItem) {
@@ -186,7 +238,7 @@ public class UITestingGM : MonoBehaviour
             //Si el collider de enfrente del player me devuelve una door y el item que tengo seleccionado es una key
             try
             {
-                if(interact.interactables[0].GetComponent<Door>() && selectedItem.door == interact.interactables[0].GetComponent<Door>())
+                if (interact.interactables[0].GetComponent<Door>() && selectedItem.door == interact.interactables[0].GetComponent<Door>())
                 {
                     GameObject useGameObject = inventoryActionButtons.transform.Find("UseOption").gameObject;
                     useGameObject.SetActive(true);
@@ -202,9 +254,21 @@ public class UITestingGM : MonoBehaviour
                 GameObject useGameObject = inventoryActionButtons.transform.Find("UseOption").gameObject;
                 useGameObject.SetActive(false);
             }
-            
-        }
-        else
+
+        } else if (selectedItem.itemType == Item.ItemType.Note)
+        {
+            if (GameManager.Instance.getInsanity() > 0.4f)
+            {
+                GameObject useGameObject = inventoryActionButtons.transform.Find("UseOption").gameObject;
+                useGameObject.SetActive(true);                
+            }
+            else
+            {
+                GameObject useGameObject = inventoryActionButtons.transform.Find("UseOption").gameObject;
+                useGameObject.SetActive(false);
+            }
+
+        } else
         {
             //Si no es una llave se activan todas las opciones
             GameObject removeGameObject = inventoryActionButtons.transform.Find("DropOption").gameObject;
