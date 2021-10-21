@@ -18,7 +18,6 @@ public class Door : MonoBehaviour, IInteractable
     private AudioSource source;
     // Start is called before the first frame update
     private void Start() {
-        locked = true;
         source = GetComponent<AudioSource>();
     }
 

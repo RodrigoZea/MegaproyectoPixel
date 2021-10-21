@@ -83,6 +83,11 @@ public class GameManager : MonoBehaviour
         Debug.Log("UPDATING");
     }
 
+    public float getInsanity()
+    {
+        return playerInsanity;
+    }
+
     IEnumerator healOverTime(float time){
         //Debug.Log("Hit");
         
@@ -104,9 +109,10 @@ public class GameManager : MonoBehaviour
         //Debug.Log("Not Hit");
     }
 
-    IEnumerator sanityOverTime(float time){
+    IEnumerator sanityOverTime(float time)
+    {
         //Debug.Log("Hit");
-        
+
         insanitying = true;
         while (insanityValue > 0.0f && playerHealth > 0.0f)
         {
@@ -116,15 +122,14 @@ public class GameManager : MonoBehaviour
             UITestingGM.Instance.changeSpook(-0.01f);
             yield return new WaitForSeconds(time);
         }
-        if (playerInsanity < 0.0f){
+        if (playerInsanity < 0.0f)
+        {
             playerInsanity = 0.0f;
         }
         insanityValue = 0.0f;
         insanitying = false;
-        
+
         //Debug.Log("Not Hit");
-    public float getInsanity()
-    {
-        return playerInsanity;
     }
+
 }
