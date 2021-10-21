@@ -14550,6 +14550,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 100002, guid: 957385c45b877e645a128e11a3efb2f9, type: 3}
     - target: {fileID: 4368123201481391260, guid: ff8bad0c53b7b674984b26d8f4a78735, type: 3}
+      propertyPath: fullMagSize
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368123201481391260, guid: ff8bad0c53b7b674984b26d8f4a78735, type: 3}
       propertyPath: playerInput
       value: 
       objectReference: {fileID: 827148355}

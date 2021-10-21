@@ -110,10 +110,10 @@ public class InteractControl : MonoBehaviour
                     bool waspickedup = player.inventory.addItem(item);
                     if (waspickedup)
                     {
-                        
+                        temp.gameObject.SetActive(false);
+                        interactables.Remove(temp.gameObject);
+                        Destroy(temp);
                     }
-                    temp.gameObject.SetActive(false);
-                    interactables.Remove(temp.gameObject);
                     if (interactables.Count > 0)
                     {
                         interactables[0].gameObject.GetComponentInChildren<Outline>().enabled = true;
@@ -124,7 +124,7 @@ public class InteractControl : MonoBehaviour
                         UITestingGM.Instance.hideItemLabel();
                     }
                 //interactables[0].gameObject.GetComponentInChildren<Renderer>().materials[0].color = Color.red;
-                Destroy(temp);
+                
                 }
             else
             if (interactables[0].GetComponent<IInteractable>() != null)

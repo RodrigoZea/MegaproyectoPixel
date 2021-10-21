@@ -47,7 +47,7 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     int magazine = 7;
     [SerializeField]
-    int fullMagSize = 10;
+    int fullMagSize = 7;
     [SerializeField]
     float shootTimer = 0.5f;
     [SerializeField]
