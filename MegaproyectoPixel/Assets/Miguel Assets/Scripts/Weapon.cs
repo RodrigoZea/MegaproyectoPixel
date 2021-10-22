@@ -193,7 +193,9 @@ public class Weapon : MonoBehaviour
         isReloading = false;
         shootSound.clip = shoot;
         reloadAction.Enable();
-        shootAction.Enable();
+        if (aimAction.phase.ToString() == "Started"){
+            shootAction.Enable();
+        }
         //aimAction.Enable();
     }
 
@@ -265,6 +267,14 @@ public class Weapon : MonoBehaviour
             }
         }
         magText.text = (""+magazine + "|" + ammo);
+    }
+
+    public void changeShootTime(float change){
+        shootTimer = change;
+    }
+
+    public void changeReloadTime(float change){
+        reloadTimer = change;
     }
 
 }

@@ -132,8 +132,8 @@ public class CharacterControl : MonoBehaviour
 
     public void HitReaction(){
         //StartCoroutine(recovery(recoveryTime));
-        cameraShake.GenerateImpulse(playerCamera.transform.forward);
-        
+        //cameraShake.GenerateImpulse(playerCamera.transform.forward);
+        GameManager.Instance.updateInsanity(0.1f);
     }
 
     public void UseItem(Item item)
@@ -147,21 +147,21 @@ public class CharacterControl : MonoBehaviour
         {
             case Item.ItemType.Medkit:
                 inventory.removeItem(item);
-                GameManager.Instance.updateHealth(0.20f);
+                GameManager.Instance.recoverHealth(0.20f);
                 break;
             case Item.ItemType.Beer:
                 inventory.removeItem(item);
                 GameManager.Instance.updateHealth(-0.1f);
-                GameManager.Instance.updateInsanity(-0.1f);
+                GameManager.Instance.recoverSanity(-0.1f);
                 break;
             case Item.ItemType.PillBottle:
                 inventory.removeItem(item);
                 //GameManager.Instance.updateInsanity(-0.1f);
-                GameManager.Instance.recoverSanity(-0.1f);
+                GameManager.Instance.recoverSanity(-0.2f);
                 break;
             case Item.ItemType.Syringe:
                 inventory.removeItem(item);
-                GameManager.Instance.updateHealth(0.1f);
+                GameManager.Instance.recoverHealth(0.1f);
                 GameManager.Instance.updateInsanity(0.1f);
                 break;
             case Item.ItemType.Ammo:
@@ -196,28 +196,25 @@ public class CharacterControl : MonoBehaviour
             walkSpeed = 4.0f;
             aimNoise.m_AmplitudeGain = 1.0f;
             cameraNoise.m_AmplitudeGain = 0.5f;
-            insanitySound.StopSound();
         }else
         if (health <= 0.75f && health > 0.50f){
             runSpeed = 1.25f;
             walkSpeed = 4.25f;
             aimNoise.m_AmplitudeGain = 1.25f;
             cameraNoise.m_AmplitudeGain = 0.75f;
-            insanitySound.SetSound(0.1f);
+
         }else
         if (health <= 0.50f && health > 0.25f){
             runSpeed = 1.50f;
             walkSpeed = 4.50f;
             aimNoise.m_AmplitudeGain = 1.50f;
             cameraNoise.m_AmplitudeGain = 1.00f;
-            insanitySound.SetSound(0.2f);
         }else
         if (health <= 0.25f && health > 0.0f){
             runSpeed = 1.75f;
             walkSpeed = 4.75f;
             aimNoise.m_AmplitudeGain = 1.75f;
             cameraNoise.m_AmplitudeGain = 1.25f;
-            insanitySound.SetSound(0.3f);
         }
 
         if (aimAction.phase.ToString() == "Started"){
@@ -227,8 +224,36 @@ public class CharacterControl : MonoBehaviour
         }
     }
 
-    public void changeBasedOnInsanity(float health){
-
+    public void changeBasedOnInsanity(float sanity){
+        if (sanity <= 1.0f && sanity > 0.75f){
+            GameManager.Instance.changeHealDelay(1.0f);
+            GameManager.Instance.changeSanityDelay(1.0f);
+            weapon.changeReloadTime(5.5f);
+            weapon.changeShootTime(1.25f);
+            insanitySound.SetSound(0.3f);
+        }else
+        if (sanity <= 0.75f && sanity > 0.50f){
+            GameManager.Instance.changeHealDelay(0.75f);
+            GameManager.Instance.changeSanityDelay(0.75f);
+            weapon.changeReloadTime(4.5f);
+            weapon.changeShootTime(1.0f);
+            insanitySound.SetSound(0.2f);
+        }else
+        if (sanity <= 0.50f && sanity > 0.25f){
+            GameManager.Instance.changeHealDelay(0.5f);
+            GameManager.Instance.changeSanityDelay(0.5f);
+            weapon.changeReloadTime(3.5f);
+            weapon.changeShootTime(0.75f);
+            insanitySound.SetSound(0.1f);
+            Debug.Log("aqui");
+        }else
+        if (sanity <= 0.25f && sanity > 0.0f){
+            GameManager.Instance.changeHealDelay(0.2f);
+            GameManager.Instance.changeSanityDelay(0.2f);
+            weapon.changeReloadTime(2.5f);
+            weapon.changeShootTime(0.5f);
+            insanitySound.StopSound();
+        }
     }
 
     public void activateControls(){

@@ -17,14 +17,14 @@ public class GameManager : MonoBehaviour
 
     private PostProcessVolume volume;
     private float playerHealth = 1.0f;
-    private float playerInsanity = 1.0f;
+    private float playerInsanity = 0.0f;
     private int playerAmmo;
     private GameState gameState;
     private float healingValue = 0.0f;
-    private float healingDelay = 0.5f;
+    private float healingDelay = 0.3f;
     private bool healing = false;
     private float insanityValue = 0.0f;
-    private float insanityDelay = 0.5f;
+    private float insanityDelay = 0.3f;
     private bool insanitying = false;
 
     //Singleton
@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
     }
     
     public void recoverSanity(float sanity){
-        insanityValue += sanity;
+        insanityValue -= sanity;
         if (! insanitying){
             StartCoroutine(sanityOverTime(insanityDelay));
         }
@@ -129,15 +129,19 @@ public class GameManager : MonoBehaviour
 
     IEnumerator sanityOverTime(float time)
     {
-        //Debug.Log("Hit");
+        Debug.Log(insanityValue);
+        Debug.Log(playerInsanity);
 
         insanitying = true;
-        while (insanityValue > 0.0f && playerHealth > 0.0f)
+        while (insanityValue > 0.0f && playerInsanity > 0.0f)
         {
+
+            Debug.Log("recoverying");
             playerInsanity -= 0.01f;
-            insanityValue += 0.01f;
+            insanityValue -= 0.01f;
             playerInfo.changeBasedOnInsanity(playerInsanity);
             UITestingGM.Instance.changeSpook(-0.01f);
+            adjustVignette(playerInsanity);
             yield return new WaitForSeconds(time);
         }
         if (playerInsanity < 0.0f)
@@ -148,6 +152,15 @@ public class GameManager : MonoBehaviour
         insanitying = false;
 
         //Debug.Log("Not Hit");
+    }
+
+
+    public  void changeHealDelay(float change){
+        healingDelay = change;
+    }
+
+    public  void changeSanityDelay(float change){
+        insanityDelay = change;
     }
 
 }
