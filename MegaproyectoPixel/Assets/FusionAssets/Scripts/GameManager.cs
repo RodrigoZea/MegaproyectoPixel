@@ -26,6 +26,9 @@ public class GameManager : MonoBehaviour
     private float insanityValue = 0.0f;
     private float insanityDelay = 0.3f;
     private bool insanitying = false;
+    [SerializeField]
+    private float jumpscareAppearance;
+    private float jumpscareTimer = 0f;
 
     //Singleton
     public static GameManager Instance { get; private set; }
@@ -49,7 +52,13 @@ public class GameManager : MonoBehaviour
     }
 
     private void Update() {
-        
+        if (playerInsanity >= 0.8) {
+            jumpscareTimer += Time.deltaTime;
+            if (jumpscareTimer >= jumpscareAppearance) {
+                jumpscareImage();
+                jumpscareTimer = 0;
+            }
+        }
     }
 
     public void recoverHealth(float changeInHealth){
@@ -90,6 +99,9 @@ public class GameManager : MonoBehaviour
     }
 
     private void adjustVignette(float newValue) {
+        if (newValue < 0.2f) newValue = 0.2f;
+        if (newValue > 0.6f) newValue = 0.6f;
+
         Vignette vignette; 
         volume.profile.TryGetSettings(out vignette);
         vignette.intensity.value = newValue;
