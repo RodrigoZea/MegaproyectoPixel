@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     private float insanityValue = 0.0f;
     private float insanityDelay = 0.5f;
     private bool insanitying = false;
+    [SerializeField]
+    private float jumpscareAppearance;
     private float jumpscareTimer = 0f;
 
     //Singleton
@@ -52,7 +54,7 @@ public class GameManager : MonoBehaviour
     private void Update() {
         if (playerInsanity >= 0.8) {
             jumpscareTimer += Time.deltaTime;
-            if (jumpscareTimer >= 15) {
+            if (jumpscareTimer >= jumpscareAppearance) {
                 jumpscareImage();
                 jumpscareTimer = 0;
             }
