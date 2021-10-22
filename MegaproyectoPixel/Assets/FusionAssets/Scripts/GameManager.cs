@@ -141,14 +141,10 @@ public class GameManager : MonoBehaviour
 
     IEnumerator sanityOverTime(float time)
     {
-        Debug.Log(insanityValue);
-        Debug.Log(playerInsanity);
 
         insanitying = true;
         while (insanityValue > 0.0f && playerInsanity > 0.0f)
         {
-
-            Debug.Log("recoverying");
             playerInsanity -= 0.01f;
             insanityValue -= 0.01f;
             playerInfo.changeBasedOnInsanity(playerInsanity);
