@@ -90,6 +90,9 @@ public class GameManager : MonoBehaviour
     }
 
     private void adjustVignette(float newValue) {
+        if (newValue < 0.2f) newValue = 0.2f;
+        if (newValue > 0.6f) newValue = 0.6f;
+
         Vignette vignette; 
         volume.profile.TryGetSettings(out vignette);
         vignette.intensity.value = newValue;
