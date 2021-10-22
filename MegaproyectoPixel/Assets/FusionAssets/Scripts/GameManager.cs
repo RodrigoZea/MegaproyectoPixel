@@ -82,6 +82,13 @@ public class GameManager : MonoBehaviour
         adjustVignette(playerInsanity);
     }
 
+    private void jumpscareImage() {
+        int chance = Random.Range(0, 2);
+        if (chance == 1) {
+            UITestingGM.Instance.showImage();
+        }
+    }
+
     private void adjustVignette(float newValue) {
         Vignette vignette; 
         volume.profile.TryGetSettings(out vignette);

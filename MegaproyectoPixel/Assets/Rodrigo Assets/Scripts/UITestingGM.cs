@@ -11,6 +11,7 @@ public class UITestingGM : MonoBehaviour
     public GameObject healthBar;
     public GameObject spookBar;
     public GameObject player;
+    public ImageScript jumpscareImage;
     public CharacterControl playerController;
     public GameObject highlightedItem;
     [SerializeField]
@@ -155,6 +156,10 @@ public class UITestingGM : MonoBehaviour
         }
     }
 
+    public void showImage() {
+        jumpscareImage.startImage();
+    }
+
     // -------------------------------------------------------------------------------------------------------------------------------
     public void updateItemList(List<Item> updatedItemList) {
         itemList = updatedItemList;
@@ -215,7 +220,7 @@ public class UITestingGM : MonoBehaviour
             }
             else
             {
-                grabLabel.GetComponent<Text>().text = "";
+                grabLabel.GetComponent<Text>().text = "This door is locked. You need a key to open it.";
             }
         }
         else
