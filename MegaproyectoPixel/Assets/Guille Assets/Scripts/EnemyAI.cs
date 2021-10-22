@@ -140,7 +140,7 @@ public class EnemyAI : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("entro collision enter");
+        //Debug.Log("entro collision enter");
         if (EnemyType == enemyType.Normal)
         {
             if (collision.collider.GetComponent<CharacterControl>())

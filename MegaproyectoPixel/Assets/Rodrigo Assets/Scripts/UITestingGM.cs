@@ -205,11 +205,11 @@ public class UITestingGM : MonoBehaviour
             if (itemToGrab.GetComponent<Door>().locked == false)
             {
                 if(itemToGrab.GetComponent<Door>().isOpen == false) {
-                    grabLabel.GetComponent<Text>().text = "Press F to open door";
+                    grabLabel.GetComponent<Text>().text = "Press 'F' to open door";
                 }
                 else
                 {
-                    grabLabel.GetComponent<Text>().text = "Press F to close door";
+                    grabLabel.GetComponent<Text>().text = "Press 'F' to close door";
                 }
 
             }
@@ -220,7 +220,7 @@ public class UITestingGM : MonoBehaviour
         }
         else
         {
-            grabLabel.GetComponent<Text>().text = "Press F to grab " + itemToGrab.name;
+            grabLabel.GetComponent<Text>().text = "Press 'F' to grab " + itemToGrab.name;
         }
     }
 
