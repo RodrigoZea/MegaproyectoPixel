@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.PostProcessing;
 
 public enum GameState {
     PLAYING, PAUSED, NONE
@@ -12,7 +13,9 @@ public class GameManager : MonoBehaviour
     public CharacterControl playerInfo;
     public PlayerInput playerInput;
     public Inventory inventory;
+    public GameObject playerCamera;
 
+    private PostProcessVolume volume;
     private float playerHealth = 1.0f;
     private float playerInsanity = 1.0f;
     private int playerAmmo;
@@ -41,6 +44,7 @@ public class GameManager : MonoBehaviour
 
     private void Start() {
         gameState = GameState.PLAYING;
+        volume = playerCamera.GetComponent<PostProcessVolume>();
         //playerInput.actions.Enable();
     }
 
@@ -75,6 +79,13 @@ public class GameManager : MonoBehaviour
         playerInsanity += insanity;
         playerInfo.changeBasedOnInsanity(playerInsanity);
         UITestingGM.Instance.changeSpook(insanity);
+        adjustVignette(playerInsanity);
+    }
+
+    private void adjustVignette(float newValue) {
+        Vignette vignette; 
+        volume.profile.TryGetSettings(out vignette);
+        vignette.intensity.value = newValue;
     }
 
     public void updateInventory()

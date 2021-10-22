@@ -16075,6 +16075,7 @@ MonoBehaviour:
   playerInfo: {fileID: 827148354}
   playerInput: {fileID: 827148355}
   inventory: {fileID: 704080577}
+  playerCamera: {fileID: 1777406121}
 --- !u!4 &704080576
 Transform:
   m_ObjectHideFlags: 0
