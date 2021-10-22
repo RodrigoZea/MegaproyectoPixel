@@ -12,7 +12,9 @@ public class CharacterAnimation : MonoBehaviour
     [SerializeField]
     private float aimDuration = 0.3f;
     private bool aimLayerBool;
-    Animator animator;
+    private Animator animator;
+    [SerializeField]
+    private Animator rigLayers;
     public float speed = 2f;
     public float sprint = 4f;
     public float turnSmoothTime = 0.1f;
@@ -36,6 +38,7 @@ public class CharacterAnimation : MonoBehaviour
 
         animator.SetFloat(velocityXHash,velocityX);
         animator.SetFloat(velocityZHash,velocityZ);
+        /*
         if(aimLayerBool){
             if(aimLayer.weight < 1.0f){
                 aimLayer.weight += Time.deltaTime / aimDuration;
@@ -45,6 +48,7 @@ public class CharacterAnimation : MonoBehaviour
                 aimLayer.weight -= Time.deltaTime / aimDuration;
             }
         }
+        */
     }
 
     public void changeVelocity(bool forwardPressed, bool backPressed, bool leftPressed, bool rightPressed, bool runPressed, float currentMaxVelocity)
@@ -185,10 +189,12 @@ public class CharacterAnimation : MonoBehaviour
     }
 
     public void enableAimLayer() {
-        aimLayerBool = true;
+        //aimLayerBool = true;
+        rigLayers.Play("AimLayerOn");
     }
 
     public void disableAimLayer() {
-        aimLayerBool = false;
+        //aimLayerBool = false;
+        rigLayers.Play("AimLayerOff");
     }
 }

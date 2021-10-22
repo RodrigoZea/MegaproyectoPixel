@@ -37,6 +37,8 @@ public class Weapon : MonoBehaviour
     private InputAction shootAction;
     private InputAction reloadAction;
     private InputAction aimAction;
+    [SerializeField]
+    private Animator rigLayerAnimator;
 
     [SerializeField]
     Transform shootPoint;
@@ -180,6 +182,7 @@ public class Weapon : MonoBehaviour
 
     IEnumerator playreload(float time)
     {
+        rigLayerAnimator.Play("Reload");
         shootSound.clip = reload;
         shootSound.Play();
         //aimAction.Disable();

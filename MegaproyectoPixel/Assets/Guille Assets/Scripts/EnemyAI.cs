@@ -54,7 +54,7 @@ public class EnemyAI : MonoBehaviour
             player = GameObject.Find("ThirdPerson").transform;
         } catch
         {
-            player = GameObject.Find("FirstPerson").transform;
+            player = GameObject.Find("Main Character").transform;
         }
 
         playerInAttackRange = false;
