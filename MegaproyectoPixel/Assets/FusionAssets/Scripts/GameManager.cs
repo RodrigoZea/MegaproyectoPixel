@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
 
     private PostProcessVolume volume;
     private float playerHealth = 1.0f;
-    private float playerInsanity = 1.0f;
+    public float playerInsanity = 1.0f;
     private int playerAmmo;
     private GameState gameState;
     private float healingValue = 0.0f;
@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     private float insanityValue = 0.0f;
     private float insanityDelay = 0.5f;
     private bool insanitying = false;
+    private float jumpscareTimer = 0f;
 
     //Singleton
     public static GameManager Instance { get; private set; }
@@ -49,7 +50,13 @@ public class GameManager : MonoBehaviour
     }
 
     private void Update() {
-        
+        if (playerInsanity >= 0.8) {
+            jumpscareTimer += Time.deltaTime;
+            if (jumpscareTimer >= 15) {
+                jumpscareImage();
+                jumpscareTimer = 0;
+            }
+        }
     }
 
     public void recoverHealth(float changeInHealth){

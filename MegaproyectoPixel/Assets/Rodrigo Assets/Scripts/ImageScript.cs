@@ -31,17 +31,24 @@ public class ImageScript : MonoBehaviour
 
             if (generalTimer >= 3f) {
                 stopImage();
+                generalTimer = 0;
             }
         }
     }
     
     public void startImage() {
         isShowing = true; 
+        imageComponent.enabled = true;
+        audioComponent.enabled = true;
+
         audioComponent.Play();
     }
 
     private void stopImage() {
         isShowing = false;
         audioComponent.Stop();
+        imageComponent.enabled = false;
+        audioComponent.enabled = false;
+        
     }
 }
