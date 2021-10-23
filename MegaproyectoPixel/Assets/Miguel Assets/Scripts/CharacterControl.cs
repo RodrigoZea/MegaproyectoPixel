@@ -156,7 +156,6 @@ public class CharacterControl : MonoBehaviour
                 break;
             case Item.ItemType.PillBottle:
                 inventory.removeItem(item);
-                //GameManager.Instance.updateInsanity(-0.1f);
                 GameManager.Instance.recoverSanity(-0.2f);
                 break;
             case Item.ItemType.Syringe:

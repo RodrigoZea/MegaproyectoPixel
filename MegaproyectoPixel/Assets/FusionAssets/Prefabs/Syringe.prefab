@@ -78,14 +78,15 @@ MonoBehaviour:
   item:
     itemType: 3
     weapon: {fileID: 0}
-    model: {fileID: 7737368650975153446}
+    door: {fileID: 0}
     sprite: {fileID: 21300000, guid: e64c2820f61a3c34ba21abd8ee93fec4, type: 3}
     description: 'Syringe
 
       One shot never hurt anybody.
 
-      +10% Health,
-      +10% Insanity'
+      +10% Health
+      overtime, +10% Insanity instantly.'
+    AlternativeDescription: 
     amount: 1
 --- !u!65 &7467476271804657781
 BoxCollider:

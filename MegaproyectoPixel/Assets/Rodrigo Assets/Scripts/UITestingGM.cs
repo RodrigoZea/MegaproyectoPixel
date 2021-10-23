@@ -22,6 +22,8 @@ public class UITestingGM : MonoBehaviour
     private float idleTimer;
     [SerializeField]
     private GameObject grabLabel;
+    [SerializeField]
+    private GameObject NoteCanvas;
     private int sizeWidth;
     private int sizeHeight;
     public Inventory inventory;
@@ -36,6 +38,7 @@ public class UITestingGM : MonoBehaviour
     // TODO: Refactorize inventory input handling to a separate gamemanager in next iteration.
     private InputAction inventoryAction;
     private InputAction optionsAction;
+    
 
     // ------------------------------------------------------------------------------------------
     // Inventory
@@ -120,6 +123,7 @@ public class UITestingGM : MonoBehaviour
             fadeGroupObject.SetActive(true);
             inventorySlotsContainer.SetActive(false);
             canvasVisible = false;
+            NoteCanvas.SetActive(false);
             playerController.activateControls();
         }
     }
@@ -177,15 +181,17 @@ public class UITestingGM : MonoBehaviour
         //Alternative Text for Notes
         if(itemToHighlight.itemType == Item.ItemType.Note)
         {
-            if (GameManager.Instance.getInsanity() > 0.4f)
+            if (GameManager.Instance.getInsanity() >= 0.4f)
             {
                 Text CurrentObjectDescription = highlightedItem.transform.Find("CurrentObjectDescription").GetComponent<Text>();
-                CurrentObjectDescription.text = ("" + itemToHighlight.AlternativeDescription);
+                CurrentObjectDescription.text = ("Old ragged note to read.");
+                NoteCanvas.GetComponentInChildren<NoteScript>().updateText(""+itemToHighlight.AlternativeDescription);
             }
             else
             {
                 Text CurrentObjectDescription = highlightedItem.transform.Find("CurrentObjectDescription").GetComponent<Text>();
-                CurrentObjectDescription.text = ("" + itemToHighlight.description);
+                CurrentObjectDescription.text = ("Old ragged note to read.");
+                NoteCanvas.GetComponentInChildren<NoteScript>().updateText("" + itemToHighlight.description);
             }
         }
         else
@@ -262,16 +268,14 @@ public class UITestingGM : MonoBehaviour
 
         } else if (selectedItem.itemType == Item.ItemType.Note)
         {
-            if (GameManager.Instance.getInsanity() > 0.4f)
-            {
-                GameObject useGameObject = inventoryActionButtons.transform.Find("UseOption").gameObject;
-                useGameObject.SetActive(true);                
-            }
-            else
-            {
-                GameObject useGameObject = inventoryActionButtons.transform.Find("UseOption").gameObject;
-                useGameObject.SetActive(false);
-            }
+
+            GameObject useGameObject = inventoryActionButtons.transform.Find("UseOption").gameObject;
+            useGameObject.SetActive(true);
+            
+            
+
+            GameObject removeGameObject = inventoryActionButtons.transform.Find("DropOption").gameObject;
+            removeGameObject.SetActive(false);
 
         } else
         {
@@ -293,7 +297,13 @@ public class UITestingGM : MonoBehaviour
 
     private void useItem(Item selectedItem)
     {
-        playerController.UseItem(selectedItem);
+        if(selectedItem.itemType == Item.ItemType.Note)
+        {
+            NoteCanvas.SetActive(true);
+        }
+        else {
+            playerController.UseItem(selectedItem);
+        }
         inventoryActionButtons.SetActive(false);
         inventorySlotsContainer.SetActive(true);
         resetItemHighlighted();
