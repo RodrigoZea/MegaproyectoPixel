@@ -24,6 +24,7 @@ public class UITestingGM : MonoBehaviour
     private GameObject grabLabel;
     [SerializeField]
     private GameObject NoteCanvas;
+    public GameObject NoteBackButton;
     private int sizeWidth;
     private int sizeHeight;
     public Inventory inventory;
@@ -116,6 +117,7 @@ public class UITestingGM : MonoBehaviour
         {            
             Cursor.lockState = CursorLockMode.Locked;
             // Hide inventory and show normal UI
+            hideNote();
             resetItemHighlighted();
             dehighlightSlots();
             inventoryShowing = false;
@@ -123,7 +125,6 @@ public class UITestingGM : MonoBehaviour
             fadeGroupObject.SetActive(true);
             inventorySlotsContainer.SetActive(false);
             canvasVisible = false;
-            NoteCanvas.SetActive(false);
             playerController.activateControls();
         }
     }
@@ -162,6 +163,11 @@ public class UITestingGM : MonoBehaviour
 
     public void showImage() {
         jumpscareImage.startImage();
+    }
+
+    public void hideNote() {
+        NoteCanvas.SetActive(false);
+        NoteBackButton.SetActive(false);
     }
 
     // -------------------------------------------------------------------------------------------------------------------------------
@@ -300,6 +306,7 @@ public class UITestingGM : MonoBehaviour
         if(selectedItem.itemType == Item.ItemType.Note)
         {
             NoteCanvas.SetActive(true);
+            NoteBackButton.SetActive(true);
         }
         else {
             playerController.UseItem(selectedItem);
@@ -345,7 +352,7 @@ public class UITestingGM : MonoBehaviour
             
         }
 
-        inventoryTabsButtons[index].transform.GetChild(0).GetComponent<Text>().color = new Color(225f/225f, 189f/225f, 0f/225f);;
+        inventoryTabsButtons[index].transform.GetChild(0).GetComponent<Text>().color = new Color(225f/225f, 189f/225f, 0f/225f);
         inventoryTabs[index].SetActive(true);
     }
 
