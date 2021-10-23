@@ -278,7 +278,6 @@ public class UITestingGM : MonoBehaviour
             GameObject useGameObject = inventoryActionButtons.transform.Find("UseOption").gameObject;
             useGameObject.SetActive(true);
             
-            
 
             GameObject removeGameObject = inventoryActionButtons.transform.Find("DropOption").gameObject;
             removeGameObject.SetActive(false);
@@ -286,6 +285,9 @@ public class UITestingGM : MonoBehaviour
         } else
         {
             //Si no es una llave se activan todas las opciones
+            GameObject useGameObject = inventoryActionButtons.transform.Find("UseOption").gameObject;
+            useGameObject.SetActive(true);
+
             GameObject removeGameObject = inventoryActionButtons.transform.Find("DropOption").gameObject;
             removeGameObject.SetActive(true);
         }
@@ -296,9 +298,7 @@ public class UITestingGM : MonoBehaviour
 
         Button removeButton = inventoryActionButtons.transform.Find("DropOption").GetComponent<Button>();
         removeButton.onClick.RemoveAllListeners();
-        removeButton.onClick.AddListener(delegate { removeItem(selectedItem); });
-        // Set child 0 (use function) to item's UseItem Function
-        // Set child 1 (drop function) to item's DropItem/RemoveItem/whatever Function        
+        removeButton.onClick.AddListener(delegate { removeItem(selectedItem); });     
     }
 
     private void useItem(Item selectedItem)
