@@ -12,8 +12,9 @@ public enum enemyType{
 public class EnemyAI : MonoBehaviour
 {
     public NavMeshAgent agent;
-
+    public float lookradius = 10f;
     public Transform player;
+    public float attackradius = 2f;
 
     public LayerMask whatIsGround, whatIsPlayer;
     public GameObject attackArea;
@@ -30,6 +31,7 @@ public class EnemyAI : MonoBehaviour
     public enemyType EnemyType;
     private Animator animator;
     private CapsuleCollider capsule;
+    private float waitTimer = 1f;
 
     //Patroling
     private int currentPoint = 0;
@@ -80,21 +82,47 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    private void avoidWalls()
+    {
+        //Ray raycast;
+        //RaycastHit hit;
+        //raycast.origin = attackArea.transform.position;
+        //raycast.direction = attackArea.transform.position;
+        //if (Physics.Raycast(raycast, out hit))
+        //{
+        //
+        //}
+    }
+
     private void Patroling()
     {
         if (!walkPointSet) SearchWalkPoint();
-        
-        if (walkPointSet)
+        float distanceToPlayer = Vector3.Distance(player.position, transform.position);
+        if (distanceToPlayer <= lookradius)
         {
-            agent.SetDestination(walkpoint);
-        }
+            FollowPlayer();
+            if (distanceToPlayer <= agent.stoppingDistance)
+            {
+                Vector3 direction = (player.position - transform.position).normalized;
+                Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
 
+                transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime *5f);
+            }
+        }
+        
         Vector3 distanceToWalkPoint = transform.position - walkpoint;
         Debug.Log(distanceToWalkPoint.magnitude);
         if (distanceToWalkPoint.magnitude < 1f)
-        {   
-            walkPointSet = false;
+        {
+            StartCoroutine("waitInPosition", waitTimer);
         }
+    }
+
+    IEnumerator waitInPosition(float time)
+    {
+        walkPointSet = true;
+        yield return new WaitForSeconds(time);
+        walkPointSet = false;
     }
 
     private void SearchWalkPoint()
@@ -109,27 +137,25 @@ public class EnemyAI : MonoBehaviour
             }
         }
 
-        Debug.Log(SeleccionPuntos);
-        Debug.Log(currentPoint);
-
         int newPoint = Random.Range(0, SeleccionPuntos.Count);
         currentPoint = newPoint;
 
         walkpoint = new Vector3(SeleccionPuntos[newPoint].transform.position.x, 0, puntos[newPoint].transform.position.z);
         walkPointSet = true;
-        Debug.Log(walkpoint);
+
+        agent.SetDestination(walkpoint);
     }
 
-    private void ChasePlayer()
+    private void FollowPlayer()
     {
         agent.SetDestination(player.position);
+
     }
 
     private void AttackPlayer()
     {
         agent.SetDestination(transform.position);
         transform.LookAt(player);
-
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -166,7 +192,10 @@ public class EnemyAI : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, lookradius);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackradius);
     }
 
 }
