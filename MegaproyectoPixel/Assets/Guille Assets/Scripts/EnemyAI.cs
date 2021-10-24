@@ -52,7 +52,6 @@ public class EnemyAI : MonoBehaviour
             player = GameObject.Find("Main Character").transform;
         }
 
-
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         capsule = GetComponent<CapsuleCollider>();
@@ -90,6 +89,11 @@ public class EnemyAI : MonoBehaviour
 
     private void Patroling()
     {
+        agent.speed = 1f;
+        animator.SetBool("Running", false);
+        animator.SetBool("Walking", true);
+        animator.SetBool("IDLE", false);
+
         if (!walkPointSet) SearchWalkPoint();
         float distanceToPlayer = Vector3.Distance(player.position, transform.position);
         if (distanceToPlayer <= lookradius)
@@ -105,7 +109,6 @@ public class EnemyAI : MonoBehaviour
         }
         
         Vector3 distanceToWalkPoint = transform.position - walkpoint;
-        Debug.Log(distanceToWalkPoint.magnitude);
         if (distanceToWalkPoint.magnitude < 1f)
         {
             StartCoroutine("waitInPosition", waitTimer);
@@ -114,6 +117,9 @@ public class EnemyAI : MonoBehaviour
 
     IEnumerator waitInPosition(float time)
     {
+        animator.SetBool("IDLE", true);
+        animator.SetBool("Walking", false);
+        animator.SetBool("Running", false);
         walkPointSet = true;
         yield return new WaitForSeconds(time);
         walkPointSet = false;
@@ -121,20 +127,31 @@ public class EnemyAI : MonoBehaviour
 
     private void SearchWalkPoint()
     {
-        List<GameObject> SeleccionPuntos = new List<GameObject>();
-
-        for (int i=0; i < puntos.Count; i++)
+        if (puntos.Count > 0)
         {
-            if (i != currentPoint)
+            List<GameObject> SeleccionPuntos = new List<GameObject>();
+
+            for (int i = 0; i < puntos.Count; i++)
             {
-                SeleccionPuntos.Add(puntos[i]);
+                if (i != currentPoint)
+                {
+                    SeleccionPuntos.Add(puntos[i]);
+                }
             }
+
+            int newPoint = Random.Range(0, SeleccionPuntos.Count);
+            int selectedPoint = puntos.IndexOf(SeleccionPuntos[newPoint]);
+            Debug.Log(puntos[currentPoint].transform.position);
+            Debug.Log(SeleccionPuntos[newPoint].transform.position);
+            currentPoint = selectedPoint;
+            walkpoint = new Vector3(SeleccionPuntos[newPoint].transform.position.x, 0, puntos[newPoint].transform.position.z);
+        }
+        else
+        {
+            //Se quedaria en el mismo lugar
+            walkpoint = new Vector3(agent.transform.position.x, 0, agent.transform.position.z);
         }
 
-        int newPoint = Random.Range(0, SeleccionPuntos.Count);
-        currentPoint = newPoint;
-
-        walkpoint = new Vector3(SeleccionPuntos[newPoint].transform.position.x, 0, puntos[newPoint].transform.position.z);
         walkPointSet = true;
 
         agent.SetDestination(walkpoint);
@@ -142,6 +159,10 @@ public class EnemyAI : MonoBehaviour
 
     private void FollowPlayer()
     {
+        animator.SetBool("Running", true);
+        animator.SetBool("Walking", false);
+        animator.SetBool("IDLE", false);
+        agent.speed = 3f;
         agent.SetDestination(player.position);
 
     }
