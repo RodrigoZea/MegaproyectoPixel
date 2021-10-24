@@ -16,7 +16,6 @@ public class EnemyAI : MonoBehaviour
     public Transform player;
     public float attackradius = 2f;
 
-    public LayerMask whatIsGround, whatIsPlayer;
     public GameObject attackArea;
 
     public float health;
@@ -40,11 +39,6 @@ public class EnemyAI : MonoBehaviour
 
     //Attacking
     public float timeBetweenAttacks;
-
-    public GameObject projectile;
-
-    //States
-    public float sightRange, attackRange;
 
     private bool dead = false;
 
