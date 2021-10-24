@@ -6,6 +6,8 @@ public class EnemyAttack : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField]
+    private Animator animator;
+    [SerializeField]
     private float recovery = 3.0f;
     [SerializeField]
     private float damage = -0.1f;
@@ -19,7 +21,9 @@ public class EnemyAttack : MonoBehaviour
     private void OnTriggerStay(Collider other) {
         if (attackAvailable){
             if (other.gameObject.tag == "Player"){
+                animator.SetBool("Attack", true);
                 GameManager.Instance.updateHealth(damage);
+                
                 StartCoroutine("recover", recovery);
                 other.gameObject.GetComponent<CharacterControl>().HitReaction();
                 attackAvailable = false;
@@ -31,5 +35,6 @@ public class EnemyAttack : MonoBehaviour
     {
         yield return new WaitForSeconds(timer);
         attackAvailable = true;
+        animator.SetBool("Attack", false);
     }
 }

@@ -51,6 +51,15 @@ public class EnemyAI : MonoBehaviour
         {
             player = GameObject.Find("Main Character").transform;
         }
+        foreach(CapsuleCollider i in GetComponentsInChildren<CapsuleCollider>()){
+            i.isTrigger = true;
+        }
+        foreach(SphereCollider i in GetComponentsInChildren<SphereCollider>()){
+            i.isTrigger = true;
+        }
+        foreach(BoxCollider i in GetComponentsInChildren<BoxCollider>()){
+            i.isTrigger = true;
+        }
 
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
@@ -72,6 +81,15 @@ public class EnemyAI : MonoBehaviour
             agent.enabled = false;
             capsule.enabled = false;
             attackArea.SetActive(false);
+            foreach(CapsuleCollider i in GetComponentsInChildren<CapsuleCollider>()){
+                i.isTrigger = false;
+            }
+            foreach(SphereCollider i in GetComponentsInChildren<SphereCollider>()){
+                i.isTrigger = false;
+            }
+            foreach(BoxCollider i in GetComponentsInChildren<BoxCollider>()){
+                i.isTrigger = false;
+            }
         }
     }
 
@@ -92,7 +110,7 @@ public class EnemyAI : MonoBehaviour
         agent.speed = 1f;
         animator.SetBool("Running", false);
         animator.SetBool("Walking", true);
-        animator.SetBool("IDLE", false);
+        //animator.SetBool("IDLE", false);
 
         if (!walkPointSet) SearchWalkPoint();
         float distanceToPlayer = Vector3.Distance(player.position, transform.position);
@@ -117,7 +135,7 @@ public class EnemyAI : MonoBehaviour
 
     IEnumerator waitInPosition(float time)
     {
-        animator.SetBool("IDLE", true);
+        //animator.SetBool("IDLE", true);
         animator.SetBool("Walking", false);
         animator.SetBool("Running", false);
         walkPointSet = true;
@@ -161,7 +179,7 @@ public class EnemyAI : MonoBehaviour
     {
         animator.SetBool("Running", true);
         animator.SetBool("Walking", false);
-        animator.SetBool("IDLE", false);
+        //animator.SetBool("IDLE", false);
         agent.speed = 3f;
         agent.SetDestination(player.position);
 

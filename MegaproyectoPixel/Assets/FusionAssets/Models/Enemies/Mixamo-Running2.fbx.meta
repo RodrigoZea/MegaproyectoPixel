@@ -1,26 +1,11 @@
 fileFormatVersion: 2
-guid: fe9a7527017595f40a8b09a123610a2a
+guid: d9637f061a9fc63409aa4e8d8b8d0673
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
-      74: -8945691123924629249
-    second: Armature|Idle
-  - first:
-      74: 1201195704898985168
-    second: Armature|Scream funny
-  - first:
-      74: 240936158172034942
-    second: Armature|Zombie Attack
-  - first:
-      74: -2020146573941184913
-    second: Armature|Zombie Run 1
-  - first:
-      74: 6675712205997764045
-    second: Armature|Zombie Run 2
-  - first:
-      74: -2255647718333347459
-    second: Armature|Zombie Walk
+      74: -203655887218126122
+    second: mixamo.com
   externalObjects: {}
   materials:
     materialImportMode: 2
