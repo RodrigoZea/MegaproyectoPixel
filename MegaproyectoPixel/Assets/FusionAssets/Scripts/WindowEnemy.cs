@@ -38,6 +38,7 @@ public class WindowEnemy : MonoBehaviour
             canShootRay = true;
         } */
         if (other.tag == "WindowEvent") {
+            other.gameObject.transform.GetChild(0).gameObject.SetActive(true);
             other.gameObject.GetComponentInChildren<AudioSource>().Play();
             other.gameObject.GetComponentInChildren<Light>().enabled = true;
         } 

@@ -52,13 +52,13 @@ public class GameManager : MonoBehaviour
     }
 
     private void Update() {
-        if (playerInsanity >= 0.8) {
+   /*      if (playerInsanity >= 0.8) {
             jumpscareTimer += Time.deltaTime;
             if (jumpscareTimer >= jumpscareAppearance) {
                 jumpscareImage();
                 jumpscareTimer = 0;
             }
-        }
+        } */
     }
 
     public void recoverHealth(float changeInHealth){
