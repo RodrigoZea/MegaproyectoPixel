@@ -54,6 +54,9 @@ public class EnemyAI : MonoBehaviour
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         capsule = GetComponent<CapsuleCollider>();
+        foreach(Rigidbody i in GetComponentsInChildren<Rigidbody>()){
+            i.isKinematic = true;
+        }
     }
 
     private void Update()
@@ -79,6 +82,9 @@ public class EnemyAI : MonoBehaviour
         if(health <= 0)
         {
             //DestroyEnemy();
+            foreach(Rigidbody i in GetComponentsInChildren<Rigidbody>()){
+            i.isKinematic = false;
+            }
             attackArea.SetActive(false);            
             dead = true;
             animator.enabled = false;
