@@ -50,6 +50,9 @@ public class CharacterControl : MonoBehaviour
     private InputAction shootAction;
     private InputAction sprintAction;
     private InputAction interactAction;
+    private InputAction flashlightAction;
+    [SerializeField]
+    private Light flashlight;
     private bool runPressed = false;
     private bool recovering = false;
     private CinemachineBasicMultiChannelPerlin aimNoise;
@@ -72,6 +75,8 @@ public class CharacterControl : MonoBehaviour
         shootAction = playerInput.actions["Shoot"];
         sprintAction = playerInput.actions["Sprint"];
         interactAction = playerInput.actions["Interact"];
+        flashlightAction = playerInput.actions["Flashlight"];
+        flashlightAction.performed += _ => {flashlight.enabled = !flashlight.enabled;};
         sprintAction.performed += _ => {runPressed = true;};
         sprintAction.canceled += _ => {runPressed = false;};
         shootAction.performed += _ => { weapon.StartFiring(); };
