@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - DemoRoom
+  - WindowEvent
+  - WindowEnemy
   layers:
   - Default
   - TransparentFX

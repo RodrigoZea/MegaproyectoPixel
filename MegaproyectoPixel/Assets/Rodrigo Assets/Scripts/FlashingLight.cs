@@ -8,7 +8,7 @@ public class FlashingLight : MonoBehaviour
     public float flashTimeLimit;
     public Material dimLight;
     private Light lampLight;
-    private MeshRenderer meshRenderer;
+    public MeshRenderer meshRenderer;
     private float flashTimer;
     private bool initialFlash = true;
     private Material initialMaterial;
@@ -16,7 +16,7 @@ public class FlashingLight : MonoBehaviour
     void Start()
     {
         lampLight = GetComponentInChildren<Light>();
-        meshRenderer =  transform.GetChild(0).GetComponent<MeshRenderer>();
+        //meshRenderer =  transform.GetChild(0).GetComponent<MeshRenderer>();
         initialMaterial = meshRenderer.material;
     }
 
