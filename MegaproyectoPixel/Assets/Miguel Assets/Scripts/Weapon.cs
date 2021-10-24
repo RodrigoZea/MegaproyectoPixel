@@ -129,7 +129,7 @@ public class Weapon : MonoBehaviour
                 //Si pega a algo
                 if (hit.collider)
                 {
-                    if (hit.collider.GetComponent<EnemyAI>())
+                    if (hit.collider.GetComponent<EnemyAI>() ||  hit.collider.GetComponentInParent<EnemyAI>())
                     {
                         //Personalizacion para pegar enemigos con AI
                         hit.collider.GetComponent<EnemyAI>().health -= 1;

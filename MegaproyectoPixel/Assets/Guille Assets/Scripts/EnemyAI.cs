@@ -39,7 +39,6 @@ public class EnemyAI : MonoBehaviour
 
     //Attacking
     public float timeBetweenAttacks;
-
     private bool dead = false;
 
     private void Awake()
@@ -51,15 +50,6 @@ public class EnemyAI : MonoBehaviour
         {
             player = GameObject.Find("Main Character").transform;
         }
-        foreach(CapsuleCollider i in GetComponentsInChildren<CapsuleCollider>()){
-            i.isTrigger = true;
-        }
-        foreach(SphereCollider i in GetComponentsInChildren<SphereCollider>()){
-            i.isTrigger = true;
-        }
-        foreach(BoxCollider i in GetComponentsInChildren<BoxCollider>()){
-            i.isTrigger = true;
-        }
 
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
@@ -69,27 +59,31 @@ public class EnemyAI : MonoBehaviour
     private void Update()
     {
 
+
+
         if (!dead){
-            Patroling();
+
+            float distanceToPlayer = Vector3.Distance(player.position, transform.position);
+            
+            if(distanceToPlayer >= lookradius)
+            {
+                Patroling();
+            }
+            else
+            {
+                FollowPlayer();
+            }
+
         }
 
         if(health <= 0)
         {
             //DestroyEnemy();
+            attackArea.SetActive(false);            
             dead = true;
             animator.enabled = false;
             agent.enabled = false;
-            capsule.enabled = false;
-            attackArea.SetActive(false);
-            foreach(CapsuleCollider i in GetComponentsInChildren<CapsuleCollider>()){
-                i.isTrigger = false;
-            }
-            foreach(SphereCollider i in GetComponentsInChildren<SphereCollider>()){
-                i.isTrigger = false;
-            }
-            foreach(BoxCollider i in GetComponentsInChildren<BoxCollider>()){
-                i.isTrigger = false;
-            }
+            capsule.enabled = false;            
         }
     }
 
@@ -107,7 +101,9 @@ public class EnemyAI : MonoBehaviour
 
     private void Patroling()
     {
+        //animator.applyRootMotion = true;
         agent.speed = 1f;
+        agent.acceleration = 1f;
         animator.SetBool("Running", false);
         animator.SetBool("Walking", true);
         //animator.SetBool("IDLE", false);
@@ -116,7 +112,6 @@ public class EnemyAI : MonoBehaviour
         float distanceToPlayer = Vector3.Distance(player.position, transform.position);
         if (distanceToPlayer <= lookradius)
         {
-            FollowPlayer();
             if (distanceToPlayer <= agent.stoppingDistance)
             {
                 Vector3 direction = (player.position - transform.position).normalized;
@@ -136,8 +131,8 @@ public class EnemyAI : MonoBehaviour
     IEnumerator waitInPosition(float time)
     {
         //animator.SetBool("IDLE", true);
-        animator.SetBool("Walking", false);
-        animator.SetBool("Running", false);
+        //animator.SetBool("Walking", false);
+        //animator.SetBool("Running", false);
         walkPointSet = true;
         yield return new WaitForSeconds(time);
         walkPointSet = false;
@@ -180,9 +175,9 @@ public class EnemyAI : MonoBehaviour
         animator.SetBool("Running", true);
         animator.SetBool("Walking", false);
         //animator.SetBool("IDLE", false);
-        agent.speed = 3f;
+        agent.speed = 2f;
+        agent.acceleration = 2f;
         agent.SetDestination(player.position);
-
     }
 
     private void AttackPlayer()
