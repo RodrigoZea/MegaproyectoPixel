@@ -10,7 +10,11 @@ public class TriggerLightsOffJumpscare : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         turnOffLight();
-        UITestingGM.Instance.showImage();
+
+        if (other.GetComponent<CharacterController>())
+        {
+            UITestingGM.Instance.showImage();
+        }
     }
 
     private void OnTriggerExit(Collider other) {

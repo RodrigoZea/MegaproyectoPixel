@@ -5,7 +5,10 @@ using UnityEngine;
 public class TriggerNormalJumpscare : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other) {
-        UITestingGM.Instance.showImage();
+        if (other.GetComponent<CharacterController>())
+        {
+            UITestingGM.Instance.showImage();
+        }
     }
 
     private void OnTriggerExit(Collider other) {

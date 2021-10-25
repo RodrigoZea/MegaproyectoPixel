@@ -133,10 +133,10 @@ public class Weapon : MonoBehaviour
                     {
                         //Personalizacion para pegar enemigos con AI
                         try {
-                            hit.collider.GetComponent<EnemyAI>().health -= 1;
+                            hit.collider.GetComponent<EnemyAI>().TakeDamage(1);
                         }
                         catch{
-                            hit.collider.GetComponentInParent<EnemyAI>().health -= 1;
+                            hit.collider.GetComponentInParent<EnemyAI>().TakeDamage(1);
                         }
                         
                         //Cambiar a bloodhit_fx y poner particulas de sangre

@@ -39,10 +39,12 @@ public class EnemyAI : MonoBehaviour
 
     //Attacking
     public float timeBetweenAttacks;
+    private bool chassingPlayer;
     private bool dead = false;
 
     private void Awake()
     {
+        chassingPlayer = false;
         try
         {
             player = GameObject.Find("ThirdPerson").transform;
@@ -66,9 +68,7 @@ public class EnemyAI : MonoBehaviour
 
         if (!dead){
 
-            float distanceToPlayer = Vector3.Distance(player.position, transform.position);
-            
-            if(distanceToPlayer >= lookradius)
+            if (!chassingPlayer)
             {
                 Patroling();
             }
@@ -118,6 +118,7 @@ public class EnemyAI : MonoBehaviour
         float distanceToPlayer = Vector3.Distance(player.position, transform.position);
         if (distanceToPlayer <= lookradius)
         {
+            chassingPlayer = true;
             if (distanceToPlayer <= agent.stoppingDistance)
             {
                 Vector3 direction = (player.position - transform.position).normalized;
@@ -128,7 +129,7 @@ public class EnemyAI : MonoBehaviour
         }
         
         Vector3 distanceToWalkPoint = transform.position - walkpoint;
-        if (distanceToWalkPoint.magnitude < 1f)
+        if (distanceToWalkPoint.magnitude < 1.3f)
         {
             StartCoroutine("waitInPosition", waitTimer);
         }
@@ -185,6 +186,7 @@ public class EnemyAI : MonoBehaviour
         agent.acceleration = 2f;
         agent.SetDestination(player.position);
         transform.LookAt(player);
+        chassingPlayer = true;
     }
 
     private void AttackPlayer()
@@ -213,11 +215,11 @@ public class EnemyAI : MonoBehaviour
 
     }
 
-    private void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         health -= damage;
-
-        if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
+        agent.SetDestination(player.position);
+        chassingPlayer = true;
     }
 
     private void DestroyEnemy()
