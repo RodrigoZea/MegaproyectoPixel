@@ -184,6 +184,7 @@ public class EnemyAI : MonoBehaviour
         agent.speed = 2f;
         agent.acceleration = 2f;
         agent.SetDestination(player.position);
+        transform.LookAt(player);
     }
 
     private void AttackPlayer()
