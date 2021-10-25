@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UITestingGM : MonoBehaviour
 {
@@ -143,7 +144,15 @@ public class UITestingGM : MonoBehaviour
 
         Vector3 updatedHealthScale = new Vector3(healthBar.transform.localScale.x, healthBar.transform.localScale.y + value,  healthBar.transform.localScale.z);
 
-        if (updatedHealthScale.y <= 1.00f && updatedHealthScale.y >= -0.00f) {
+        if (updatedHealthScale.y <= 1.50f && updatedHealthScale.y >= -0.50f) {            
+            if (updatedHealthScale.y >= 1.00f)
+            {
+                updatedHealthScale = new Vector3(healthBar.transform.localScale.x, 1.00f, healthBar.transform.localScale.z);
+            }
+            else if (updatedHealthScale.y <= 0.00f)
+            {
+                updatedHealthScale = new Vector3(healthBar.transform.localScale.x, 0.00f, healthBar.transform.localScale.z);
+            }
             healthBar.transform.localScale = updatedHealthScale;
         }
     }
@@ -156,7 +165,14 @@ public class UITestingGM : MonoBehaviour
 
         Vector3 updatedSpookScale = new Vector3(spookBar.transform.localScale.x, spookBar.transform.localScale.y + value,  spookBar.transform.localScale.z);
 
-        if (updatedSpookScale.y <= 1.00f && updatedSpookScale.y >= -0.00f) {
+        if (updatedSpookScale.y <= 1.50f && updatedSpookScale.y >= -0.50f) {
+            if (updatedSpookScale.y >= 1.00f)
+            {
+                updatedSpookScale = new Vector3(spookBar.transform.localScale.x, 1.00f, spookBar.transform.localScale.z);
+            } else if (updatedSpookScale.y <= 0.00f)
+            {
+                updatedSpookScale = new Vector3(spookBar.transform.localScale.x, 0.00f, spookBar.transform.localScale.z);
+            }
             spookBar.transform.localScale = updatedSpookScale;
         }
     }
@@ -169,7 +185,14 @@ public class UITestingGM : MonoBehaviour
         NoteCanvas.SetActive(false);
         NoteBackButton.SetActive(false);
     }
+    
+    public void reloadScene() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    } 
 
+    public void quitGame() {
+        Application.Quit();
+    }
     // -------------------------------------------------------------------------------------------------------------------------------
     public void updateItemList(List<Item> updatedItemList) {
         itemList = updatedItemList;
