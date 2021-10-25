@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UITestingGM : MonoBehaviour
 {
@@ -184,7 +185,14 @@ public class UITestingGM : MonoBehaviour
         NoteCanvas.SetActive(false);
         NoteBackButton.SetActive(false);
     }
+    
+    public void reloadScene() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    } 
 
+    public void quitGame() {
+        Application.Quit();
+    }
     // -------------------------------------------------------------------------------------------------------------------------------
     public void updateItemList(List<Item> updatedItemList) {
         itemList = updatedItemList;
