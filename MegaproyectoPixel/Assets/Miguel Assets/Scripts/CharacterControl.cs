@@ -17,6 +17,8 @@ public class CharacterControl : MonoBehaviour
     private Cinemachine.CinemachineImpulseSource cameraShake;
     private bool groundedPlayer;
     [SerializeField]
+    private AudioSource hitSource;
+    [SerializeField]
     private Cinemachine.CinemachineVirtualCamera playerCamera;
     [SerializeField]
     private Cinemachine.CinemachineVirtualCamera aimCamera;
@@ -136,6 +138,7 @@ public class CharacterControl : MonoBehaviour
 
 
     public void HitReaction(){
+        hitSource.Play();
         //StartCoroutine(recovery(recoveryTime));
         cameraShake.GenerateImpulse(playerCamera.transform.forward);
         GameManager.Instance.updateInsanity(0.1f);

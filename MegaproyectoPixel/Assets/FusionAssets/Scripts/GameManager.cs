@@ -81,6 +81,9 @@ public class GameManager : MonoBehaviour
         playerInfo.changeBasedOnHealth(playerHealth);
         UITestingGM.Instance.changeHealth(changeInHealth);
         Debug.Log(playerHealth);
+        if (playerHealth <= 0f){
+            playerInfo.deactivateControls();
+        }
     }
 
     public void updateInsanity(float insanity)
