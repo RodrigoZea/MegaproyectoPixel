@@ -25,8 +25,6 @@ public class CharacterControl : MonoBehaviour
     [SerializeField]
     private float playerSpeed = 2.0f;
     [SerializeField]
-    private float jumpHeight = 1.0f;
-    [SerializeField]
     private float gravityValue = -9.81f;
     [SerializeField]
     private float rotationSpeed = 2f;
@@ -47,7 +45,6 @@ public class CharacterControl : MonoBehaviour
     private GameObject tempInv;
     private InputAction moveAction;
     private InputAction lookAction;
-    private InputAction jumpAction;
     private InputAction aimAction;
     private InputAction shootAction;
     private InputAction sprintAction;
@@ -72,7 +69,6 @@ public class CharacterControl : MonoBehaviour
         characterAnim = GetComponent<CharacterAnimation>();
         insanitySound = GetComponent<SoundChange>();
         moveAction = playerInput.actions["Move"];
-        jumpAction = playerInput.actions["Jump"];
         aimAction = playerInput.actions["Aim"];
         shootAction = playerInput.actions["Shoot"];
         sprintAction = playerInput.actions["Sprint"];
@@ -89,7 +85,7 @@ public class CharacterControl : MonoBehaviour
         aimAction.canceled += _ => characterAnim.disableAimLayer();
         aimAction.canceled += _ => {shootAction.Disable(); speedLimit = runSpeed; aimTarget.NotAiming();};
         interactAction.performed += _ => interact.Interact();
-        jumpAction.performed += _ => HitReaction();
+
         cameraTransform = Camera.main.transform;
         inventory = Inventory.instance;
         weapon = GetComponentInChildren<Weapon>();
@@ -119,14 +115,7 @@ public class CharacterControl : MonoBehaviour
         Vector3 move = new Vector3(input.x, 0, input.y);
         move = move.x * cameraTransform.right.normalized + move.z * cameraTransform.forward.normalized;
         move.y = 0f;
-        controller.Move(move.normalized * Time.deltaTime * playerSpeed*speedFactor);
-        
-        // Changes the height position of the player..
-        if (jumpAction.triggered && groundedPlayer)
-        {
-            playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
-            HitReaction();
-        }
+        controller.Move(move.normalized * Time.deltaTime * playerSpeed*speedFactor);        
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
