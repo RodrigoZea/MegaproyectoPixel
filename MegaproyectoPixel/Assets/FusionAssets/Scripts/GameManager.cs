@@ -82,7 +82,9 @@ public class GameManager : MonoBehaviour
         UITestingGM.Instance.changeHealth(changeInHealth);
         Debug.Log(playerHealth);
         if (playerHealth <= 0f){
+            Cursor.lockState = CursorLockMode.None;
             playerInfo.deactivateControls();
+            UITestingGM.Instance.showGameOverPanel(true);
         }
     }
 

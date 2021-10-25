@@ -197,7 +197,7 @@ public class UITestingGM : MonoBehaviour
     }
 
     public void showGameWinPanel(bool show) {
-        gameOverPanel.SetActive(show);
+        gameWinPanel.SetActive(show);
 
     }
 
