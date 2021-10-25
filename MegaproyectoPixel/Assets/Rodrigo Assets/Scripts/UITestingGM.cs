@@ -55,6 +55,12 @@ public class UITestingGM : MonoBehaviour
     public GameObject inventoryActionButtons;
     public Sprite defaultSprite;
 
+    // Panels
+    [SerializeField]
+    private GameObject gameOverPanel;
+    [SerializeField]
+    private GameObject gameWinPanel;
+
     //Singleton
     public static UITestingGM Instance { get; private set; }
 
@@ -186,6 +192,15 @@ public class UITestingGM : MonoBehaviour
         NoteBackButton.SetActive(false);
     }
     
+    public void showGameOverPanel(bool show) {
+        gameOverPanel.SetActive(show);
+    }
+
+    public void showGameWinPanel(bool show) {
+        gameOverPanel.SetActive(show);
+
+    }
+
     public void reloadScene() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     } 
