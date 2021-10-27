@@ -3536,7 +3536,7 @@ MonoBehaviour:
   player: {fileID: 0}
   attackradius: 2
   attackArea: {fileID: 9156020883095315736}
-  health: 5
+  health: 4
   playerController: {fileID: 0}
   puntos: []
   EnemyType: 0
@@ -3887,5 +3887,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 0.75834656}
-  m_Center: {x: 0, y: 1, z: 0.8791733}
+  m_Size: {x: 1, y: 1, z: 0.6640816}
+  m_Center: {x: 0, y: 1, z: 0.8320408}
