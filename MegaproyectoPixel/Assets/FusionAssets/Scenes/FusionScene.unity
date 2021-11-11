@@ -6062,7 +6062,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6642069606354341757, guid: c42a31d4eb8c4ea40bb0200ce71ffa9c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.45483
+      value: 14.492763
       objectReference: {fileID: 0}
     - target: {fileID: 6642069606354341757, guid: c42a31d4eb8c4ea40bb0200ce71ffa9c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -39085,7 +39085,6 @@ MonoBehaviour:
   playerCamera: {fileID: 1473172532}
   aimCamera: {fileID: 689042110}
   playerSpeed: 2
-  jumpHeight: 0.5
   gravityValue: -9.81
   rotationSpeed: 2
   weapon: {fileID: 446246783}
@@ -48626,7 +48625,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4731843124130997464, guid: 836043f34903bd84cb27d8e1df14c784, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.7093315
+      value: 14.790214
       objectReference: {fileID: 0}
     - target: {fileID: 4731843124130997464, guid: 836043f34903bd84cb27d8e1df14c784, type: 3}
       propertyPath: m_LocalPosition.y
@@ -60943,7 +60942,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cfuStatus: PSXEffects v1.18.1 - update available (click to update).
   sections: 01010100
-  customRes: {x: 480, y: 320}
+  customRes: {x: 960, y: 540}
   resolutionFactor: 2
   limitFramerate: -1
   skipFrames: 0
@@ -72564,7 +72563,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7867969415483487187, guid: dfb3e69d40a4c754aa25c2a02d5e6104, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.551016
+      value: 14.602583
       objectReference: {fileID: 0}
     - target: {fileID: 7867969415483487187, guid: dfb3e69d40a4c754aa25c2a02d5e6104, type: 3}
       propertyPath: m_LocalPosition.y
@@ -72572,7 +72571,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7867969415483487187, guid: dfb3e69d40a4c754aa25c2a02d5e6104, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 155.5885
+      value: 155.58849
       objectReference: {fileID: 0}
     - target: {fileID: 7867969415483487187, guid: dfb3e69d40a4c754aa25c2a02d5e6104, type: 3}
       propertyPath: m_LocalRotation.w
@@ -80711,8 +80710,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1275224835878976258, guid: 612aeb7711fe1e74d8650b5ecdd3b0be, type: 3}
       propertyPath: item.description
-      value: "This is a long description \nwith several lines to test\nthe note text
-        box"
+      value: 'random change to the note
+
+        just to have a different commit'
       objectReference: {fileID: 0}
     - target: {fileID: 1275224835878976258, guid: 612aeb7711fe1e74d8650b5ecdd3b0be, type: 3}
       propertyPath: item.AlternativeDescription
