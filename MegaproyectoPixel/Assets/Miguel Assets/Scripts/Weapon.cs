@@ -98,6 +98,7 @@ public class Weapon : MonoBehaviour
         return (index + 1) % pattern.Length;
     }
 
+    //FIX ADDAMMO
     public void addAmmo(int extraAmmo)
     {
         if (ammo + extraAmmo <= 14)
