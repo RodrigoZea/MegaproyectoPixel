@@ -1,0 +1,60 @@
+2021.11.11 00:08:33 WARN  es[][o.e.t.ThreadPool] timer thread slept for [2.1m/127801ms] on absolute clock which is above the warn threshold of [5000ms]
+2021.11.11 00:08:36 WARN  es[][o.e.t.ThreadPool] timer thread slept for [2.1m/127823236100ns] on relative clock which is above the warn threshold of [5000ms]
+2021.11.11 13:25:01 INFO  es[][o.e.n.Node] version[7.14.1], pid[22748], build[unknown/unknown/66b55ebfa59c92c15db3f69a335d500018b3331e/2021-08-26T09:01:05.390870785Z], OS[Windows 10/10.0/amd64], JVM[Oracle Corporation/Java HotSpot(TM) 64-Bit Server VM/16.0.1/16.0.1+9-24]
+2021.11.11 13:25:01 INFO  es[][o.e.n.Node] JVM home [C:\Program Files\Java\jdk-16.0.1]
+2021.11.11 13:25:01 INFO  es[][o.e.n.Node] JVM arguments [-XX:+UseG1GC, -Djava.io.tmpdir=C:\Users\Guillermo\Desktop\sonarqube-9.1.0.47736\temp, -XX:ErrorFile=../logs/es_hs_err_pid%p.log, -Des.networkaddress.cache.ttl=60, -Des.networkaddress.cache.negative.ttl=10, -XX:+AlwaysPreTouch, -Xss1m, -Djava.awt.headless=true, -Dfile.encoding=UTF-8, -Djna.nosys=true, -XX:-OmitStackTraceInFastThrow, -Dio.netty.noUnsafe=true, -Dio.netty.noKeySetOptimization=true, -Dio.netty.recycler.maxCapacityPerThread=0, -Dio.netty.allocator.numDirectArenas=0, -Dlog4j.shutdownHookEnabled=false, -Dlog4j2.disable.jmx=true, -Djava.locale.providers=COMPAT, -Xmx512m, -Xms512m, -XX:MaxDirectMemorySize=256m, -XX:+HeapDumpOnOutOfMemoryError, -Delasticsearch, -Des.path.home=C:\Users\Guillermo\Desktop\sonarqube-9.1.0.47736\elasticsearch, -Des.path.conf=C:\Users\Guillermo\Desktop\sonarqube-9.1.0.47736\temp\conf\es]
+2021.11.11 13:25:02 INFO  es[][o.e.p.PluginsService] loaded module [analysis-common]
+2021.11.11 13:25:02 INFO  es[][o.e.p.PluginsService] loaded module [lang-painless]
+2021.11.11 13:25:02 INFO  es[][o.e.p.PluginsService] loaded module [parent-join]
+2021.11.11 13:25:02 INFO  es[][o.e.p.PluginsService] loaded module [percolator]
+2021.11.11 13:25:02 INFO  es[][o.e.p.PluginsService] loaded module [runtime-fields-common]
+2021.11.11 13:25:02 INFO  es[][o.e.p.PluginsService] loaded module [transport-netty4]
+2021.11.11 13:25:02 INFO  es[][o.e.p.PluginsService] no plugins loaded
+2021.11.11 13:25:02 INFO  es[][o.e.e.NodeEnvironment] using [1] data paths, mounts [[(C:)]], net usable_space [67.5gb], net total_space [475.7gb], types [NTFS]
+2021.11.11 13:25:02 INFO  es[][o.e.e.NodeEnvironment] heap size [512mb], compressed ordinary object pointers [true]
+2021.11.11 13:25:03 INFO  es[][o.e.n.Node] node name [sonarqube], node ID [AvnDLh2BRiWNnRlsnqY_vQ], cluster name [sonarqube], roles [data_frozen, master, remote_cluster_client, data, data_content, data_hot, data_warm, data_cold, ingest]
+2021.11.11 13:25:11 INFO  es[][o.e.t.NettyAllocator] creating NettyAllocator with the following configs: [name=unpooled, suggested_max_allocation_size=256kb, factors={es.unsafe.use_unpooled_allocator=null, g1gc_enabled=true, g1gc_region_size=1mb, heap_size=512mb}]
+2021.11.11 13:25:11 INFO  es[][o.e.d.DiscoveryModule] using discovery type [zen] and seed hosts providers [settings]
+2021.11.11 13:25:12 INFO  es[][o.e.g.DanglingIndicesState] gateway.auto_import_dangling_indices is disabled, dangling indices will not be automatically detected or imported and must be managed manually
+2021.11.11 13:25:12 INFO  es[][o.e.n.Node] initialized
+2021.11.11 13:25:12 INFO  es[][o.e.n.Node] starting ...
+2021.11.11 13:25:12 INFO  es[][o.e.t.TransportService] publish_address {127.0.0.1:63503}, bound_addresses {127.0.0.1:63503}
+2021.11.11 13:25:13 INFO  es[][o.e.c.c.Coordinator] cluster UUID [Mpp1XWJASwqhYSYamH8Bjw]
+2021.11.11 13:25:13 INFO  es[][o.e.c.s.MasterService] elected-as-master ([1] nodes joined)[{sonarqube}{AvnDLh2BRiWNnRlsnqY_vQ}{HvjGJp6RQFKpvme2YyLxWw}{127.0.0.1}{127.0.0.1:63503}{cdfhimrsw} elect leader, _BECOME_MASTER_TASK_, _FINISH_ELECTION_], term: 2, version: 42, delta: master node changed {previous [], current [{sonarqube}{AvnDLh2BRiWNnRlsnqY_vQ}{HvjGJp6RQFKpvme2YyLxWw}{127.0.0.1}{127.0.0.1:63503}{cdfhimrsw}]}
+2021.11.11 13:25:14 INFO  es[][o.e.c.s.ClusterApplierService] master node changed {previous [], current [{sonarqube}{AvnDLh2BRiWNnRlsnqY_vQ}{HvjGJp6RQFKpvme2YyLxWw}{127.0.0.1}{127.0.0.1:63503}{cdfhimrsw}]}, term: 2, version: 42, reason: Publication{term=2, version=42}
+2021.11.11 13:25:14 INFO  es[][o.e.c.r.a.DiskThresholdMonitor] low disk watermark [85%] exceeded on [AvnDLh2BRiWNnRlsnqY_vQ][sonarqube][C:\Users\Guillermo\Desktop\sonarqube-9.1.0.47736\data\es7\nodes\0] free: 67.5gb[14.2%], replicas will not be assigned to this node
+2021.11.11 13:25:14 INFO  es[][o.e.h.AbstractHttpServerTransport] publish_address {127.0.0.1:9001}, bound_addresses {127.0.0.1:9001}
+2021.11.11 13:25:14 INFO  es[][o.e.n.Node] started
+2021.11.11 13:25:14 INFO  es[][o.e.g.GatewayService] recovered [7] indices into cluster_state
+2021.11.11 13:25:19 INFO  es[][o.e.c.r.a.AllocationService] Cluster health status changed from [RED] to [GREEN] (reason: [shards started [[metadatas][0]]]).
+2021.11.11 14:26:54 INFO  es[][o.e.n.Node] version[7.14.1], pid[16400], build[unknown/unknown/66b55ebfa59c92c15db3f69a335d500018b3331e/2021-08-26T09:01:05.390870785Z], OS[Windows 10/10.0/amd64], JVM[Oracle Corporation/Java HotSpot(TM) 64-Bit Server VM/16.0.1/16.0.1+9-24]
+2021.11.11 14:26:54 INFO  es[][o.e.n.Node] JVM home [C:\Program Files\Java\jdk-16.0.1]
+2021.11.11 14:26:54 INFO  es[][o.e.n.Node] JVM arguments [-XX:+UseG1GC, -Djava.io.tmpdir=C:\Program Files\sonarqube-9.1.0.47736\temp, -XX:ErrorFile=../logs/es_hs_err_pid%p.log, -Des.networkaddress.cache.ttl=60, -Des.networkaddress.cache.negative.ttl=10, -XX:+AlwaysPreTouch, -Xss1m, -Djava.awt.headless=true, -Dfile.encoding=UTF-8, -Djna.nosys=true, -XX:-OmitStackTraceInFastThrow, -Dio.netty.noUnsafe=true, -Dio.netty.noKeySetOptimization=true, -Dio.netty.recycler.maxCapacityPerThread=0, -Dio.netty.allocator.numDirectArenas=0, -Dlog4j.shutdownHookEnabled=false, -Dlog4j2.disable.jmx=true, -Djava.locale.providers=COMPAT, -Xmx512m, -Xms512m, -XX:MaxDirectMemorySize=256m, -XX:+HeapDumpOnOutOfMemoryError, -Delasticsearch, -Des.path.home=C:\Program Files\sonarqube-9.1.0.47736\elasticsearch, -Des.path.conf=C:\Program Files\sonarqube-9.1.0.47736\temp\conf\es]
+2021.11.11 14:26:55 INFO  es[][o.e.p.PluginsService] loaded module [analysis-common]
+2021.11.11 14:26:55 INFO  es[][o.e.p.PluginsService] loaded module [lang-painless]
+2021.11.11 14:26:55 INFO  es[][o.e.p.PluginsService] loaded module [parent-join]
+2021.11.11 14:26:55 INFO  es[][o.e.p.PluginsService] loaded module [percolator]
+2021.11.11 14:26:55 INFO  es[][o.e.p.PluginsService] loaded module [runtime-fields-common]
+2021.11.11 14:26:55 INFO  es[][o.e.p.PluginsService] loaded module [transport-netty4]
+2021.11.11 14:26:55 INFO  es[][o.e.p.PluginsService] no plugins loaded
+2021.11.11 14:26:55 INFO  es[][o.e.e.NodeEnvironment] using [1] data paths, mounts [[(C:)]], net usable_space [67.2gb], net total_space [475.7gb], types [NTFS]
+2021.11.11 14:26:55 INFO  es[][o.e.e.NodeEnvironment] heap size [512mb], compressed ordinary object pointers [true]
+2021.11.11 14:26:55 INFO  es[][o.e.n.Node] node name [sonarqube], node ID [AvnDLh2BRiWNnRlsnqY_vQ], cluster name [sonarqube], roles [data_frozen, master, remote_cluster_client, data, data_content, data_hot, data_warm, data_cold, ingest]
+2021.11.11 14:27:00 INFO  es[][o.e.t.NettyAllocator] creating NettyAllocator with the following configs: [name=unpooled, suggested_max_allocation_size=256kb, factors={es.unsafe.use_unpooled_allocator=null, g1gc_enabled=true, g1gc_region_size=1mb, heap_size=512mb}]
+2021.11.11 14:27:00 INFO  es[][o.e.d.DiscoveryModule] using discovery type [zen] and seed hosts providers [settings]
+2021.11.11 14:27:01 INFO  es[][o.e.g.DanglingIndicesState] gateway.auto_import_dangling_indices is disabled, dangling indices will not be automatically detected or imported and must be managed manually
+2021.11.11 14:27:01 INFO  es[][o.e.n.Node] initialized
+2021.11.11 14:27:01 INFO  es[][o.e.n.Node] starting ...
+2021.11.11 14:27:01 INFO  es[][o.e.t.TransportService] publish_address {127.0.0.1:60782}, bound_addresses {127.0.0.1:60782}
+2021.11.11 14:27:02 INFO  es[][o.e.c.c.Coordinator] cluster UUID [Mpp1XWJASwqhYSYamH8Bjw]
+2021.11.11 14:27:02 INFO  es[][o.e.c.s.MasterService] elected-as-master ([1] nodes joined)[{sonarqube}{AvnDLh2BRiWNnRlsnqY_vQ}{NXoBnSQCSwe4J84QOk0Hcw}{127.0.0.1}{127.0.0.1:60782}{cdfhimrsw} elect leader, _BECOME_MASTER_TASK_, _FINISH_ELECTION_], term: 3, version: 66, delta: master node changed {previous [], current [{sonarqube}{AvnDLh2BRiWNnRlsnqY_vQ}{NXoBnSQCSwe4J84QOk0Hcw}{127.0.0.1}{127.0.0.1:60782}{cdfhimrsw}]}
+2021.11.11 14:27:02 INFO  es[][o.e.c.s.ClusterApplierService] master node changed {previous [], current [{sonarqube}{AvnDLh2BRiWNnRlsnqY_vQ}{NXoBnSQCSwe4J84QOk0Hcw}{127.0.0.1}{127.0.0.1:60782}{cdfhimrsw}]}, term: 3, version: 66, reason: Publication{term=3, version=66}
+2021.11.11 14:27:02 INFO  es[][o.e.c.r.a.DiskThresholdMonitor] low disk watermark [85%] exceeded on [AvnDLh2BRiWNnRlsnqY_vQ][sonarqube][C:\Program Files\sonarqube-9.1.0.47736\data\es7\nodes\0] free: 67.2gb[14.1%], replicas will not be assigned to this node
+2021.11.11 14:27:02 INFO  es[][o.e.h.AbstractHttpServerTransport] publish_address {127.0.0.1:9001}, bound_addresses {127.0.0.1:9001}
+2021.11.11 14:27:02 INFO  es[][o.e.n.Node] started
+2021.11.11 14:27:02 INFO  es[][o.e.g.GatewayService] recovered [7] indices into cluster_state
+2021.11.11 14:27:05 INFO  es[][o.e.c.r.a.AllocationService] Cluster health status changed from [RED] to [GREEN] (reason: [shards started [[metadatas][0]]]).
+2021.11.11 17:08:34 WARN  es[][o.e.t.ThreadPool] timer thread slept for [2.2h/7966684ms] on absolute clock which is above the warn threshold of [5000ms]
+2021.11.11 17:08:34 WARN  es[][o.e.t.ThreadPool] timer thread slept for [2.2h/7966707816800ns] on relative clock which is above the warn threshold of [5000ms]
+2021.11.11 23:21:15 WARN  es[][o.e.t.ThreadPool] timer thread slept for [2.9h/10794174ms] on absolute clock which is above the warn threshold of [5000ms]
+2021.11.11 23:21:15 WARN  es[][o.e.t.ThreadPool] timer thread slept for [2.9h/10794197992500ns] on relative clock which is above the warn threshold of [5000ms]
