@@ -1,5 +1,0 @@
-CTRL-C trapped.  Shutting down.
-CTRL-C trapped.  Forcing immediate shutdown.
-JVM did not exit on request, terminated
-2021.11.12 20:33:13 INFO  app[][o.s.a.SchedulerImpl] Stopping SonarQube
-<-- Wrapper Stopped
